@@ -9,5 +9,5 @@ set -x
 
 # Download and uncompress library archive
 MOCK_ARCHIVE_PATH=${MOCK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mock-20210525-101055-7beca7d/mock-install.tar.gz"}
-[[ $MOCK_ARCHIVE_PATH == http* ]] && (wget ${MOCK_ARCHIVE_PATH} -O /tmp/mock-install.tar.gz && MOCK_ARCHIVE_PATH=/tmp/mock-install.tar.gz)
+[[ $MOCK_ARCHIVE_PATH == http* ]] && wget ${MOCK_ARCHIVE_PATH} -O /tmp/mock-install.tar.gz && MOCK_ARCHIVE_PATH=/tmp/mock-install.tar.gz
 tar -xzf $MOCK_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
