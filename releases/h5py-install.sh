@@ -16,6 +16,6 @@ source $MPI4PY_INSTALL_SCRIPT_PATH
 apt install -y -qq zlib1g-dev
 
 # Download and uncompress library archive
-H5PY_ARCHIVE_PATH=${H5PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/h5py-20210526-130123-3f41384/h5py-install.tar.gz"}
+H5PY_ARCHIVE_PATH=${H5PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/h5py-20210527-124533-a1f30c0/h5py-install.tar.gz"}
 [[ $H5PY_ARCHIVE_PATH == http* ]] && wget ${H5PY_ARCHIVE_PATH} -O /tmp/h5py-install.tar.gz && H5PY_ARCHIVE_PATH=/tmp/h5py-install.tar.gz
 [[ $H5PY_ARCHIVE_PATH != skip ]] && tar -xzf $H5PY_ARCHIVE_PATH --strip-components=2 --directory=/usr/local || true
