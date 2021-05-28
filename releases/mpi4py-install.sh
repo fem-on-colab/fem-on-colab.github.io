@@ -17,7 +17,11 @@ add-apt-repository -y ppa:marmistrz/openmpi
 apt update
 apt install -y -qq libopenmpi-dev
 
+# Patch MPI to load libstdc++ from the newest gcc
+apt install -y -qq patchelf
+patchelf --replace-needed libstdc++.so.6 /usr/lib/gcc/x86_64-linux-gnu/11/libstdc++.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so
+
 # Download and uncompress library archive
-MPI4PY_ARCHIVE_PATH=${MPI4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mpi4py-20210528-130546-3784a72/mpi4py-install.tar.gz"}
+MPI4PY_ARCHIVE_PATH=${MPI4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mpi4py-20210528-150117-85c6f16/mpi4py-install.tar.gz"}
 [[ $MPI4PY_ARCHIVE_PATH == http* ]] && wget ${MPI4PY_ARCHIVE_PATH} -O /tmp/mpi4py-install.tar.gz && MPI4PY_ARCHIVE_PATH=/tmp/mpi4py-install.tar.gz
 [[ $MPI4PY_ARCHIVE_PATH != skip ]] && tar -xzf $MPI4PY_ARCHIVE_PATH --strip-components=2 --directory=/usr/local || true
