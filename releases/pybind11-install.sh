@@ -13,6 +13,6 @@ GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://fem-on-colab.github.
 source $GCC_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-PYBIND11_ARCHIVE_PATH=${PYBIND11_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/pybind11-20210528-145138-85c6f16/pybind11-install.tar.gz"}
+PYBIND11_ARCHIVE_PATH=${PYBIND11_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/pybind11-20210528-174641-88a572b/pybind11-install.tar.gz"}
 [[ $PYBIND11_ARCHIVE_PATH == http* ]] && wget ${PYBIND11_ARCHIVE_PATH} -O /tmp/pybind11-install.tar.gz && PYBIND11_ARCHIVE_PATH=/tmp/pybind11-install.tar.gz
 [[ $PYBIND11_ARCHIVE_PATH != skip ]] && tar -xzf $PYBIND11_ARCHIVE_PATH --strip-components=2 --directory=/usr/local || true
