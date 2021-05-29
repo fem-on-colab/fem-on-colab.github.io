@@ -13,6 +13,6 @@ H5PY_INSTALL_SCRIPT_PATH=${H5PY_INSTALL_SCRIPT_PATH:-"https://fem-on-colab.githu
 source $H5PY_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-PETSC4PY_ARCHIVE_PATH=${PETSC4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/petsc4py-20210528-181515-88a572b/petsc4py-install.tar.gz"}
+PETSC4PY_ARCHIVE_PATH=${PETSC4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/petsc4py-20210529-200523-827b820/petsc4py-install.tar.gz"}
 [[ $PETSC4PY_ARCHIVE_PATH == http* ]] && wget ${PETSC4PY_ARCHIVE_PATH} -O /tmp/petsc4py-install.tar.gz && PETSC4PY_ARCHIVE_PATH=/tmp/petsc4py-install.tar.gz
 [[ $PETSC4PY_ARCHIVE_PATH != skip ]] && tar -xzf $PETSC4PY_ARCHIVE_PATH --strip-components=2 --directory=/usr/local || true
