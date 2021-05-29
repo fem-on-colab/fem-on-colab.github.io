@@ -7,12 +7,12 @@
 set -e
 set -x
 
-# Install gcc
-GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://fem-on-colab.github.io/releases/gcc-install.sh"}
-[[ $GCC_INSTALL_SCRIPT_PATH == http* ]] && wget ${GCC_INSTALL_SCRIPT_PATH} -O /tmp/gcc-install.sh && GCC_INSTALL_SCRIPT_PATH=/tmp/gcc-install.sh
-source $GCC_INSTALL_SCRIPT_PATH
+# Install mpi4py
+MPI4PY_INSTALL_SCRIPT_PATH=${MPI4PY_INSTALL_SCRIPT_PATH:-"https://fem-on-colab.github.io/releases/mpi4py-install.sh"}
+[[ $MPI4PY_INSTALL_SCRIPT_PATH == http* ]] && wget ${MPI4PY_INSTALL_SCRIPT_PATH} -O /tmp/mpi4py-install.sh && MPI4PY_INSTALL_SCRIPT_PATH=/tmp/mpi4py-install.sh
+source $MPI4PY_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-PYBIND11_ARCHIVE_PATH=${PYBIND11_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/pybind11-20210528-174641-88a572b/pybind11-install.tar.gz"}
+PYBIND11_ARCHIVE_PATH=${PYBIND11_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/pybind11-20210529-141020-bbb1607/pybind11-install.tar.gz"}
 [[ $PYBIND11_ARCHIVE_PATH == http* ]] && wget ${PYBIND11_ARCHIVE_PATH} -O /tmp/pybind11-install.tar.gz && PYBIND11_ARCHIVE_PATH=/tmp/pybind11-install.tar.gz
 [[ $PYBIND11_ARCHIVE_PATH != skip ]] && tar -xzf $PYBIND11_ARCHIVE_PATH --strip-components=2 --directory=/usr/local || true
