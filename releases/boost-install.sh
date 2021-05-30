@@ -12,8 +12,11 @@ GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://fem-on-colab.github.
 [[ $GCC_INSTALL_SCRIPT_PATH == http* ]] && wget ${GCC_INSTALL_SCRIPT_PATH} -O /tmp/gcc-install.sh && GCC_INSTALL_SCRIPT_PATH=/tmp/gcc-install.sh
 source $GCC_INSTALL_SCRIPT_PATH
 
+# Install zlib
+apt install -y -qq zlib1g-dev
+
 # Download and uncompress library archive
-BOOST_ARCHIVE_PATH=${BOOST_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/boost-20210530-094348-529e944/boost-install.tar.gz"}
+BOOST_ARCHIVE_PATH=${BOOST_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/boost-20210530-124202-6916904/boost-install.tar.gz"}
 [[ $BOOST_ARCHIVE_PATH == http* ]] && wget ${BOOST_ARCHIVE_PATH} -O /tmp/boost-install.tar.gz && BOOST_ARCHIVE_PATH=/tmp/boost-install.tar.gz
 if [[ $BOOST_ARCHIVE_PATH != skip ]]; then
     tar -xzf $BOOST_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
