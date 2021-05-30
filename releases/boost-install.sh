@@ -21,3 +21,8 @@ BOOST_ARCHIVE_PATH=${BOOST_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on
 if [[ $BOOST_ARCHIVE_PATH != skip ]]; then
     tar -xzf $BOOST_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
 fi
+
+# Add symbolic links to the MPI libraries in /usr/lib, because Colab does not export /usr/local/lib to LD_LIBRARY_PATH
+if [[ $BOOST_ARCHIVE_PATH != skip ]]; then
+    ln -fs /usr/local/lib/libboost*so* /usr/lib
+fi
