@@ -12,8 +12,11 @@ H5PY_INSTALL_SCRIPT_PATH=${H5PY_INSTALL_SCRIPT_PATH:-"https://fem-on-colab.githu
 [[ $H5PY_INSTALL_SCRIPT_PATH == http* ]] && wget ${H5PY_INSTALL_SCRIPT_PATH} -O /tmp/h5py-install.sh && H5PY_INSTALL_SCRIPT_PATH=/tmp/h5py-install.sh
 source $H5PY_INSTALL_SCRIPT_PATH
 
+# Install BLAS and LAPACK
+apt install -y -qq libblas-dev liblapack-dev
+
 # Download and uncompress library archive
-PETSC4PY_ARCHIVE_PATH=${PETSC4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/petsc4py-20210530-065245-40a45c5/petsc4py-install.tar.gz"}
+PETSC4PY_ARCHIVE_PATH=${PETSC4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/petsc4py-20210531-101301-aab6a6b/petsc4py-install.tar.gz"}
 [[ $PETSC4PY_ARCHIVE_PATH == http* ]] && wget ${PETSC4PY_ARCHIVE_PATH} -O /tmp/petsc4py-install.tar.gz && PETSC4PY_ARCHIVE_PATH=/tmp/petsc4py-install.tar.gz
 if [[ $PETSC4PY_ARCHIVE_PATH != skip ]]; then
     tar -xzf $PETSC4PY_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
