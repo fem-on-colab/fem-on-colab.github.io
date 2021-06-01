@@ -40,5 +40,6 @@ An updated version of an existing package may be released as follows:
 1. If an issue has been opened on `our GitHub tracker <https://github.com/fem-on-colab/fem-on-colab/issues>`__ reporting a broken package, please assign the issue to yourself to let users/maintainers know that you are working on it.
 2. Go to the `release workflow on our GitHub Actions <https://github.com/fem-on-colab/fem-on-colab/actions/workflows/release.yml>`__ and manually trigger a new build from the `Run workflow` dropdown. Make sure to insert the name of the library to build.
 3. After a successful workflow, please double check existing tests on an actual Colab runtime, by clicking on the `Open in Colab` badges in the README file in the package subfolder.
+4. Determine, with the help of our `dependency graph <https://github.com/fem-on-colab/fem-on-colab/raw/main/scripts/graph.png>`__, if further downstream packages need to be updated too.
 
 Please get in touch with us by `email <mailto:francesco.ballarin@unicatt.it>`__ if you are interested in helping maintaining a package.
