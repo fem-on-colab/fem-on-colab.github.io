@@ -13,7 +13,7 @@ PETSC4PY_INSTALL_SCRIPT_PATH=${PETSC4PY_INSTALL_SCRIPT_PATH:-"https://fem-on-col
 source $PETSC4PY_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-SLEPC4PY_ARCHIVE_PATH=${SLEPC4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/slepc4py-20210531-110200-aab6a6b/slepc4py-install.tar.gz"}
+SLEPC4PY_ARCHIVE_PATH=${SLEPC4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/slepc4py-20210601-132331-b832627/slepc4py-install.tar.gz"}
 [[ $SLEPC4PY_ARCHIVE_PATH == http* ]] && wget ${SLEPC4PY_ARCHIVE_PATH} -O /tmp/slepc4py-install.tar.gz && SLEPC4PY_ARCHIVE_PATH=/tmp/slepc4py-install.tar.gz
 if [[ $SLEPC4PY_ARCHIVE_PATH != skip ]]; then
     tar -xzf $SLEPC4PY_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
