@@ -52,7 +52,7 @@ try:
     import ngsolve
 except ImportError:
     !wget "https://fem-on-colab.github.io/releases/ngsolve-install.sh" -O "/tmp/ngsolve-install.sh" && bash "/tmp/ngsolve-install.sh"
-    import ngsolve  # noqa: F401
+    import ngsolve
 """,
         "tests": {
             "ngsolve": "ngsolve/test-ngsolve.ipynb",
