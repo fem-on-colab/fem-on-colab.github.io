@@ -23,7 +23,7 @@ SLEPC4PY_INSTALL_SCRIPT_PATH=${SLEPC4PY_INSTALL_SCRIPT_PATH:-"https://fem-on-col
 source $SLEPC4PY_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-FIREDRAKE_ARCHIVE_PATH=${FIREDRAKE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/firedrake-20210531-165553-d9e4d48/firedrake-install.tar.gz"}
+FIREDRAKE_ARCHIVE_PATH=${FIREDRAKE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/firedrake-20210601-142148-8a1395d/firedrake-install.tar.gz"}
 [[ $FIREDRAKE_ARCHIVE_PATH == http* ]] && wget ${FIREDRAKE_ARCHIVE_PATH} -O /tmp/firedrake-install.tar.gz && FIREDRAKE_ARCHIVE_PATH=/tmp/firedrake-install.tar.gz
 if [[ $FIREDRAKE_ARCHIVE_PATH != skip ]]; then
     tar -xzf $FIREDRAKE_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
