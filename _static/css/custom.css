@@ -1,0 +1,230 @@
+/* Customize palette */
+button[data-md-color-primary=unicatt] {
+    background-color: #00325c
+}
+
+[data-md-color-primary=unicatt] .md-typeset a {
+    color: #00325c
+}
+
+[data-md-color-primary=unicatt] .md-header,
+[data-md-color-primary=unicatt] .md-hero {
+    background-color: #00325c
+}
+
+[data-md-color-primary=unicatt] .md-nav__link--active,
+[data-md-color-primary=unicatt] .md-nav__link:active {
+    color: #00325c
+}
+
+[data-md-color-primary=unicatt] .md-nav__item--nested>.md-nav__link {
+    color: inherit
+}
+
+button[data-md-color-accent=unicatt] {
+    background-color: #c23e46
+}
+
+[data-md-color-accent=unicatt] .md-typeset a:active,
+[data-md-color-accent=unicatt] .md-typeset a:hover {
+    color: #c23e46
+}
+
+[data-md-color-accent=unicatt] .md-typeset .codehilite pre::-webkit-scrollbar-thumb:hover,
+[data-md-color-accent=unicatt] .md-typeset pre code::-webkit-scrollbar-thumb:hover {
+    background-color: #c23e46
+}
+
+[data-md-color-accent=unicatt] .md-nav__link:focus,
+[data-md-color-accent=unicatt] .md-nav__link:hover,
+[data-md-color-accent=unicatt] .md-typeset .footnote li:hover .footnote-backref:hover,
+[data-md-color-accent=unicatt] .md-typeset .footnote li:target .footnote-backref,
+[data-md-color-accent=unicatt] .md-typeset .md-clipboard:active:before,
+[data-md-color-accent=unicatt] .md-typeset .md-clipboard:hover:before,
+[data-md-color-accent=unicatt] .md-typeset [id] .headerlink:focus,
+[data-md-color-accent=unicatt] .md-typeset [id]:hover .headerlink:hover,
+[data-md-color-accent=unicatt] .md-typeset [id]:target .headerlink {
+    color: #c23e46
+}
+
+[data-md-color-accent=unicatt] .md-search__scrollwrap::-webkit-scrollbar-thumb:hover {
+    background-color: #c23e46
+}
+
+[data-md-color-accent=unicatt] .md-search-result__link:hover,
+[data-md-color-accent=unicatt] .md-search-result__link[data-md-state=active] {
+    background-color: rgba(255, 23, 68, .1)
+}
+
+[data-md-color-accent=unicatt] .md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover {
+    background-color: #c23e46
+}
+
+[data-md-color-accent=unicatt] .md-source-file:hover:before {
+    background-color: #c23e46
+}
+
+@media only screen and (max-width:59.9375em) {
+    [data-md-color-primary=unicatt] .md-nav__source {
+        background-color: #c23e46
+    }
+}
+
+@media only screen and (max-width:76.1875em) {
+    html [data-md-color-primary=unicatt] .md-nav--primary .md-nav__title--site {
+        background-color: #00325c
+    }
+}
+
+@media only screen and (min-width:76.25em) {
+    [data-md-color-primary=unicatt] .md-tabs {
+        background-color: #00325c
+    }
+}
+
+/* Hide undesired items */
+.md-sidebar--secondary, .md-footer {
+    display: None
+}
+
+@media only screen and (min-width: 76.25em) {
+    .md-content {
+        margin-left: 1.0rem;
+    }
+}
+@media only screen and (min-width: 60em) {
+    .md-content {
+        margin-right: 1.0rem;
+    }
+}
+
+@media only screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+        display: None
+    }
+}
+
+/* Logo alignment on home page */
+.align-right {
+    float: right;
+    margin: 0 0 24px 24px;
+}
+
+/* Links in header */
+.md-tabs__item {
+    display: inline-block;
+    height: 2.4rem;
+    padding-right: .6rem;
+    padding-left: .6rem;
+    background-color: #00325c;
+    font-weight: bold;
+}
+
+.md-tabs__item:hover {
+    background-color: white;
+    color: #c23e46;
+}
+
+.md-tabs__item_current {
+    background-color: #c23e46;
+    color: #00325c;
+}
+
+.md-nav__link[for=__toc]:after {
+    display: none !important;
+}
+
+/* Table in the home page */
+.md-typeset .md-typeset__table table {
+    font-size: .8rem;
+}
+
+/* Package buttons
+   https://labs.abeautifulsite.net/jquery-dropdown/ */
+.package-button {
+    cursor: pointer;
+    padding: 14px;
+    border-radius: 4px;
+    background-color: #00325c;
+    color: white;
+    margin-bottom: 14px;
+    margin-left: 14px;
+}
+
+.package-button[data-jq-dropdown]:after {
+    font-family: Material Icons;
+    content: 'expand_more';
+    margin-left: 6px;
+}
+
+.package-button:hover {
+    background-color: white;
+    color: #c23e46;
+}
+
+.package-button.jq-dropdown-open {
+    background-color: #c23e46;
+    color: #00325c;
+}
+
+.jq-dropdown .jq-dropdown-menu {
+    max-width: none;
+}
+
+.jq-dropdown .jq-dropdown-menu li {
+    color: #00325c;
+}
+
+.jq-dropdown .jq-dropdown-menu li:hover {
+    color: #c23e46;
+}
+
+.jq-dropdown .jq-dropdown-menu li .in-progress {
+    display: block;
+    color: rgba(0,0,0,.54);;
+    text-decoration: none;
+    line-height: 18px;
+    padding: 3px 15px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+
+/* Package cards
+   https://www.w3schools.com/howto/howto_css_column_cards.asp */
+.package-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: left;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.package-logo {
+    flex: 0 0 2rem;
+    height: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-family: 'Pangolin';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+.package-title {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.package-installation {
+    white-space: pre-wrap;
+    font-family: monospace;
+}
+
+.package-buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
