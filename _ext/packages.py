@@ -57,7 +57,6 @@ except ImportError:
         "tests": {
             "ngsolve": "ngsolve/test-ngsolve.ipynb",
         },
-        "hide": True,
     },
 }
 extra_packages = [
