@@ -1,0 +1,46 @@
+name: "Website update"
+
+on:
+  push:
+    branches:
+      - "**"
+      - "!gh-pages"
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "0 3 * * MON"
+  workflow_dispatch:
+    inputs:
+      reset_github_pages:
+        description: "Reset the gh-pages branch (yes or no; default: no). Remember to set the gh-pages branch back in Settings -> Pages!"
+
+jobs:
+  website:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Generate sphinx website
+      uses: ammaraskar/sphinx-action@master
+      with:
+        pre-build-command: |
+          apt-get -qq update && apt-get -qq install git
+          pip3 -q install sphinx-material
+        docs-folder: .
+    - name: Fix permissions
+      run: |
+        sudo chown $USER _build -R
+    - name: Clean up old Github pages branch
+      if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.event.inputs.reset_github_pages == 'yes'
+      run: |
+        if git ls-remote origin | grep -sw gh-pages 2>&1 >/dev/null; then git push origin --delete gh-pages; fi
+    - name: Deploy to GitHub pages
+      if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: _build/html
+        user_name: 'GitHub Actions'
+        user_email: '41898282+github-actions[bot]@users.noreply.github.com'
