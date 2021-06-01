@@ -16,7 +16,7 @@ source $H5PY_INSTALL_SCRIPT_PATH
 apt install -y -qq libblas-dev liblapack-dev
 
 # Download and uncompress library archive
-PETSC4PY_ARCHIVE_PATH=${PETSC4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/petsc4py-20210531-101301-aab6a6b/petsc4py-install.tar.gz"}
+PETSC4PY_ARCHIVE_PATH=${PETSC4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/petsc4py-20210601-123717-b832627/petsc4py-install.tar.gz"}
 [[ $PETSC4PY_ARCHIVE_PATH == http* ]] && wget ${PETSC4PY_ARCHIVE_PATH} -O /tmp/petsc4py-install.tar.gz && PETSC4PY_ARCHIVE_PATH=/tmp/petsc4py-install.tar.gz
 if [[ $PETSC4PY_ARCHIVE_PATH != skip ]]; then
     tar -xzf $PETSC4PY_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
