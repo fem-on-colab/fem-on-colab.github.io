@@ -45,6 +45,20 @@ except ImportError:
         },
     },
 
+    "gmsh": {
+        "title": "gmsh",
+        "installation": """
+try:
+    import gmsh
+except ImportError:
+    !wget "https://fem-on-colab.github.io/releases/gmsh-install.sh" -O "/tmp/gmsh-install.sh" && bash "/tmp/gmsh-install.sh"
+    import gmsh
+""",
+        "tests": {
+            "gmsh": "gmsh/test.ipynb",
+        },
+    },
+
     "ngsolve": {
         "title": "ngsolve & ngsxfem",
         "installation": """
