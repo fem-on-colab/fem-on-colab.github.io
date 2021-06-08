@@ -366,6 +366,31 @@ except ImportError:
 </div>
 <div class="package-card">
 <div class="package-logo">
+<img src="_static/images/gmsh-logo.png" style="vertical-align: middle; width: 25px"/>
+</div>
+<div class="package-content">
+<h3 class="package-title">
+      gmsh
+    </h3>
+<div class="package-installation">
+try:
+    import gmsh
+except ImportError:
+    !wget "https://fem-on-colab.github.io/releases/gmsh-install.sh" -O "/tmp/gmsh-install.sh" &amp;&amp; bash "/tmp/gmsh-install.sh"
+    import gmsh
+    </div>
+<div class="package-buttons">
+<div class="jq-dropdown jq-dropdown-tip" id="package-dropdown-4">
+<ul class="jq-dropdown-menu">
+<li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/gmsh/test.ipynb" target="_blank"><img src="_static/images/gmsh-logo.png" style="vertical-align: middle; width: 25px"/> gmsh</a></li>
+</ul>
+</div>
+<div class="package-button" data-jq-dropdown="#package-dropdown-4">Our tests</div>
+</div>
+</div>
+</div>
+<div class="package-card">
+<div class="package-logo">
 <img src="_static/images/ngsolve-logo.png" style="vertical-align: middle; width: 25px"/>
 </div>
 <div class="package-content">
@@ -380,12 +405,12 @@ except ImportError:
     import ngsolve
     </div>
 <div class="package-buttons">
-<div class="jq-dropdown jq-dropdown-tip" id="package-dropdown-4">
+<div class="jq-dropdown jq-dropdown-tip" id="package-dropdown-5">
 <ul class="jq-dropdown-menu">
 <li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/ngsolve/test-ngsolve.ipynb" target="_blank"><img src="_static/images/ngsolve-logo.png" style="vertical-align: middle; width: 25px"/> ngsolve</a></li>
 </ul>
 </div>
-<div class="package-button" data-jq-dropdown="#package-dropdown-4">Our tests</div>
+<div class="package-button" data-jq-dropdown="#package-dropdown-5">Our tests</div>
 </div>
 </div>
 </div>
