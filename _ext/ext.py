@@ -150,10 +150,14 @@ def on_build_finished(app, exc):
         for package in list(packages.keys()) + extra_packages:
             package_install_git = os.path.join("releases", package + "-install.sh")
             package_install = os.path.join(releases_dir, package + "-install.sh")
-            install_copied = subprocess.call(
+            install_copied = subprocess.run(
                 "git show origin/gh-pages:" + package_install_git + "> " + package_install,
-                shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            assert install_copied == 0, "Installation of " + package + " not found at " + package_install_git
+                shell=True, capture_output=True)
+            if install_copied.returncode != 0:
+                raise RuntimeError(
+                    "Installation of " + package + " not found at " + package_install_git + "\n"
+                    + "stdout contains " + install_copied.stdout.decode() + "\n"
+                    + "stderr contains " + install_copied.stderr.decode() + "\n")
 
 
 create_sitemap_bak = sphinx_material.create_sitemap
