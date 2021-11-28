@@ -23,7 +23,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Generate sphinx website
-      uses: ammaraskar/sphinx-action@master
+      uses: ax3l/sphinx-action@newer-sphinx
       with:
         pre-build-command: |
           apt-get -qq update && apt-get -qq install git
