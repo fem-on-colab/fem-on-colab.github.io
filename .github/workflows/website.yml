@@ -44,3 +44,10 @@ jobs:
         publish_dir: _build/html
         user_name: 'GitHub Actions'
         user_email: '41898282+github-actions[bot]@users.noreply.github.com'
+    - name: Deploy to GitHub artifacts
+      if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref != 'refs/heads/main'
+      uses: actions/upload-artifact@v2
+      with:
+        name: website
+        path: _build/html
+        retention-days: 1
