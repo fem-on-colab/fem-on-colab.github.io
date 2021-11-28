@@ -160,6 +160,10 @@ create_sitemap_bak = sphinx_material.create_sitemap
 def create_sitemap(app, exc):
     create_sitemap_bak(app, exc)
     if exc is None and app.builder.format == "html":
+        # Add version and encoding to the top of sitemap.xml
+        subprocess.run(
+            "sed -i '1s/^/<?xml version=\"1.0\" encoding=\"UTF-8\"?>/' " + os.path.join(app.outdir, "sitemap.xml"),
+            shell=True)
         # Remove trailing index.html from sitemap.xml
         subprocess.run(
             "sed -i 's|/index.html||g' " + os.path.join(app.outdir, "sitemap.xml"),
