@@ -27,6 +27,7 @@ except ImportError:
 """,
         "tests": {
             "dolfinx": "fenicsx/test-dolfinx.ipynb",
+            "dolfinx with pyvista": "fenicsx/test-dolfinx-pyvista.ipynb",
             "multiphenicsx": "fenicsx/test-multiphenicsx.ipynb",
         },
     },
