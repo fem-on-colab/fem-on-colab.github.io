@@ -13,7 +13,7 @@ H5PY_INSTALL_SCRIPT_PATH=${H5PY_INSTALL_SCRIPT_PATH:-"https://fem-on-colab.githu
 source $H5PY_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-GMSH_ARCHIVE_PATH=${GMSH_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gmsh-20210607-151528-30a2456/gmsh-install.tar.gz"}
+GMSH_ARCHIVE_PATH=${GMSH_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gmsh-20211201-112738-3d35183/gmsh-install.tar.gz"}
 [[ $GMSH_ARCHIVE_PATH == http* ]] && wget ${GMSH_ARCHIVE_PATH} -O /tmp/gmsh-install.tar.gz && GMSH_ARCHIVE_PATH=/tmp/gmsh-install.tar.gz
 if [[ $GMSH_ARCHIVE_PATH != skip ]]; then
     tar -xzf $GMSH_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
