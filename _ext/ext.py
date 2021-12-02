@@ -172,6 +172,13 @@ def create_sitemap(app, exc):
         subprocess.run(
             "sed -i 's|/index.html||g' " + os.path.join(app.outdir, "sitemap.xml"),
             shell=True)
+        # Write robots.txt file
+        with open(os.path.join(app.outdir, "robots.txt"), "w") as f:
+            f.write("""Sitemap: https://fem-on-colab.github.io/sitemap.xml
+
+User-agent: *
+Disallow:
+""")
 sphinx_material.create_sitemap = create_sitemap
 
 
