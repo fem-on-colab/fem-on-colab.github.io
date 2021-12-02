@@ -1,0 +1,4 @@
+Sitemap: https://fem-on-colab.github.io/sitemap.xml
+
+User-agent: *
+Disallow:
