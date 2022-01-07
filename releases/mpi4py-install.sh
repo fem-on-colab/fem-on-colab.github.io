@@ -1,4 +1,4 @@
-# Copyright (C) 2021 by the FEM on Colab authors
+# Copyright (C) 2021-2022 by the FEM on Colab authors
 #
 # This file is part of FEM on Colab.
 #
@@ -8,12 +8,12 @@ set -e
 set -x
 
 # Install gcc
-GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://fem-on-colab.github.io/releases/gcc-install.sh"}
+GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/7a3dea8/releases/gcc-install.sh"}
 [[ $GCC_INSTALL_SCRIPT_PATH == http* ]] && wget ${GCC_INSTALL_SCRIPT_PATH} -O /tmp/gcc-install.sh && GCC_INSTALL_SCRIPT_PATH=/tmp/gcc-install.sh
 source $GCC_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-MPI4PY_ARCHIVE_PATH=${MPI4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mpi4py-20210601-120142-b832627/mpi4py-install.tar.gz"}
+MPI4PY_ARCHIVE_PATH=${MPI4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mpi4py-20220107-165441-ef21dd8/mpi4py-install.tar.gz"}
 [[ $MPI4PY_ARCHIVE_PATH == http* ]] && wget ${MPI4PY_ARCHIVE_PATH} -O /tmp/mpi4py-install.tar.gz && MPI4PY_ARCHIVE_PATH=/tmp/mpi4py-install.tar.gz
 if [[ $MPI4PY_ARCHIVE_PATH != skip ]]; then
     tar -xzf $MPI4PY_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
