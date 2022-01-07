@@ -1,4 +1,4 @@
-# Copyright (C) 2021 by the FEM on Colab authors
+# Copyright (C) 2021-2022 by the FEM on Colab authors
 #
 # This file is part of FEM on Colab.
 #
@@ -8,7 +8,7 @@ set -e
 set -x
 
 # Install gcc
-GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://fem-on-colab.github.io/releases/gcc-install.sh"}
+GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/7a3dea8/releases/gcc-install.sh"}
 [[ $GCC_INSTALL_SCRIPT_PATH == http* ]] && wget ${GCC_INSTALL_SCRIPT_PATH} -O /tmp/gcc-install.sh && GCC_INSTALL_SCRIPT_PATH=/tmp/gcc-install.sh
 source $GCC_INSTALL_SCRIPT_PATH
 
@@ -16,7 +16,7 @@ source $GCC_INSTALL_SCRIPT_PATH
 apt install -y -qq zlib1g-dev
 
 # Download and uncompress library archive
-BOOST_ARCHIVE_PATH=${BOOST_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/boost-20210601-120201-b832627/boost-install.tar.gz"}
+BOOST_ARCHIVE_PATH=${BOOST_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/boost-20220107-150555-1a6257d/boost-install.tar.gz"}
 [[ $BOOST_ARCHIVE_PATH == http* ]] && wget ${BOOST_ARCHIVE_PATH} -O /tmp/boost-install.tar.gz && BOOST_ARCHIVE_PATH=/tmp/boost-install.tar.gz
 if [[ $BOOST_ARCHIVE_PATH != skip ]]; then
     tar -xzf $BOOST_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
