@@ -13,7 +13,7 @@ MPI4PY_INSTALL_SCRIPT_PATH=${MPI4PY_INSTALL_SCRIPT_PATH:-"https://github.com/fem
 source $MPI4PY_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-PYBIND11_ARCHIVE_PATH=${PYBIND11_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/pybind11-20220107-172042-68c1997/pybind11-install.tar.gz"}
+PYBIND11_ARCHIVE_PATH=${PYBIND11_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/pybind11-20220108-082703-33b394e/pybind11-install.tar.gz"}
 [[ $PYBIND11_ARCHIVE_PATH == http* ]] && wget ${PYBIND11_ARCHIVE_PATH} -O /tmp/pybind11-install.tar.gz && PYBIND11_ARCHIVE_PATH=/tmp/pybind11-install.tar.gz
 if [[ $PYBIND11_ARCHIVE_PATH != skip ]]; then
     tar -xzf $PYBIND11_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
