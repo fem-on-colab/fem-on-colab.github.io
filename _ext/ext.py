@@ -24,6 +24,7 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
                 package=package,
                 title=data["title"],
                 installation=data["installation"],
+                installation_suffixes=data["installation_suffixes"],
                 buttons=buttons
             )
             if "hide" not in data or not data["hide"]:
@@ -31,7 +32,22 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
         return output
 
     @classmethod
-    def _card(cls, package, title, installation, buttons):
+    def _card(cls, package, title, installation, installation_suffixes, buttons):
+        if len(installation_suffixes) == 1:
+            assert installation_suffixes[0] == ""
+            package_installation = "<div class=\"package-installation\">" + installation.lstrip().rstrip() + "</div>"
+        else:
+            package_installation_template = installation.lstrip().rstrip()
+            package_installation = ""
+            for suffix in installation_suffixes:
+                suffix_title = suffix.capitalize() + " mode"
+                toggle_open = " checked" if suffix == "real" else ""
+                div_class = "package-installation-real" if suffix == "real" else "package-installation-complex"
+                package_installation += (
+                    f"<input type=\"checkbox\" name=\"installation-toggle-{package}-{suffix}\" id=\"installation-toggle-{package}-{suffix}\" class=\"installation-toggle\"{toggle_open}>"
+                    + f"<label for=\"installation-toggle-{package}-{suffix}\" class=\"installation-toggle-title\">{suffix_title}</label>"
+                    + f"<div class=\"{div_class}\">"
+                    + package_installation_template.replace("SUFFIX", suffix) + "</div>")
         return f"""
 <div class="package-card">
   <div class="package-logo">
@@ -41,9 +57,7 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
     <h3 class="package-title">
       {title}
     </h3>
-    <div class="package-installation">
-{installation.lstrip().rstrip()}
-    </div>
+    {package_installation}
     <div class="package-buttons">
       {buttons}
     </div>
@@ -73,7 +87,7 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
 
     @staticmethod
     def _library_image(library):
-        if library in ("dolfin", "dolfinx", "dolfinx with pyvista", "fenics", "fenicsx", "mshr"):
+        if library in ("dolfin", "dolfinx", "fenics", "fenicsx", "mshr"):
             logo = "_static/images/fenics-logo.png"
         elif library == "firedrake":
             logo = "_static/images/firedrake-logo.png"
@@ -81,9 +95,9 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
             logo = "_static/images/gmsh-logo.png"
         elif library == "multiphenics":
             logo = "_static/images/multiphenics-logo.png"
-        elif library == "multiphenicsx":
+        elif library in ("multiphenicsx", "multiphenicsx (with pyvista)"):
             logo = "_static/images/multiphenicsx-logo.png"
-        elif library == "ngsolve":
+        elif library in ("ngsolve", "ngsolve (extras)", "ngsxfem"):
             logo = "_static/images/ngsolve-logo.png"
         elif library == "RBniCS":
             logo = "_static/images/rbnics-logo.png"
@@ -147,17 +161,29 @@ def on_build_finished(app, exc):
         # Get package installation scripts from git
         releases_dir = os.path.join(app.outdir, "releases")
         os.makedirs(releases_dir, exist_ok=True)
-        for package in list(packages.keys()) + extra_packages:
-            package_install_git = os.path.join("releases", package + "-install.sh")
-            package_install = os.path.join(releases_dir, package + "-install.sh")
-            install_copied = subprocess.run(
-                "git show origin/gh-pages:" + package_install_git + "> " + package_install,
-                shell=True, capture_output=True)
-            if install_copied.returncode != 0:
-                raise RuntimeError(
-                    "Installation of " + package + " not found at " + package_install_git + "\n"
-                    + "stdout contains " + install_copied.stdout.decode() + "\n"
-                    + "stderr contains " + install_copied.stderr.decode() + "\n")
+        all_packages = packages.copy()
+        all_packages.update(extra_packages)
+        for package in list(all_packages.keys()):
+            installation_suffixes = all_packages[package]["installation_suffixes"]
+            if len(installation_suffixes) > 1:
+                installation_suffixes += [""]
+            else:
+                assert installation_suffixes[0] == ""
+            for suffix in installation_suffixes:
+                if suffix == "":
+                    package_install_name = package + "-install.sh"
+                else:
+                    package_install_name = package + "-install-" + suffix + ".sh"
+                package_install_git = os.path.join("releases", package_install_name)
+                package_install = os.path.join(releases_dir, package_install_name)
+                install_copied = subprocess.run(
+                    "git show origin/gh-pages:" + package_install_git + "> " + package_install,
+                    shell=True, capture_output=True)
+                if install_copied.returncode != 0:
+                    raise RuntimeError(
+                        "Installation of " + package + " not found at " + package_install_git + "\n"
+                        + "stdout contains " + install_copied.stdout.decode() + "\n"
+                        + "stderr contains " + install_copied.stderr.decode() + "\n")
 
 
 create_sitemap_bak = sphinx_material.create_sitemap

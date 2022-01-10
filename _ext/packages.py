@@ -8,11 +8,12 @@ except ImportError:
     !wget "https://fem-on-colab.github.io/releases/fenics-install.sh" -O "/tmp/fenics-install.sh" && bash "/tmp/fenics-install.sh"
     import dolfin
 """,
+        "installation_suffixes": [""],
         "tests": {
             "dolfin": "fenics/test-dolfin.ipynb",
             "mshr": "fenics/test-mshr.ipynb",
             "multiphenics": "fenics/test-multiphenics.ipynb",
-            "RBniCS": "fenics/xtest-rbnics.ipynb",
+            "RBniCS": "fenics/test-rbnics.ipynb",
         },
     },
 
@@ -22,13 +23,13 @@ except ImportError:
 try:
     import dolfinx
 except ImportError:
-    !wget "https://fem-on-colab.github.io/releases/fenicsx-install.sh" -O "/tmp/fenicsx-install.sh" && bash "/tmp/fenicsx-install.sh"
+    !wget "https://fem-on-colab.github.io/releases/fenicsx-install-SUFFIX.sh" -O "/tmp/fenicsx-install.sh" && bash "/tmp/fenicsx-install.sh"
     import dolfinx
 """,
+        "installation_suffixes": ["real", "complex"],
         "tests": {
             "dolfinx": "fenicsx/test-dolfinx.ipynb",
-            "dolfinx with pyvista": "fenicsx/test-dolfinx-pyvista.ipynb",
-            "multiphenicsx": "fenicsx/test-multiphenicsx.ipynb",
+            "multiphenicsx (with pyvista)": "fenicsx/test-multiphenicsx.ipynb",
         },
     },
 
@@ -38,9 +39,10 @@ except ImportError:
 try:
     import firedrake
 except ImportError:
-    !wget "https://fem-on-colab.github.io/releases/firedrake-install.sh" -O "/tmp/firedrake-install.sh" && bash "/tmp/firedrake-install.sh"
+    !wget "https://fem-on-colab.github.io/releases/firedrake-install-SUFFIX.sh" -O "/tmp/firedrake-install.sh" && bash "/tmp/firedrake-install.sh"
     import firedrake
 """,
+        "installation_suffixes": ["real", "complex"],
         "tests": {
             "firedrake": "firedrake/test-firedrake.ipynb",
         },
@@ -55,6 +57,7 @@ except ImportError:
     !wget "https://fem-on-colab.github.io/releases/gmsh-install.sh" -O "/tmp/gmsh-install.sh" && bash "/tmp/gmsh-install.sh"
     import gmsh
 """,
+        "installation_suffixes": [""],
         "tests": {
             "gmsh": "gmsh/test.ipynb",
         },
@@ -69,18 +72,37 @@ except ImportError:
     !wget "https://fem-on-colab.github.io/releases/ngsolve-install.sh" -O "/tmp/ngsolve-install.sh" && bash "/tmp/ngsolve-install.sh"
     import ngsolve
 """,
+        "installation_suffixes": [""],
         "tests": {
             "ngsolve": "ngsolve/test-ngsolve.ipynb",
+            "ngsolve (extras)": "ngsolve/test-ngsolve-mpl.ipynb",
+            "ngsxfem": "ngsolve/test-ngsxfem.ipynb",
         },
     },
 }
-extra_packages = [
-    "boost",
-    "gcc",
-    "h5py",
-    "mock",
-    "mpi4py",
-    "petsc4py",
-    "pybind11",
-    "slepc4py",
-]
+extra_packages = {
+    "boost": {
+        "installation_suffixes": [""],
+    },
+    "gcc": {
+        "installation_suffixes": [""],
+    },
+    "h5py": {
+        "installation_suffixes": [""],
+    },
+    "mock": {
+        "installation_suffixes": [""],
+    },
+    "mpi4py": {
+        "installation_suffixes": [""],
+    },
+    "petsc4py": {
+        "installation_suffixes": ["real", "complex"],
+    },
+    "pybind11": {
+        "installation_suffixes": [""],
+    },
+    "slepc4py": {
+        "installation_suffixes": ["real", "complex"],
+    },
+}
