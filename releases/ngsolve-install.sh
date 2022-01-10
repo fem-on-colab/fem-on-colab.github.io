@@ -7,6 +7,11 @@
 set -e
 set -x
 
+# Install OCC
+OCC_INSTALL_SCRIPT_PATH=${OCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/fd62cb0/releases/occ-install.sh"}
+[[ $OCC_INSTALL_SCRIPT_PATH == http* ]] && wget ${OCC_INSTALL_SCRIPT_PATH} -O /tmp/occ-install.sh && OCC_INSTALL_SCRIPT_PATH=/tmp/occ-install.sh
+source $OCC_INSTALL_SCRIPT_PATH
+
 # Install pybind11
 PYBIND11_INSTALL_SCRIPT_PATH=${PYBIND11_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/e270331/releases/pybind11-install.sh"}
 [[ $PYBIND11_INSTALL_SCRIPT_PATH == http* ]] && wget ${PYBIND11_INSTALL_SCRIPT_PATH} -O /tmp/pybind11-install.sh && PYBIND11_INSTALL_SCRIPT_PATH=/tmp/pybind11-install.sh
@@ -18,7 +23,7 @@ PETSC4PY_INSTALL_SCRIPT_PATH=${PETSC4PY_INSTALL_SCRIPT_PATH:-"https://github.com
 source $PETSC4PY_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-NGSOLVE_ARCHIVE_PATH=${NGSOLVE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/ngsolve-20220109-193629-abff893/ngsolve-install.tar.gz"}
+NGSOLVE_ARCHIVE_PATH=${NGSOLVE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/ngsolve-20220110-171756-41896d2/ngsolve-install.tar.gz"}
 [[ $NGSOLVE_ARCHIVE_PATH == http* ]] && wget ${NGSOLVE_ARCHIVE_PATH} -O /tmp/ngsolve-install.tar.gz && NGSOLVE_ARCHIVE_PATH=/tmp/ngsolve-install.tar.gz
 if [[ $NGSOLVE_ARCHIVE_PATH != skip ]]; then
     tar -xzf $NGSOLVE_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
