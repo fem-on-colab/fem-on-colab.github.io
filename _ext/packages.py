@@ -75,7 +75,7 @@ except ImportError:
         "installation_suffixes": [""],
         "tests": {
             "ngsolve": "ngsolve/test-ngsolve.ipynb",
-            "ngsolve (extras)": "ngsolve/test-ngsolve-mpl.ipynb",
+            "ngsolve (extras)": "ngsolve/test-ngsolve-extras.ipynb",
             "ngsxfem": "ngsolve/test-ngsxfem.ipynb",
         },
     },
