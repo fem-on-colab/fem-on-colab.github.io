@@ -11,39 +11,53 @@ on:
   schedule:
     - cron: "0 3 * * MON"
   workflow_dispatch:
-    inputs:
-      reset_github_pages:
-        description: "Reset the gh-pages branch (yes or no; default: no). Remember to set the gh-pages branch back in Settings -> Pages!"
 
 jobs:
   website:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Clone website repository on current branch
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: Generate sphinx website
-      uses: ax3l/sphinx-action@newer-sphinx
+    - name: Determine which token to use when cloning website repository on gh-pages branch
+      id: token_gh_pages
+      run: |
+        if [[ "${GITHUB_REPOSITORY}" == "fem-on-colab/fem-on-colab.github.io" ]]; then
+          echo "::set-output name=token::${{ secrets.GITHUB_TOKEN }}"
+        else
+          echo "::set-output name=token::${{ github.token }}"
+        fi
+      shell: bash
+    - name: Clone website repository on gh-pages branch
+      uses: actions/checkout@v2
       with:
-        pre-build-command: |
-          apt-get -qq update && apt-get -qq install git
-          pip3 -q install sphinx-material
-        docs-folder: .
+        token: ${{ steps.token_gh_pages.outputs.token }}
+        ref: gh-pages
+        fetch-depth: 0
+        path: _build/html
+    - name: Install dependencies
+      run: |
+        pip3 -q install sphinx-material
+    - name: Generate sphinx website
+      run: |
+        rm -rf _build/html/* && make html
     - name: Fix permissions
       run: |
         sudo chown $USER _build -R
-    - name: Clean up old Github pages branch
-      if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.event.inputs.reset_github_pages == 'yes'
-      run: |
-        if git ls-remote origin | grep -sw gh-pages 2>&1 >/dev/null; then git push origin --delete gh-pages; fi
     - name: Deploy to GitHub pages
       if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: _build/html
-        user_name: 'GitHub Actions'
-        user_email: '41898282+github-actions[bot]@users.noreply.github.com'
+      run: |
+        SHA_SHORT=$(git rev-parse --short HEAD)
+        pushd _build/html
+        git config user.name "GitHub Actions"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add .
+        git pull origin gh-pages
+        [ -n "$(git status --porcelain=v1 2>/dev/null)" ] && git commit -m "deploy: ${SHA_SHORT}"
+        git push origin gh-pages
+        popd
+      shell: bash
     - name: Deploy to GitHub artifacts
       if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref != 'refs/heads/main'
       uses: actions/upload-artifact@v2
