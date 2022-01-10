@@ -28,3 +28,6 @@ NGSOLVE_ARCHIVE_PATH=${NGSOLVE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fe
 if [[ $NGSOLVE_ARCHIVE_PATH != skip ]]; then
     tar -xzf $NGSOLVE_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
 fi
+
+# Install X11 for ngsolve
+apt install -y -qq libfontconfig1 libgl1
