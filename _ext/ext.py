@@ -176,14 +176,45 @@ def on_build_finished(app, exc):
                     package_install_name = package + "-install-" + suffix + ".sh"
                 package_install_git = os.path.join("releases", package_install_name)
                 package_install = os.path.join(releases_dir, package_install_name)
-                install_copied = subprocess.run(
-                    "git show origin/gh-pages:" + package_install_git + "> " + package_install,
+                is_link_process = subprocess.run(
+                    "git ls-tree origin/gh-pages " + package_install_git,
                     shell=True, capture_output=True)
-                if install_copied.returncode != 0:
+                if is_link_process.returncode != 0:
                     raise RuntimeError(
-                        "Installation of " + package + " not found at " + package_install_git + "\n"
-                        + "stdout contains " + install_copied.stdout.decode() + "\n"
-                        + "stderr contains " + install_copied.stderr.decode() + "\n")
+                        "Failed link checking for " + package + " at " + package_install_git + "\n"
+                        + "stdout contains " + is_link_process.stdout.decode() + "\n"
+                        + "stderr contains " + is_link_process.stderr.decode() + "\n")
+                is_link = is_link_process.stdout.decode().startswith("120000")
+                if not is_link:
+                    install_copied = subprocess.run(
+                        "git show origin/gh-pages:" + package_install_git + "> " + package_install,
+                        shell=True, capture_output=True)
+                    if install_copied.returncode != 0:
+                        raise RuntimeError(
+                            "Installation of " + package + " not found at " + package_install_git + "\n"
+                            + "stdout contains " + install_copied.stdout.decode() + "\n"
+                            + "stderr contains " + install_copied.stderr.decode() + "\n")
+                    install_copied = subprocess.run(
+                        "git show origin/gh-pages:" + package_install_git + "> " + package_install,
+                        shell=True, capture_output=True)
+                else:
+                    get_link_path = subprocess.run(
+                        "git show origin/gh-pages:" + package_install_git,
+                        shell=True, capture_output=True)
+                    if get_link_path.returncode != 0:
+                        raise RuntimeError(
+                            "Failed getting link path for " + package + " at " + package_install_git + "\n"
+                            + "stdout contains " + get_link_path.stdout.decode() + "\n"
+                            + "stderr contains " + get_link_path.stderr.decode() + "\n")
+                    create_link = subprocess.run(
+                        "cd " + releases_dir + " && ln -fs " + " " + get_link_path.stdout.decode()
+                        + " " + os.path.relpath(package_install, releases_dir),
+                        shell=True, capture_output=True)
+                    if create_link.returncode != 0:
+                        raise RuntimeError(
+                            "Failed creating link for " + package + " at " + package_install_git + "\n"
+                            + "stdout contains " + create_link.stdout.decode() + "\n"
+                            + "stderr contains " + create_link.stderr.decode() + "\n")
 
 
 create_sitemap_bak = sphinx_material.create_sitemap
