@@ -219,12 +219,66 @@ button[data-md-color-accent=unicatt] {
     margin-bottom: 0 !important;
 }
 
-.package-installation {
+.package-installation, .package-installation-real, .package-installation-complex {
     white-space: pre-wrap;
     font-family: monospace;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.package-installation-complex {
+    box-sizing: border-box;
+    display: none;
 }
 
 .package-buttons {
     display: flex;
     flex-wrap: wrap;
+}
+
+/* Toggleable divs
+   https://stackoverflow.com/questions/37080838/is-there-a-css-code-for-double-click-element-or-another-way-to-solve-this */
+
+.installation-toggle {
+    display: none;
+}
+
+.installation-toggle-title {
+    /* copied from h4 */
+    display: block;
+    margin: 0.8rem 0;
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
+.installation-toggle-title:after {
+    font-family: Material Icons;
+    content: 'expand_more';
+    margin-left: 6px;
+}
+
+.installation-toggle:checked + .installation-toggle-title + div.package-installation-real,
+.installation-toggle:checked + .installation-toggle-title + div.package-installation-complex {
+    display: block;
+}
+
+.installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-real,
+.installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-complex {
+    display: none;
+}
+
+.installation-toggle:checked + .installation-toggle-title:after {
+    font-family: Material Icons;
+    content: 'expand_less';
+    margin-left: 6px;
+}
+
+/* Footnotes */
+.footnote-reference {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+.rubric {
+    display: none;
 }

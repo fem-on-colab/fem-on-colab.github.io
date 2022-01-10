@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="You can install one of the packages provided by FEM on Colab by adding the following cell at the top of your notebook." lang="en" name="description" xml:lang="en" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="You can install one of the packages provided by FEM on Colab by adding the following cell at the top of your notebook." lang="en" name="description" xml:lang="en" />
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -62,12 +63,12 @@
   
   
     <title>Packages &#8212; FEM on Colab</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/material.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Pangolin" />
     <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -233,7 +234,14 @@
       
         
 <nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
   <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#packages--page-root" class="md-nav__link">Packages</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#automated-weekly-build-of-end-user-packages" class="md-nav__link">Automated weekly build of end user packages</a>
+        </li></ul>
+            </nav>
+        </li>
     
 <li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/packages.rst.txt">Show Source</a> </li>
 
@@ -268,7 +276,14 @@
               <div class="md-sidebar__inner">
                 
 <nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
   <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#packages--page-root" class="md-nav__link">Packages</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#automated-weekly-build-of-end-user-packages" class="md-nav__link">Automated weekly build of end user packages</a>
+        </li></ul>
+            </nav>
+        </li>
     
 <li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/packages.rst.txt">Show Source</a> </li>
 
@@ -283,7 +298,7 @@
         <div class="md-content">
           <article class="md-content__inner md-typeset" role="main">
             
-  
+  <section id="packages">
 <span id="id1"></span><h1 id="packages--page-root">Packages<a class="headerlink" href="#packages--page-root" title="Permalink to this headline">¶</a></h1>
 <p>
 You can install one of the packages provided by <b>FEM on Colab</b> by adding the following cell at the top of your notebook.
@@ -296,20 +311,18 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
 <h3 class="package-title">
       FEniCS
     </h3>
-<div class="package-installation">
-try:
+<div class="package-installation">try:
     import dolfin
 except ImportError:
     !wget "https://fem-on-colab.github.io/releases/fenics-install.sh" -O "/tmp/fenics-install.sh" &amp;&amp; bash "/tmp/fenics-install.sh"
-    import dolfin
-    </div>
+    import dolfin</div>
 <div class="package-buttons">
 <div class="jq-dropdown jq-dropdown-tip" id="package-dropdown-1">
 <ul class="jq-dropdown-menu">
 <li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/fenics/test-dolfin.ipynb" target="_blank"><img src="_static/images/fenics-logo.png" style="vertical-align: middle; width: 25px"/> dolfin</a></li>
 <li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/fenics/test-mshr.ipynb" target="_blank"><img src="_static/images/fenics-logo.png" style="vertical-align: middle; width: 25px"/> mshr</a></li>
 <li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/fenics/test-multiphenics.ipynb" target="_blank"><img src="_static/images/multiphenics-logo.png" style="vertical-align: middle; width: 25px"/> multiphenics</a></li>
-<li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/fenics/xtest-rbnics.ipynb" target="_blank"><img src="_static/images/rbnics-logo.png" style="vertical-align: middle; width: 25px"/> RBniCS</a></li>
+<li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/fenics/test-rbnics.ipynb" target="_blank"><img src="_static/images/rbnics-logo.png" style="vertical-align: middle; width: 25px"/> RBniCS</a></li>
 </ul>
 </div>
 <div class="package-button" data-jq-dropdown="#package-dropdown-1">Our tests</div>
@@ -324,19 +337,20 @@ except ImportError:
 <h3 class="package-title">
       FEniCSx
     </h3>
-<div class="package-installation">
-try:
+<input checked="" class="installation-toggle" id="installation-toggle-fenicsx-real" name="installation-toggle-fenicsx-real" type="checkbox"/><label class="installation-toggle-title" for="installation-toggle-fenicsx-real">Real mode</label><div class="package-installation-real">try:
     import dolfinx
 except ImportError:
-    !wget "https://fem-on-colab.github.io/releases/fenicsx-install.sh" -O "/tmp/fenicsx-install.sh" &amp;&amp; bash "/tmp/fenicsx-install.sh"
+    !wget "https://fem-on-colab.github.io/releases/fenicsx-install-real.sh" -O "/tmp/fenicsx-install.sh" &amp;&amp; bash "/tmp/fenicsx-install.sh"
+    import dolfinx</div><input class="installation-toggle" id="installation-toggle-fenicsx-complex" name="installation-toggle-fenicsx-complex" type="checkbox"/><label class="installation-toggle-title" for="installation-toggle-fenicsx-complex">Complex mode</label><div class="package-installation-complex">try:
     import dolfinx
-    </div>
+except ImportError:
+    !wget "https://fem-on-colab.github.io/releases/fenicsx-install-complex.sh" -O "/tmp/fenicsx-install.sh" &amp;&amp; bash "/tmp/fenicsx-install.sh"
+    import dolfinx</div>
 <div class="package-buttons">
 <div class="jq-dropdown jq-dropdown-tip" id="package-dropdown-2">
 <ul class="jq-dropdown-menu">
 <li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/fenicsx/test-dolfinx.ipynb" target="_blank"><img src="_static/images/fenics-logo.png" style="vertical-align: middle; width: 25px"/> dolfinx</a></li>
-<li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/fenicsx/test-dolfinx-pyvista.ipynb" target="_blank"><img src="_static/images/fenics-logo.png" style="vertical-align: middle; width: 25px"/> dolfinx with pyvista</a></li>
-<li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/fenicsx/test-multiphenicsx.ipynb" target="_blank"><img src="_static/images/multiphenicsx-logo.png" style="vertical-align: middle; width: 25px"/> multiphenicsx</a></li>
+<li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/fenicsx/test-multiphenicsx.ipynb" target="_blank"><img src="_static/images/multiphenicsx-logo.png" style="vertical-align: middle; width: 25px"/> multiphenicsx (with pyvista)</a></li>
 </ul>
 </div>
 <div class="package-button" data-jq-dropdown="#package-dropdown-2">Our tests</div>
@@ -351,13 +365,15 @@ except ImportError:
 <h3 class="package-title">
       firedrake
     </h3>
-<div class="package-installation">
-try:
+<input checked="" class="installation-toggle" id="installation-toggle-firedrake-real" name="installation-toggle-firedrake-real" type="checkbox"/><label class="installation-toggle-title" for="installation-toggle-firedrake-real">Real mode</label><div class="package-installation-real">try:
     import firedrake
 except ImportError:
-    !wget "https://fem-on-colab.github.io/releases/firedrake-install.sh" -O "/tmp/firedrake-install.sh" &amp;&amp; bash "/tmp/firedrake-install.sh"
+    !wget "https://fem-on-colab.github.io/releases/firedrake-install-real.sh" -O "/tmp/firedrake-install.sh" &amp;&amp; bash "/tmp/firedrake-install.sh"
+    import firedrake</div><input class="installation-toggle" id="installation-toggle-firedrake-complex" name="installation-toggle-firedrake-complex" type="checkbox"/><label class="installation-toggle-title" for="installation-toggle-firedrake-complex">Complex mode</label><div class="package-installation-complex">try:
     import firedrake
-    </div>
+except ImportError:
+    !wget "https://fem-on-colab.github.io/releases/firedrake-install-complex.sh" -O "/tmp/firedrake-install.sh" &amp;&amp; bash "/tmp/firedrake-install.sh"
+    import firedrake</div>
 <div class="package-buttons">
 <div class="jq-dropdown jq-dropdown-tip" id="package-dropdown-3">
 <ul class="jq-dropdown-menu">
@@ -376,13 +392,11 @@ except ImportError:
 <h3 class="package-title">
       gmsh
     </h3>
-<div class="package-installation">
-try:
+<div class="package-installation">try:
     import gmsh
 except ImportError:
     !wget "https://fem-on-colab.github.io/releases/gmsh-install.sh" -O "/tmp/gmsh-install.sh" &amp;&amp; bash "/tmp/gmsh-install.sh"
-    import gmsh
-    </div>
+    import gmsh</div>
 <div class="package-buttons">
 <div class="jq-dropdown jq-dropdown-tip" id="package-dropdown-4">
 <ul class="jq-dropdown-menu">
@@ -401,24 +415,37 @@ except ImportError:
 <h3 class="package-title">
       ngsolve &amp; ngsxfem
     </h3>
-<div class="package-installation">
-try:
+<div class="package-installation">try:
     import ngsolve
 except ImportError:
     !wget "https://fem-on-colab.github.io/releases/ngsolve-install.sh" -O "/tmp/ngsolve-install.sh" &amp;&amp; bash "/tmp/ngsolve-install.sh"
-    import ngsolve
-    </div>
+    import ngsolve</div>
 <div class="package-buttons">
 <div class="jq-dropdown jq-dropdown-tip" id="package-dropdown-5">
 <ul class="jq-dropdown-menu">
 <li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/ngsolve/test-ngsolve.ipynb" target="_blank"><img src="_static/images/ngsolve-logo.png" style="vertical-align: middle; width: 25px"/> ngsolve</a></li>
+<li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/ngsolve/test-ngsolve-mpl.ipynb" target="_blank"><img src="_static/images/ngsolve-logo.png" style="vertical-align: middle; width: 25px"/> ngsolve (extras)</a></li>
+<li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/ngsolve/test-ngsxfem.ipynb" target="_blank"><img src="_static/images/ngsolve-logo.png" style="vertical-align: middle; width: 25px"/> ngsxfem</a></li>
 </ul>
 </div>
 <div class="package-button" data-jq-dropdown="#package-dropdown-5">Our tests</div>
 </div>
 </div>
 </div>
-
+<section id="automated-weekly-build-of-end-user-packages">
+<h2 id="automated-weekly-build-of-end-user-packages">Automated weekly build of end user packages<a class="headerlink" href="#automated-weekly-build-of-end-user-packages" title="Permalink to this headline">¶</a></h2>
+<p>Since January 2022 end user packages <a class="footnote-reference brackets" href="#f1" id="id2">1</a> are automatically built on a weekly basis, in order to follow upstream development.</p>
+<p>Users that do not wish to be up to date with the upstream development cycle are invited to hardcode in their Google Colab notebooks a fixed release by replacing</p>
+<div class="package-installation" style="margin-top: 0; margin-bottom: 0; margin-left: 1rem;">https://fem-on-colab.github.io/releases/{install-script}</div><p>in the instructions above with</p>
+<div class="package-installation" style="margin-top: 0; margin-bottom: 0; margin-left: 1rem;">https://github.com/fem-on-colab/fem-on-colab.github.io/raw/{commit}/releases/{install-script}</div><p>where <code class="docutils literal notranslate"><span class="pre">{install-script}</span></code> is the installation script of the desired package, and <code class="docutils literal notranslate"><span class="pre">{commit}</span></code> is the SHA of a commit <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab.github.io/commits/gh-pages">in this list</a> at which the desired version was available.</p>
+<p class="rubric">Notes</p>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>The FEniCS package is not automatically built, due to the upstream development having moved to FEniCSx.</p>
+</dd>
+</dl>
+</section>
+</section>
 
 
           </article>
@@ -467,7 +494,7 @@ except ImportError:
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 3.4.1.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>

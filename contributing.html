@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="FEM on Colab developement takes place on GitHub. We are still at an early developement stage. Feel free to contact us by email for further information." lang="en" name="description" xml:lang="en" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="FEM on Colab developement takes place on GitHub. We are still at an early developement stage. Feel free to contact us by email for further information." lang="en" name="description" xml:lang="en" />
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -62,12 +63,12 @@
   
   
     <title>How to contribute &#8212; FEM on Colab</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/material.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Pangolin" />
     <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -305,36 +306,36 @@
         <div class="md-content">
           <article class="md-content__inner md-typeset" role="main">
             
-  
+  <section id="how-to-contribute">
 <h1 id="contributing--page-root">How to contribute<a class="headerlink" href="#contributing--page-root" title="Permalink to this headline">¶</a></h1>
 <a class="reference external image-reference" href="https://github.com/fem-on-colab/fem-on-colab"><img alt="Go to repository on GitHub" src="_images/github-logo.png" style="width: 80px; height: 80px;"/></a>
 <a class="reference external image-reference" href="mailto:francesco.ballarin@unicatt.it"><img alt="Contact us via email" src="_images/email.png" style="width: 80px; height: 80px;"/></a>
-
+<section id="history-and-the-underlying-motivation">
 <h2 id="history-and-the-underlying-motivation">History and the underlying motivation<a class="headerlink" href="#history-and-the-underlying-motivation" title="Permalink to this headline">¶</a></h2>
 <p>The project started in 2021 with two main technical motivations:</p>
 <ul class="simple">
 <li><p>the Google Colab team realesed in February 2021 an upgrade to their system to use python 3.7. This effectively detaches their python version from Ubuntu upstream packages, bacause python 3.7 is not supported by upstream Ubuntu 18.04 LTS (the newest supported version is 3.6). This means that a custom packaging pipeline needs to be implemented to support Colab.</p></li>
 <li><p>the gcc suite available on Colab (although slightly newer than the one in Ubuntu 18.04 LTS), is still part of the 7.x series. This is too old for some of the target libraries in this project.</p></li>
 </ul>
-
-
+</section>
+<section id="contributing-reporting-broken-packages">
 <h2 id="contributing-reporting-broken-packages">Contributing: reporting broken packages<a class="headerlink" href="#contributing-reporting-broken-packages" title="Permalink to this headline">¶</a></h2>
 <p>Our release pipeline tries to mimick the Colab environment in order to package the libraries appropriately. However,
 <a class="reference external" href="https://github.com/googlecolab/colabtools/issues/1002">since we currently have no way of access the true Colab environment</a>, our released packages may break at any Colab environment update.</p>
 <p>Please report broken packages by <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/issues">opening a new GitHub issue</a>.</p>
-
-
+</section>
+<section id="contributing-maintaining-a-package">
 <h2 id="contributing-maintaining-a-package">Contributing: maintaining a package<a class="headerlink" href="#contributing-maintaining-a-package" title="Permalink to this headline">¶</a></h2>
 <p>An updated version of an existing package may be released as follows:</p>
 <ol class="arabic simple">
 <li><p>If an issue has been opened on <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/issues">our GitHub tracker</a> reporting a broken package, please assign the issue to yourself to let users/maintainers know that you are working on it.</p></li>
-<li><p>Go to the <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/actions/workflows/release.yml">release workflow on our GitHub Actions</a> and manually trigger a new build from the <cite>Run workflow</cite> dropdown. Make sure to insert the name of the library to build.</p></li>
+<li><p>Go to the <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/actions/workflows/release.yml">release workflow on our GitHub Actions</a> and manually trigger a new build from the <cite>Run workflow</cite> dropdown. Make sure to insert the name of the library to build and any additional arguments to be passed to the build script.</p></li>
 <li><p>After a successful workflow, please double check existing tests on an actual Colab runtime, by clicking on the <cite>Open in Colab</cite> badges in the README file in the package subfolder.</p></li>
 <li><p>Determine, with the help of our <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/raw/main/scripts/graph.png">dependency graph</a>, if further downstream packages need to be updated too.</p></li>
 </ol>
 <p>Please get in touch with us by <a class="reference external" href="mailto:francesco.ballarin@unicatt.it">email</a> if you are interested in helping maintaining a package.</p>
-
-
+</section>
+</section>
 
 
           </article>
@@ -383,7 +384,7 @@
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 3.4.1.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>
