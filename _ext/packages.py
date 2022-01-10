@@ -96,6 +96,9 @@ extra_packages = {
     "mpi4py": {
         "installation_suffixes": [""],
     },
+    "occ": {
+        "installation_suffixes": [""],
+    },
     "petsc4py": {
         "installation_suffixes": ["real", "complex"],
     },
