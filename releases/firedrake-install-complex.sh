@@ -23,7 +23,7 @@ SLEPC4PY_INSTALL_SCRIPT_PATH=${SLEPC4PY_INSTALL_SCRIPT_PATH:-"https://github.com
 source $SLEPC4PY_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-FIREDRAKE_ARCHIVE_PATH=${FIREDRAKE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/firedrake-20220110-103426-678e2b6/firedrake-install.tar.gz"}
+FIREDRAKE_ARCHIVE_PATH=${FIREDRAKE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/firedrake-20220115-001631-4a192c2-complex/firedrake-install.tar.gz"}
 [[ $FIREDRAKE_ARCHIVE_PATH == http* ]] && wget ${FIREDRAKE_ARCHIVE_PATH} -O /tmp/firedrake-install.tar.gz && FIREDRAKE_ARCHIVE_PATH=/tmp/firedrake-install.tar.gz
 if [[ $FIREDRAKE_ARCHIVE_PATH != skip ]]; then
     rm -rf /usr/local/lib/python3.7/dist-packages/cftime*
