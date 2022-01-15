@@ -45,6 +45,7 @@ except ImportError:
         "installation_suffixes": ["real", "complex"],
         "tests": {
             "firedrake": "firedrake/test-firedrake.ipynb",
+            "fireshape": "firedrake/test-fireshape.ipynb",
         },
     },
 

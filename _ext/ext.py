@@ -89,7 +89,7 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
     def _library_image(library):
         if library in ("dolfin", "dolfinx", "fenics", "fenicsx", "mshr"):
             logo = "_static/images/fenics-logo.png"
-        elif library == "firedrake":
+        elif library in ("firedrake", "fireshape"):
             logo = "_static/images/firedrake-logo.png"
         elif library == "gmsh":
             logo = "_static/images/gmsh-logo.png"
