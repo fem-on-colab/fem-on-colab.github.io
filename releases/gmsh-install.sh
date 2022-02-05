@@ -18,7 +18,7 @@ OCC_INSTALL_SCRIPT_PATH=${OCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-co
 source $OCC_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-GMSH_ARCHIVE_PATH=${GMSH_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gmsh-20220129-001438-9852cb3/gmsh-install.tar.gz"}
+GMSH_ARCHIVE_PATH=${GMSH_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gmsh-20220205-064647-6b62478/gmsh-install.tar.gz"}
 [[ $GMSH_ARCHIVE_PATH == http* ]] && wget ${GMSH_ARCHIVE_PATH} -O /tmp/gmsh-install.tar.gz && GMSH_ARCHIVE_PATH=/tmp/gmsh-install.tar.gz
 if [[ $GMSH_ARCHIVE_PATH != skip ]]; then
     tar -xzf $GMSH_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
