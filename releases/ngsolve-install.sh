@@ -23,7 +23,7 @@ PETSC4PY_INSTALL_SCRIPT_PATH=${PETSC4PY_INSTALL_SCRIPT_PATH:-"https://github.com
 source $PETSC4PY_INSTALL_SCRIPT_PATH
 
 # Download and uncompress library archive
-NGSOLVE_ARCHIVE_PATH=${NGSOLVE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/ngsolve-20220205-001335-6710630/ngsolve-install.tar.gz"}
+NGSOLVE_ARCHIVE_PATH=${NGSOLVE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/ngsolve-20220206-093655-579e9ad/ngsolve-install.tar.gz"}
 [[ $NGSOLVE_ARCHIVE_PATH == http* ]] && wget ${NGSOLVE_ARCHIVE_PATH} -O /tmp/ngsolve-install.tar.gz && NGSOLVE_ARCHIVE_PATH=/tmp/ngsolve-install.tar.gz
 if [[ $NGSOLVE_ARCHIVE_PATH != skip ]]; then
     tar -xzf $NGSOLVE_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
