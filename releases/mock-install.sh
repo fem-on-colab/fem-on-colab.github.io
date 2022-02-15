@@ -7,7 +7,17 @@
 set -e
 set -x
 
-# Download and uncompress library archive
-MOCK_ARCHIVE_PATH=${MOCK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mock-20220212-001758-579e9ad/mock-install.tar.gz"}
-[[ $MOCK_ARCHIVE_PATH == http* ]] && wget ${MOCK_ARCHIVE_PATH} -O /tmp/mock-install.tar.gz && MOCK_ARCHIVE_PATH=/tmp/mock-install.tar.gz
-tar -xzf $MOCK_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
+# Check for existing installation
+SHARE_PREFIX="/usr/local/share/fem-on-colab"
+MOCK_INSTALLED="$SHARE_PREFIX/mock.installed"
+
+if [[ ! -f $MOCK_INSTALLED ]]; then
+    # Download and uncompress library archive
+    MOCK_ARCHIVE_PATH=${MOCK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mock-20220215-105304-07876d9/mock-install.tar.gz"}
+    [[ $MOCK_ARCHIVE_PATH == http* ]] && wget -N ${MOCK_ARCHIVE_PATH} -O /tmp/mock-install.tar.gz && MOCK_ARCHIVE_PATH=/tmp/mock-install.tar.gz
+    tar -xzf $MOCK_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
+
+    # Mark package as installed
+    mkdir -p $SHARE_PREFIX
+    touch $MOCK_INSTALLED
+fi
