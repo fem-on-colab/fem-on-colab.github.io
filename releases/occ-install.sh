@@ -18,7 +18,7 @@ if [[ ! -f $OCC_INSTALLED ]]; then
     source $GCC_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    OCC_ARCHIVE_PATH=${OCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/occ-20220215-121031-b3e4aba/occ-install.tar.gz"}
+    OCC_ARCHIVE_PATH=${OCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/occ-20220215-201811-f21c5aa/occ-install.tar.gz"}
     [[ $OCC_ARCHIVE_PATH == http* ]] && wget -N ${OCC_ARCHIVE_PATH} -O /tmp/occ-install.tar.gz && OCC_ARCHIVE_PATH=/tmp/occ-install.tar.gz
     if [[ $OCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $OCC_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
