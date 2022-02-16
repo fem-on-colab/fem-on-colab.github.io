@@ -326,12 +326,12 @@
 </section>
 <section id="contributing-maintaining-a-package">
 <h2 id="contributing-maintaining-a-package">Contributing: maintaining a package<a class="headerlink" href="#contributing-maintaining-a-package" title="Permalink to this headline">¶</a></h2>
-<p>An updated version of an existing package may be released as follows:</p>
+<p>Packages are released automatically following a weekly schedule for end user packages, and a monthly schedule for the rest of the supported packages. To manually release an updated version of an existing package without waiting for the schedule, proceed as follows:</p>
 <ol class="arabic simple">
 <li><p>If an issue has been opened on <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/issues">our GitHub tracker</a> reporting a broken package, please assign the issue to yourself to let users/maintainers know that you are working on it.</p></li>
-<li><p>Go to the <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/actions/workflows/release.yml">release workflow on our GitHub Actions</a> and manually trigger a new build from the <cite>Run workflow</cite> dropdown. Make sure to insert the name of the library to build and any additional arguments to be passed to the build script.</p></li>
-<li><p>After a successful workflow, please double check existing tests on an actual Colab runtime, by clicking on the <cite>Open in Colab</cite> badges in the README file in the package subfolder.</p></li>
-<li><p>Determine, with the help of our <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/raw/main/scripts/graph.png">dependency graph</a>, if further downstream packages need to be updated too.</p></li>
+<li><p>Go to the <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/actions/workflows/schedule_all.yml">scheduled release workflow on our GitHub Actions</a> and manually trigger a new build from the <cite>Run workflow</cite> dropdown. Make sure to insert the name of the library to build.</p></li>
+<li><p>[Optional, but suggested if the reported issue was not detected by CI] After a successful workflow, please double check existing tests on an actual Colab runtime, by clicking on the <cite>Open in Colab</cite> badges in the README file in the package subfolder.</p></li>
+<li><p>[Optional, but suggested if the reported issue was not detected by CI] Similarly, double check existing tests of any downstream dependency of the updated package. See our <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/raw/main/scripts/graph.png">dependency graph</a> to determine downstream packages that need checking.</p></li>
 </ol>
 <p>Please get in touch with us by <a class="reference external" href="mailto:francesco.ballarin@unicatt.it">email</a> if you are interested in helping maintaining a package.</p>
 </section>
