@@ -28,12 +28,12 @@ if [[ ! -f $FENICSX_INSTALLED ]]; then
     source $SLEPC4PY_INSTALL_SCRIPT_PATH
 
     # Install itk (and its dependencies)
-    ITK_INSTALL_SCRIPT_PATH=${ITK_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/03b6e04/releases/itk-install.sh"}
+    ITK_INSTALL_SCRIPT_PATH=${ITK_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/688f835/releases/itk-install.sh"}
     [[ $ITK_INSTALL_SCRIPT_PATH == http* ]] && ITK_INSTALL_SCRIPT_DOWNLOAD=${ITK_INSTALL_SCRIPT_PATH} && ITK_INSTALL_SCRIPT_PATH=/tmp/itk-install.sh && [[ ! -f ${ITK_INSTALL_SCRIPT_PATH} ]] && wget ${ITK_INSTALL_SCRIPT_DOWNLOAD} -O ${ITK_INSTALL_SCRIPT_PATH}
     source $ITK_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    FENICSX_ARCHIVE_PATH=${FENICSX_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/fenicsx-20220216-125604-7defaeb-complex/fenicsx-install.tar.gz"}
+    FENICSX_ARCHIVE_PATH=${FENICSX_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/fenicsx-20220216-150538-c357fcf-complex/fenicsx-install.tar-66dfe0df0c3cf34bba9dce295a9fda8c.gz"}
     [[ $FENICSX_ARCHIVE_PATH == http* ]] && FENICSX_ARCHIVE_DOWNLOAD=${FENICSX_ARCHIVE_PATH} && FENICSX_ARCHIVE_PATH=/tmp/fenicsx-install.tar.gz && wget ${FENICSX_ARCHIVE_DOWNLOAD} -O ${FENICSX_ARCHIVE_PATH}
     if [[ $FENICSX_ARCHIVE_PATH != skip ]]; then
         tar -xzf $FENICSX_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
