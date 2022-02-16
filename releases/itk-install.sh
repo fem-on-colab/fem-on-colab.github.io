@@ -18,7 +18,7 @@ if [[ ! -f $ITK_INSTALLED ]]; then
     source $VTK_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    ITK_ARCHIVE_PATH=${ITK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/itk-20220216-143402-c357fcf/itk-install.tar.gz"}
+    ITK_ARCHIVE_PATH=${ITK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/itk-20220216-180959-587f8c3/itk-install.tar.gz"}
     [[ $ITK_ARCHIVE_PATH == http* ]] && ITK_ARCHIVE_DOWNLOAD=${ITK_ARCHIVE_PATH} && ITK_ARCHIVE_PATH=/tmp/itk-install.tar.gz && wget ${ITK_ARCHIVE_DOWNLOAD} -O ${ITK_ARCHIVE_PATH}
     if [[ $ITK_ARCHIVE_PATH != skip ]]; then
         tar -xzf $ITK_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
