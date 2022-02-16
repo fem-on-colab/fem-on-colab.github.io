@@ -28,7 +28,7 @@ if [[ ! -f $FENICS_INSTALLED ]]; then
     source $SLEPC4PY_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    FENICS_ARCHIVE_PATH=${FENICS_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/fenics-20220216-102106-8f2b82c/fenics-install.tar-71a6019c4a349a2c6ea4e7bf1af74190.gz"}
+    FENICS_ARCHIVE_PATH=${FENICS_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/fenics-20220216-155654-c357fcf/fenics-install.tar.gz"}
     [[ $FENICS_ARCHIVE_PATH == http* ]] && FENICS_ARCHIVE_DOWNLOAD=${FENICS_ARCHIVE_PATH} && FENICS_ARCHIVE_PATH=/tmp/fenics-install.tar.gz && wget ${FENICS_ARCHIVE_DOWNLOAD} -O ${FENICS_ARCHIVE_PATH}
     if [[ $FENICS_ARCHIVE_PATH != skip ]]; then
         tar -xzf $FENICS_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
