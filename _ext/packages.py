@@ -91,6 +91,9 @@ extra_packages = {
     "h5py": {
         "installation_suffixes": [""],
     },
+    "itk": {
+        "installation_suffixes": [""],
+    },
     "mock": {
         "installation_suffixes": [""],
     },
@@ -108,5 +111,8 @@ extra_packages = {
     },
     "slepc4py": {
         "installation_suffixes": ["real", "complex"],
+    },
+    "vtk": {
+        "installation_suffixes": [""],
     },
 }
