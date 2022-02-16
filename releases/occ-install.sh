@@ -14,12 +14,12 @@ OCC_INSTALLED="$SHARE_PREFIX/occ.installed"
 if [[ ! -f $OCC_INSTALLED ]]; then
     # Install gcc
     GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/fabd340/releases/gcc-install.sh"}
-    [[ $GCC_INSTALL_SCRIPT_PATH == http* ]] && wget -N ${GCC_INSTALL_SCRIPT_PATH} -O /tmp/gcc-install.sh && GCC_INSTALL_SCRIPT_PATH=/tmp/gcc-install.sh
+    [[ $GCC_INSTALL_SCRIPT_PATH == http* ]] && GCC_INSTALL_SCRIPT_DOWNLOAD=${GCC_INSTALL_SCRIPT_PATH} && GCC_INSTALL_SCRIPT_PATH=/tmp/gcc-install.sh && [[ ! -f ${GCC_INSTALL_SCRIPT_PATH} ]] && wget ${GCC_INSTALL_SCRIPT_DOWNLOAD} -O ${GCC_INSTALL_SCRIPT_PATH}
     source $GCC_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    OCC_ARCHIVE_PATH=${OCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/occ-20220215-201811-f21c5aa/occ-install.tar.gz"}
-    [[ $OCC_ARCHIVE_PATH == http* ]] && wget -N ${OCC_ARCHIVE_PATH} -O /tmp/occ-install.tar.gz && OCC_ARCHIVE_PATH=/tmp/occ-install.tar.gz
+    OCC_ARCHIVE_PATH=${OCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/occ-20220216-073715-8f2b82c/occ-install.tar.gz"}
+    [[ $OCC_ARCHIVE_PATH == http* ]] && OCC_ARCHIVE_DOWNLOAD=${OCC_ARCHIVE_PATH} && OCC_ARCHIVE_PATH=/tmp/occ-install.tar.gz && wget ${OCC_ARCHIVE_DOWNLOAD} -O ${OCC_ARCHIVE_PATH}
     if [[ $OCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $OCC_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
     fi
