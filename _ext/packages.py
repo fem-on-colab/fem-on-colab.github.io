@@ -29,7 +29,8 @@ except ImportError:
         "installation_suffixes": ["real", "complex"],
         "tests": {
             "dolfinx": "fenicsx/test-dolfinx.ipynb",
-            "multiphenicsx (with pyvista)": "fenicsx/test-multiphenicsx.ipynb",
+            "multiphenicsx (with plotly)": "https://colab.research.google.com/github/multiphenics/multiphenics.github.io/blob/open-in-colab-multiphenicsx/tutorials/01_block_poisson/tutorial_block_poisson.ipynb",
+            "multiphenicsx (with pyvista)": "https://colab.research.google.com/github/multiphenics/multiphenics.github.io/blob/open-in-colab-multiphenicsx/tutorials/03_lagrange_multipliers/tutorial_lagrange_multipliers_interface.ipynb"
         },
     },
 

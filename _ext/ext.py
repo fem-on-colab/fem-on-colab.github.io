@@ -72,8 +72,12 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
     <ul class="jq-dropdown-menu">
 """
         for (library, url) in libraries_urls.items():
+            if not url.startswith("https://colab.research.google.com"):
+                colab_url = f"https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/{url}"
+            else:
+                colab_url = url
             dropdown += f"""
-        <li><a href="https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/{url}" target="_blank">{cls._library_image(library)} {library}</a></li>
+        <li><a href="{colab_url}" target="_blank">{cls._library_image(library)} {library}</a></li>
 """
         dropdown += f"""
     </ul>
@@ -95,7 +99,7 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
             logo = "_static/images/gmsh-logo.png"
         elif library == "multiphenics":
             logo = "_static/images/multiphenics-logo.png"
-        elif library in ("multiphenicsx", "multiphenicsx (with pyvista)"):
+        elif library in ("multiphenicsx", "multiphenicsx (with plotly)", "multiphenicsx (with pyvista)"):
             logo = "_static/images/multiphenicsx-logo.png"
         elif library in ("ngsolve", "ngsolve (extras)", "ngsxfem"):
             logo = "_static/images/ngsolve-logo.png"
