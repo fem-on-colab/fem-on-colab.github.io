@@ -239,6 +239,7 @@ def create_sitemap(app, exc):
 
 User-agent: *
 Disallow:
+Allow: /
 """)
 sphinx_material.create_sitemap = create_sitemap
 
