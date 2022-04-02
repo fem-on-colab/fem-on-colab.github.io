@@ -21,7 +21,7 @@ if [[ ! -f $BOOST_INSTALLED ]]; then
     apt install -y -qq zlib1g-dev
 
     # Download and uncompress library archive
-    BOOST_ARCHIVE_PATH=${BOOST_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/boost-20220401-003616-50af03d/boost-install.tar.gz"}
+    BOOST_ARCHIVE_PATH=${BOOST_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/boost-20220402-084223-7e043d6/boost-install.tar.gz"}
     [[ $BOOST_ARCHIVE_PATH == http* ]] && BOOST_ARCHIVE_DOWNLOAD=${BOOST_ARCHIVE_PATH} && BOOST_ARCHIVE_PATH=/tmp/boost-install.tar.gz && wget ${BOOST_ARCHIVE_DOWNLOAD} -O ${BOOST_ARCHIVE_PATH}
     if [[ $BOOST_ARCHIVE_PATH != skip ]]; then
         tar -xzf $BOOST_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
