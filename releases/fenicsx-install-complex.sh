@@ -33,7 +33,7 @@ if [[ ! -f $FENICSX_INSTALLED ]]; then
     source $ITK_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    FENICSX_ARCHIVE_PATH=${FENICSX_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/fenicsx-20220424-095528-32949cf-complex/fenicsx-install.tar.gz"}
+    FENICSX_ARCHIVE_PATH=${FENICSX_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/fenicsx-20220426-100740-d68a1cd-complex/fenicsx-install.tar-b97b229595a82c6957551856907ee7fd.gz"}
     [[ $FENICSX_ARCHIVE_PATH == http* ]] && FENICSX_ARCHIVE_DOWNLOAD=${FENICSX_ARCHIVE_PATH} && FENICSX_ARCHIVE_PATH=/tmp/fenicsx-install.tar.gz && wget ${FENICSX_ARCHIVE_DOWNLOAD} -O ${FENICSX_ARCHIVE_PATH}
     if [[ $FENICSX_ARCHIVE_PATH != skip ]]; then
         tar -xzf $FENICSX_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
