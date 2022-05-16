@@ -23,12 +23,12 @@ if [[ ! -f $NGSOLVE_INSTALLED ]]; then
     source $PYBIND11_INSTALL_SCRIPT_PATH
 
     # Install petsc4py (and its dependencies)
-    PETSC4PY_INSTALL_SCRIPT_PATH=${PETSC4PY_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/b635d8d/releases/petsc4py-install-real.sh"}
+    PETSC4PY_INSTALL_SCRIPT_PATH=${PETSC4PY_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/ca042f6/releases/petsc4py-install-real.sh"}
     [[ $PETSC4PY_INSTALL_SCRIPT_PATH == http* ]] && PETSC4PY_INSTALL_SCRIPT_DOWNLOAD=${PETSC4PY_INSTALL_SCRIPT_PATH} && PETSC4PY_INSTALL_SCRIPT_PATH=/tmp/petsc4py-install.sh && [[ ! -f ${PETSC4PY_INSTALL_SCRIPT_PATH} ]] && wget ${PETSC4PY_INSTALL_SCRIPT_DOWNLOAD} -O ${PETSC4PY_INSTALL_SCRIPT_PATH}
     source $PETSC4PY_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    NGSOLVE_ARCHIVE_PATH=${NGSOLVE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/ngsolve-20220514-003523-d68a1cd/ngsolve-install.tar.gz"}
+    NGSOLVE_ARCHIVE_PATH=${NGSOLVE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/ngsolve-20220516-123915-d68a1cd/ngsolve-install.tar.gz"}
     [[ $NGSOLVE_ARCHIVE_PATH == http* ]] && NGSOLVE_ARCHIVE_DOWNLOAD=${NGSOLVE_ARCHIVE_PATH} && NGSOLVE_ARCHIVE_PATH=/tmp/ngsolve-install.tar.gz && wget ${NGSOLVE_ARCHIVE_DOWNLOAD} -O ${NGSOLVE_ARCHIVE_PATH}
     if [[ $NGSOLVE_ARCHIVE_PATH != skip ]]; then
         tar -xzf $NGSOLVE_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
