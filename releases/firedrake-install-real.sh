@@ -33,7 +33,7 @@ if [[ ! -f $FIREDRAKE_INSTALLED ]]; then
     source $VTK_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    FIREDRAKE_ARCHIVE_PATH=${FIREDRAKE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/firedrake-20220601-072414-5beb12e-real/firedrake-install.tar-7b215094b874e3bcca370036931672da.gz"}
+    FIREDRAKE_ARCHIVE_PATH=${FIREDRAKE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/firedrake-20220604-003000-5beb12e-real/firedrake-install.tar.gz"}
     [[ $FIREDRAKE_ARCHIVE_PATH == http* ]] && FIREDRAKE_ARCHIVE_DOWNLOAD=${FIREDRAKE_ARCHIVE_PATH} && FIREDRAKE_ARCHIVE_PATH=/tmp/firedrake-install.tar.gz && wget ${FIREDRAKE_ARCHIVE_DOWNLOAD} -O ${FIREDRAKE_ARCHIVE_PATH}
     if [[ $FIREDRAKE_ARCHIVE_PATH != skip ]]; then
         rm -rf /usr/local/lib/python3.7/dist-packages/cftime*
