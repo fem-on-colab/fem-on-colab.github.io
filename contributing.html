@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <meta content="FEM on Colab developement takes place on GitHub. We are still at an early developement stage. Feel free to contact us by email for further information." lang="en" name="description" xml:lang="en" />
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -71,6 +71,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js"></script>
     <script src="_static/js/external_links.js"></script>
@@ -307,11 +308,11 @@
           <article class="md-content__inner md-typeset" role="main">
             
   <section id="how-to-contribute">
-<h1 id="contributing--page-root">How to contribute<a class="headerlink" href="#contributing--page-root" title="Permalink to this headline">¶</a></h1>
+<h1 id="contributing--page-root">How to contribute<a class="headerlink" href="#contributing--page-root" title="Permalink to this heading">¶</a></h1>
 <a class="reference external image-reference" href="https://github.com/fem-on-colab/fem-on-colab"><img alt="Go to repository on GitHub" src="_images/github-logo.png" style="width: 80px; height: 80px;"/></a>
 <a class="reference external image-reference" href="mailto:francesco.ballarin@unicatt.it"><img alt="Contact us via email" src="_images/email.png" style="width: 80px; height: 80px;"/></a>
 <section id="history-and-the-underlying-motivation">
-<h2 id="history-and-the-underlying-motivation">History and the underlying motivation<a class="headerlink" href="#history-and-the-underlying-motivation" title="Permalink to this headline">¶</a></h2>
+<h2 id="history-and-the-underlying-motivation">History and the underlying motivation<a class="headerlink" href="#history-and-the-underlying-motivation" title="Permalink to this heading">¶</a></h2>
 <p>The project started in 2021 with two main technical motivations:</p>
 <ul class="simple">
 <li><p>the Google Colab team realesed in February 2021 an upgrade to their system to use python 3.7. This effectively detaches their python version from Ubuntu upstream packages, bacause python 3.7 is not supported by upstream Ubuntu 18.04 LTS (the newest supported version is 3.6). This means that a custom packaging pipeline needs to be implemented to support Colab.</p></li>
@@ -319,13 +320,13 @@
 </ul>
 </section>
 <section id="contributing-reporting-broken-packages">
-<h2 id="contributing-reporting-broken-packages">Contributing: reporting broken packages<a class="headerlink" href="#contributing-reporting-broken-packages" title="Permalink to this headline">¶</a></h2>
+<h2 id="contributing-reporting-broken-packages">Contributing: reporting broken packages<a class="headerlink" href="#contributing-reporting-broken-packages" title="Permalink to this heading">¶</a></h2>
 <p>Our release pipeline tries to mimick the Colab environment in order to package the libraries appropriately. However,
 <a class="reference external" href="https://github.com/googlecolab/colabtools/issues/1002">since we currently have no way of access the true Colab environment</a>, our released packages may break at any Colab environment update.</p>
 <p>Please report broken packages by <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/issues">opening a new GitHub issue</a>.</p>
 </section>
 <section id="contributing-maintaining-a-package">
-<h2 id="contributing-maintaining-a-package">Contributing: maintaining a package<a class="headerlink" href="#contributing-maintaining-a-package" title="Permalink to this headline">¶</a></h2>
+<h2 id="contributing-maintaining-a-package">Contributing: maintaining a package<a class="headerlink" href="#contributing-maintaining-a-package" title="Permalink to this heading">¶</a></h2>
 <p>Packages are released automatically following a weekly schedule for end user packages, and a monthly schedule for the rest of the supported packages. To manually release an updated version of an existing package without waiting for the schedule, proceed as follows:</p>
 <ol class="arabic simple">
 <li><p>If an issue has been opened on <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab/issues">our GitHub tracker</a> reporting a broken package, please assign the issue to yourself to let users/maintainers know that you are working on it.</p></li>
@@ -384,7 +385,7 @@
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.0.1.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>
