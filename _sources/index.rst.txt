@@ -3,7 +3,7 @@ FEM on Colab
 .. meta::
     :description lang=en:
         FEM on Colab is a collection of packages that allows to easily install several finite element libraries on Google Colab.
-        FEM on Colab is currently developed at Catholic University of the Sacred Heart by Dr. Francesco Ballarin.
+        FEM on Colab is currently developed at Università Cattolica del Sacro Cuore by Dr. Francesco Ballarin.
 
 .. image:: _static/images/github-logo.png
     :target: https://github.com/fem-on-colab/fem-on-colab
@@ -32,7 +32,7 @@ Currently supported libraries are `FEniCS <https://bitbucket.org/fenics-project/
 Authors and contributors
 ------------------------
 
-**FEM on Colab** is currently developed and maintained at the `Catholic University of the Sacred Heart <https://www.unicatt.it/>`__ by `Dr. Francesco Ballarin <https://www.francescoballarin.it>`__.
+**FEM on Colab** is currently developed and maintained at `Università Cattolica del Sacro Cuore <https://www.unicatt.it/>`__ by `Dr. Francesco Ballarin <https://www.francescoballarin.it>`__.
 We acknowledge all contributors listed in the `AUTHORS file <https://github.com/fem-on-colab/fem-on-colab/blob/master/AUTHORS>`__.
 
 Timeline and funding
@@ -41,7 +41,7 @@ Timeline and funding
    :widths: 10 90
 
    * - 2021
-     - Early development of **FEM on Colab** begins at the `Catholic University of the Sacred Heart <https://www.unicatt.it/>`__.
+     - Early development of **FEM on Colab** begins at `Università Cattolica del Sacro Cuore <https://www.unicatt.it/>`__.
 
 
 Learn more about FEM on Colab
