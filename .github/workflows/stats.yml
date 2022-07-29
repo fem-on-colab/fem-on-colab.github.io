@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  website:
+  stats:
     runs-on: ubuntu-latest
     steps:
     - name: Clone website repository on current branch
@@ -34,12 +34,13 @@ jobs:
         wget https://github.com/fem-on-colab/release-download-count-script/raw/main/scripts/requirements.txt
         python3 -m pip -q install -r requirements.txt
         rm requirements.txt
+        python3 -m pip -q install pandas
         SITE_PACKAGES=$(python3 -c 'import site; print(site.getsitepackages()[0])')
-        wget https://github.com/fem-on-colab/release-download-count-script/raw/main/scripts/release_download_count.py -P $SITE_PACKAGES
+        sudo wget https://github.com/fem-on-colab/release-download-count-script/raw/main/scripts/release_download_count.py -P $SITE_PACKAGES
     - name: Update release download stats
       run: |
         pushd _stats
-        ln -s _build/stats/stats.csv stats.csv
+        ln -s ../_build/stats/stats.csv stats.csv
         python3 stats.py
         popd
     - name: Deploy to GitHub branch
