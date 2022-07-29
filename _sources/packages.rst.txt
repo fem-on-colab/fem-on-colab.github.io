@@ -29,3 +29,7 @@ where ``{install-script}`` is the installation script of the desired package, an
 .. rubric:: Notes
 
 .. [#f1] The FEniCS package is not automatically built, due to the upstream development having moved to FEniCSx.
+
+Weekly release downloads stats
+------------------------------
+.. stats::
