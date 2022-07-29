@@ -1,5 +1,10 @@
+import io
 import os
 import subprocess
+import pandas as pd
+import plotly.graph_objects as go
+import numpy as np
+from datetime import datetime, timedelta
 from docutils import nodes
 from docutils.parsers.rst import Directive
 from packages import extra_packages, packages
@@ -108,6 +113,40 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
         else:
             raise RuntimeError("Invalid type " + library)
         return f'<img src="{logo}" style="vertical-align: middle; width: 25px">'
+
+class Stats(Directive):
+
+    def run(self):
+        # Get release download stats from file, and convert it to a plot
+        stats = pd.read_csv("_stats/stats.csv")
+        week_to_headers = dict()
+        for header in stats.columns:
+            if header.startswith("count_"):
+                day = header.replace("count_", "").replace("_", "/")
+                week = datetime.strptime(day, "%Y/%m/%d").strftime("%Y-%U")
+                if week not in week_to_headers:
+                    week_to_headers[week] = list()
+                week_to_headers[week].append(header)
+        last_weeks = pd.date_range(
+            start=max(datetime(2022, 7, 29), datetime.now() + timedelta(weeks=-13)), end=datetime.now(), freq="W")
+        last_weeks = [week.strftime("%Y-%U") for week in last_weeks.tolist()]
+        weekly_stats = pd.DataFrame(0, columns=list(packages.keys()), index=last_weeks)
+        for package in weekly_stats.columns:
+            condition = stats.package.str.fullmatch(package)
+            if sum(condition) > 0:
+                stats_package = stats[condition].sum(axis=0)
+                for (week, headers) in week_to_headers.items():
+                    weekly_stats.loc[week, package] = max(stats_package[header] for header in headers)
+        if len(last_weeks) > 0:
+            fig = go.Figure()
+            for package in weekly_stats.columns:
+                weekly_stats_package = weekly_stats[package]
+                fig.add_scatter(x=last_weeks[1:], y=np.diff(weekly_stats_package), mode="lines+markers", name=package)
+            html_buffer = io.StringIO()
+            fig.write_html(html_buffer, full_html=False)
+            return [nodes.raw(text=html_buffer.getvalue(), format="html")]
+        else:
+            return [nodes.raw(text="Stats not available", format="html")]
 
 def on_build_finished(app, exc):
     if exc is None and app.builder.format == "html":
@@ -246,6 +285,7 @@ sphinx_material.create_sitemap = create_sitemap
 
 def setup(app):
     app.add_directive("packages", Packages)
+    app.add_directive("stats", Stats)
     app.connect("build-finished", on_build_finished)
 
     return {

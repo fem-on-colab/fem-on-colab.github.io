@@ -20,6 +20,12 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+    - name: Clone website repository on stats branch
+      uses: actions/checkout@v2
+      with:
+        ref: stats
+        fetch-depth: 0
+        path: _build/stats
     - name: Determine which token to use when cloning website repository on gh-pages branch
       id: token_gh_pages
       run: |
@@ -38,9 +44,12 @@ jobs:
         path: _build/html
     - name: Install dependencies
       run: |
-        pip3 -q install sphinx-material
+        pip3 -q install pandas plotly sphinx-material
     - name: Generate sphinx website
       run: |
+        pushd _stats
+        ln -s ../_build/stats/stats.csv stats.csv
+        popd
         rm -rf _build/html/* && make html
     - name: Fix permissions
       run: |
