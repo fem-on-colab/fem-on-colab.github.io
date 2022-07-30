@@ -137,11 +137,13 @@ class Stats(Directive):
                 stats_package = stats[condition].sum(axis=0)
                 for (week, headers) in week_to_headers.items():
                     weekly_stats.loc[week, package] = max(stats_package[header] for header in headers)
-        if len(last_weeks) > 0:
+        if len(last_weeks) > 1:
             fig = go.Figure()
             for package in weekly_stats.columns:
                 weekly_stats_package = weekly_stats[package]
-                fig.add_scatter(x=last_weeks[1:], y=np.diff(weekly_stats_package), mode="lines+markers", name=package)
+                fig.add_scatter(
+                    x=last_weeks[1:], y=np.diff(weekly_stats_package), mode="lines+markers",
+                    name=packages[package]["title"])
             html_buffer = io.StringIO()
             fig.write_html(html_buffer, full_html=False)
             return [nodes.raw(text=html_buffer.getvalue(), format="html")]
