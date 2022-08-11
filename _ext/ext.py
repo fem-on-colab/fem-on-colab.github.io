@@ -156,6 +156,9 @@ def on_build_finished(app, exc):
         subprocess.run(
             "find " + app.outdir + " -type f -not -path '*/\.git/*' -exec sed -i 's/%40/@/g' {} +",
             shell=True)
+        subprocess.run(  # undo incorrect escape in plotly js
+            "sed -i 's/t@0=/t%400=/g' " + app.outdir + "/packages.html",
+            shell=True)
         # Mark current page as active
         subprocess.run(
             "find " + app.outdir + " -type f -not -path '*/\.git/*' -exec sed -i 's/"
