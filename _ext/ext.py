@@ -128,8 +128,8 @@ class Stats(Directive):
                     week_to_headers[week] = list()
                 week_to_headers[week].append(header)
         last_weeks = pd.date_range(
-            start=max(datetime(2022, 7, 29), datetime.now() + timedelta(weeks=-13)), end=datetime.now(), freq="W")
-        last_weeks = [week.strftime("%Y-%U") for week in last_weeks.tolist()]
+            start=max(datetime(2022, 7, 29), datetime.now() + timedelta(weeks=-13)), end=datetime.now(), freq="W-MON")
+        last_weeks = [week.strftime("%Y-%U") for week in last_weeks.tolist()[:-1]]
         weekly_stats = pd.DataFrame(0, columns=list(packages.keys()), index=last_weeks)
         for package in weekly_stats.columns:
             condition = stats.package.str.fullmatch(package)
