@@ -18,7 +18,7 @@ if [[ ! -f $OCC_INSTALLED ]]; then
     source $GCC_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    OCC_ARCHIVE_PATH=${OCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/occ-20220909-125719-3f2d478/occ-install.tar.gz"}
+    OCC_ARCHIVE_PATH=${OCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/occ-20220909-140954-484b12d/occ-install.tar.gz"}
     [[ $OCC_ARCHIVE_PATH == http* ]] && OCC_ARCHIVE_DOWNLOAD=${OCC_ARCHIVE_PATH} && OCC_ARCHIVE_PATH=/tmp/occ-install.tar.gz && wget ${OCC_ARCHIVE_DOWNLOAD} -O ${OCC_ARCHIVE_PATH}
     if [[ $OCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $OCC_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
@@ -28,6 +28,9 @@ if [[ ! -f $OCC_INSTALLED ]]; then
     if [[ $OCC_ARCHIVE_PATH != skip ]]; then
         ln -fs /usr/local/lib/libTK*.so* /usr/lib
     fi
+
+    # Install X11 for OCC
+    apt install -y -qq libfontconfig1 libgl1
 
     # Mark package as installed
     mkdir -p $SHARE_PREFIX
