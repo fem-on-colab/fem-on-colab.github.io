@@ -17,9 +17,9 @@ jobs:
       id: token_gh_pages
       run: |
         if [[ "${GITHUB_REPOSITORY}" == "fem-on-colab/fem-on-colab.github.io" ]]; then
-          echo "::set-output name=token::${{ secrets.GITHUB_TOKEN }}"
+          echo "token=${{ secrets.GITHUB_TOKEN }}" >> ${GITHUB_OUTPUT}
         else
-          echo "::set-output name=token::${{ github.token }}"
+          echo "token=${{ github.token }}" >> ${GITHUB_OUTPUT}
         fi
       shell: bash
     - name: Clone website repository on stats branch
