@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Clone website repository on current branch
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
     - name: Determine which token to use when cloning website repository on stats branch
@@ -23,7 +23,7 @@ jobs:
         fi
       shell: bash
     - name: Clone website repository on stats branch
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         token: ${{ steps.token_gh_pages.outputs.token }}
         ref: stats
