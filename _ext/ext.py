@@ -119,31 +119,38 @@ class Stats(Directive):
     def run(self):
         # Get release download stats from file, and convert it to a plot
         stats = pd.read_csv("_stats/stats.csv")
+        first_day = None
         week_to_headers = dict()
         for header in stats.columns:
             if header.startswith("count_"):
-                day = header.replace("count_", "").replace("_", "/")
-                week = datetime.strptime(day, "%Y/%m/%d").strftime("%Y-%U")
+                day = datetime.strptime(header.replace("count_", "").replace("_", "/"), "%Y/%m/%d")
+                if first_day is None:
+                    first_day = day
+                else:
+                    first_day = min(first_day, day)
+                week = day.strftime("%Y-%U")
                 if week not in week_to_headers:
                     week_to_headers[week] = list()
                 week_to_headers[week].append(header)
-        last_weeks = pd.date_range(
-            start=max(datetime(2022, 7, 29), datetime.now() + timedelta(weeks=-13)), end=datetime.now(), freq="W-MON")
-        last_weeks = [week.strftime("%Y-%U") for week in last_weeks.tolist()[:-1]]
-        weekly_stats = pd.DataFrame(0, columns=list(packages.keys()), index=last_weeks)
+        weeks = pd.date_range(
+            start=first_day - timedelta(days=first_day.weekday()), end=datetime.now(), freq="W-MON")
+        weeks = [week.strftime("%Y-%U") for week in weeks.tolist()[:-1]]
+        weekly_stats = pd.DataFrame(0, columns=list(packages.keys()), index=weeks)
         for package in weekly_stats.columns:
             condition = stats.package.str.fullmatch(package)
             if sum(condition) > 0:
                 stats_package = stats[condition].sum(axis=0)
                 for (week, headers) in week_to_headers.items():
                     weekly_stats.loc[week, package] = max(stats_package[header] for header in headers)
-        if len(last_weeks) > 1:
+        if len(weeks) > 1:
             fig = go.Figure()
             for package in weekly_stats.columns:
                 weekly_stats_package = weekly_stats[package]
                 fig.add_scatter(
-                    x=last_weeks[1:], y=np.diff(weekly_stats_package), mode="lines+markers",
+                    x=weeks[1:], y=np.diff(weekly_stats_package), mode="lines+markers",
                     name=packages[package]["title"])
+            if len(weeks) > 13:
+                fig.update_xaxes(range=[len(weeks) - 13.5, len(weeks) - 1])
             html_buffer = io.StringIO()
             fig.write_html(html_buffer, full_html=False)
             return [nodes.raw(text=html_buffer.getvalue(), format="html")]
