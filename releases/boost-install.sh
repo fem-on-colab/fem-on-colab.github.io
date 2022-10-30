@@ -8,25 +8,29 @@ set -e
 set -x
 
 # Check for existing installation
-SHARE_PREFIX="/usr/local/share/fem-on-colab"
+INSTALL_PREFIX=${INSTALL_PREFIX:-"/usr/local"}
+INSTALL_PREFIX_DEPTH=$(echo $INSTALL_PREFIX | awk -F"/" '{print NF-1}')
+PROJECT_NAME=${PROJECT_NAME:-"fem-on-colab"}
+SHARE_PREFIX="$INSTALL_PREFIX/share/$PROJECT_NAME"
 BOOST_INSTALLED="$SHARE_PREFIX/boost.installed"
 
 if [[ ! -f $BOOST_INSTALLED ]]; then
     # Install gcc
-    GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/a548807/releases/gcc-install.sh"}
+    GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/b72fafe/releases/gcc-install.sh"}
     [[ $GCC_INSTALL_SCRIPT_PATH == http* ]] && GCC_INSTALL_SCRIPT_DOWNLOAD=${GCC_INSTALL_SCRIPT_PATH} && GCC_INSTALL_SCRIPT_PATH=/tmp/gcc-install.sh && [[ ! -f ${GCC_INSTALL_SCRIPT_PATH} ]] && wget ${GCC_INSTALL_SCRIPT_DOWNLOAD} -O ${GCC_INSTALL_SCRIPT_PATH}
     source $GCC_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    BOOST_ARCHIVE_PATH=${BOOST_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/boost-20221030-094844-fc59f02/boost-install.tar-c89bfdf233b43d3d76a0fedb7ad6df35.gz"}
+    BOOST_ARCHIVE_PATH=${BOOST_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/boost-20221030-164238-6c17757/boost-install.tar.gz"}
     [[ $BOOST_ARCHIVE_PATH == http* ]] && BOOST_ARCHIVE_DOWNLOAD=${BOOST_ARCHIVE_PATH} && BOOST_ARCHIVE_PATH=/tmp/boost-install.tar.gz && wget ${BOOST_ARCHIVE_DOWNLOAD} -O ${BOOST_ARCHIVE_PATH}
     if [[ $BOOST_ARCHIVE_PATH != skip ]]; then
-        tar -xzf $BOOST_ARCHIVE_PATH --strip-components=2 --directory=/usr/local
+        tar -xzf $BOOST_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
     fi
 
-    # Add symbolic links to the MPI libraries in /usr/lib, because Colab does not export /usr/local/lib to LD_LIBRARY_PATH
+    # Add symbolic links to the MPI libraries in /usr/lib, because INSTALL_PREFIX/lib may not be in LD_LIBRARY_PATH
+    # on the actual cloud instance
     if [[ $BOOST_ARCHIVE_PATH != skip ]]; then
-        ln -fs /usr/local/lib/libboost*so* /usr/lib
+        ln -fs $INSTALL_PREFIX/lib/libboost*so* /usr/lib
     fi
 
     # Mark package as installed
