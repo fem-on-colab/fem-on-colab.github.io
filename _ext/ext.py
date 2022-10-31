@@ -96,17 +96,17 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
 
     @staticmethod
     def _library_image(library):
-        if library in ("dolfin", "dolfinx", "fenics", "fenicsx", "mshr"):
+        if library in ("dolfin", "dolfinx", "fenics", "fenicsx", "mshr") or library.startswith("dolfin ("):
             logo = "_static/images/fenics-logo.png"
-        elif library in ("firedrake", "fireshape"):
+        elif library in ("firedrake", "fireshape", "ROL"):
             logo = "_static/images/firedrake-logo.png"
         elif library == "gmsh":
             logo = "_static/images/gmsh-logo.png"
         elif library == "multiphenics":
             logo = "_static/images/multiphenics-logo.png"
-        elif library in ("multiphenicsx", "multiphenicsx (with plotly)", "multiphenicsx (with pyvista)"):
+        elif library == "multiphenicsx" or library.startswith("multiphenicsx ("):
             logo = "_static/images/multiphenicsx-logo.png"
-        elif library in ("ngsolve", "ngsolve (extras)", "ngsxfem"):
+        elif library in ("ngsolve", "ngsxfem") or library.startswith("ngsolve ("):
             logo = "_static/images/ngsolve-logo.png"
         elif library == "RBniCS":
             logo = "_static/images/rbnics-logo.png"
