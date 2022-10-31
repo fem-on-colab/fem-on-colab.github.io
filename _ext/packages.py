@@ -14,6 +14,8 @@ except ImportError:
             "mshr": "fenics/test-mshr.ipynb",
             "multiphenics": "fenics/test-multiphenics.ipynb",
             "RBniCS": "fenics/test-rbnics.ipynb",
+            "dolfin (checkpointing capabilities)": "fenics/test-dolfin-checkpoint.ipynb",
+            "dolfin (catching C++ errors)": "fenics/test-dolfin-cpp-error.ipynb",
         },
     },
 
@@ -47,6 +49,7 @@ except ImportError:
         "tests": {
             "firedrake": "firedrake/test-firedrake.ipynb",
             "fireshape": "firedrake/test-fireshape.ipynb",
+            "ROL": "firedrake/test-rol.ipynb",
         },
     },
 
@@ -85,35 +88,73 @@ except ImportError:
 extra_packages = {
     "boost": {
         "installation_suffixes": [""],
+        "tests": {
+            "boost": "boost/test.ipynb",
+        },
     },
     "gcc": {
         "installation_suffixes": [""],
+        "tests": {
+            "gcc": "gcc/test.ipynb",
+        },
     },
     "h5py": {
         "installation_suffixes": [""],
+        "tests": {
+            "h5py": "h5py/test.ipynb",
+        },
     },
     "itk": {
         "installation_suffixes": [""],
+        "tests": {
+            "itk": "itk/test-itk.ipynb",
+            "itkwidgets": "itk/test-itkwidgets.ipynb",
+        },
     },
     "mock": {
         "installation_suffixes": [""],
+        "tests": {
+            "mock": "mock/test.ipynb",
+        },
     },
     "mpi4py": {
         "installation_suffixes": [""],
+        "tests": {
+            "mpi4py": "mpi4py/test.ipynb",
+        },
     },
     "occ": {
         "installation_suffixes": [""],
+        "tests": {
+            "occ": "occ/test.ipynb",
+        },
     },
     "petsc4py": {
         "installation_suffixes": ["real", "complex"],
+        "tests": {
+            "petsc4py": "petsc4py/test.ipynb",
+        },
     },
     "pybind11": {
         "installation_suffixes": [""],
+        "tests": {
+            "pybind11 (with default compiler)": "pybind11/test-none.ipynb",
+            "pybind11 (exporting g++ compiler)": "pybind11/test-gpp.ipynb",
+            "pybind11 (exporting mpicxx compiler)": "pybind11/test-mpicxx.ipynb",
+        },
     },
     "slepc4py": {
         "installation_suffixes": ["real", "complex"],
+        "tests": {
+            "slepc4py": "slepc4py/test.ipynb",
+        },
     },
     "vtk": {
         "installation_suffixes": [""],
+        "tests": {
+            "vtk": "vtk/test-vtk.ipynb",
+            "pyvista": "vtk/test-pyvista.ipynb",
+            "pythreejs": "vtk/test-pythreejs.ipynb",
+        },
     },
 }

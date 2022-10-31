@@ -54,7 +54,7 @@ jobs:
     - name: Fix permissions
       run: |
         sudo chown $USER _build -R
-    - name: Check that no releases have been deleted
+    - name: Check that no releases or notebooks have been deleted
       run: |
         pushd _build/html
         if [[ $(git ls-files --deleted releases | wc -l) -gt 0 ]]; then
@@ -62,7 +62,13 @@ jobs:
           git ls-files --deleted releases
           exit 1
         fi
+        if [[ $(git ls-files --deleted tests | wc -l) -gt 0 ]]; then
+          echo "The following notebooks have been deleted:"
+          git ls-files --deleted tests
+          exit 1
+        fi
         popd
+      shell: bash
     - name: Deploy to GitHub pages
       if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref == 'refs/heads/main'
       run: |

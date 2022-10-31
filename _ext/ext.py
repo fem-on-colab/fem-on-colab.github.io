@@ -78,7 +78,7 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
 """
         for (library, url) in libraries_urls.items():
             if not url.startswith("https://colab.research.google.com"):
-                colab_url = f"https://colab.research.google.com/github/fem-on-colab/fem-on-colab/blob/main/{url}"
+                colab_url = f"https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/{url}"
             else:
                 colab_url = url
             dropdown += f"""
@@ -213,11 +213,12 @@ def on_build_finished(app, exc):
         index_content = index_content.replace("<head>", "<head>\n" + seo_head)
         with open(index, "w") as f:
             f.write(index_content)
-        # Get package installation scripts from git
+        # Get package installation scripts and test notebooks from git
         releases_dir = os.path.join(app.outdir, "releases")
-        os.makedirs(releases_dir, exist_ok=True)
+        tests_dir = os.path.join(app.outdir, "tests")
         all_packages = packages.copy()
         all_packages.update(extra_packages)
+        all_packages_files = dict()
         for package in list(all_packages.keys()):
             installation_suffixes = all_packages[package]["installation_suffixes"]
             if len(installation_suffixes) > 1:
@@ -232,45 +233,56 @@ def on_build_finished(app, exc):
                         package_install_name = package + "-install-" + suffix + extension
                     package_install_git = os.path.join("releases", package_install_name)
                     package_install = os.path.join(releases_dir, package_install_name)
-                    is_link_process = subprocess.run(
-                        "git ls-tree origin/gh-pages " + package_install_git,
-                        shell=True, capture_output=True)
-                    if is_link_process.returncode != 0:
-                        raise RuntimeError(
-                            "Failed link checking for " + package + " at " + package_install_git + "\n"
-                            + "stdout contains " + is_link_process.stdout.decode() + "\n"
-                            + "stderr contains " + is_link_process.stderr.decode() + "\n")
-                    is_link = is_link_process.stdout.decode().startswith("120000")
-                    if not is_link:
-                        install_copied = subprocess.run(
-                            "git show origin/gh-pages:" + package_install_git + "> " + package_install,
-                            shell=True, capture_output=True)
-                        if install_copied.returncode != 0:
-                            raise RuntimeError(
-                                "Installation of " + package + " not found at " + package_install_git + "\n"
-                                + "stdout contains " + install_copied.stdout.decode() + "\n"
-                                + "stderr contains " + install_copied.stderr.decode() + "\n")
-                        install_copied = subprocess.run(
-                            "git show origin/gh-pages:" + package_install_git + "> " + package_install,
-                            shell=True, capture_output=True)
-                    else:
-                        get_link_path = subprocess.run(
-                            "git show origin/gh-pages:" + package_install_git,
-                            shell=True, capture_output=True)
-                        if get_link_path.returncode != 0:
-                            raise RuntimeError(
-                                "Failed getting link path for " + package + " at " + package_install_git + "\n"
-                                + "stdout contains " + get_link_path.stdout.decode() + "\n"
-                                + "stderr contains " + get_link_path.stderr.decode() + "\n")
-                        create_link = subprocess.run(
-                            "cd " + releases_dir + " && ln -fs " + " " + get_link_path.stdout.decode()
-                            + " " + os.path.relpath(package_install, releases_dir),
-                            shell=True, capture_output=True)
-                        if create_link.returncode != 0:
-                            raise RuntimeError(
-                                "Failed creating link for " + package + " at " + package_install_git + "\n"
-                                + "stdout contains " + create_link.stdout.decode() + "\n"
-                                + "stderr contains " + create_link.stderr.decode() + "\n")
+                    assert package_install not in all_packages_files
+                    all_packages_files[package_install] = package_install_git
+            for (_, test_notebook_name) in all_packages[package]["tests"].items():
+                if not test_notebook_name.startswith("https://colab.research.google.com"):
+                    test_notebook_git = os.path.join("tests", test_notebook_name)
+                    test_notebook = os.path.join(tests_dir, test_notebook_name)
+                    assert test_notebook not in all_packages_files
+                    all_packages_files[test_notebook] = test_notebook_git
+        for (package_file, package_file_git) in all_packages_files.items():
+            os.makedirs(os.path.dirname(package_file), exist_ok=True)
+            is_link_process = subprocess.run(
+                "git ls-tree origin/gh-pages " + package_file_git,
+                shell=True, capture_output=True)
+            if is_link_process.returncode != 0:
+                raise RuntimeError(
+                    "Failed link checking for " + package_file_git + "\n"
+                    + "stdout contains " + is_link_process.stdout.decode() + "\n"
+                    + "stderr contains " + is_link_process.stderr.decode() + "\n")
+            is_link = is_link_process.stdout.decode().startswith("120000")
+            if not is_link:
+                copy_file = subprocess.run(
+                    "git show origin/gh-pages:" + package_file_git + "> " + package_file,
+                    shell=True, capture_output=True)
+                if copy_file.returncode != 0:
+                    raise RuntimeError(
+                        "Package file " + package_file_git + " not found\n"
+                        + "stdout contains " + copy_file.stdout.decode() + "\n"
+                        + "stderr contains " + copy_file.stderr.decode() + "\n")
+                copy_file = subprocess.run(
+                    "git show origin/gh-pages:" + package_file_git + "> " + package_file,
+                    shell=True, capture_output=True)
+            else:
+                assert package_file.startswith(releases_dir)
+                get_link_path = subprocess.run(
+                    "git show origin/gh-pages:" + package_file_git,
+                    shell=True, capture_output=True)
+                if get_link_path.returncode != 0:
+                    raise RuntimeError(
+                        "Failed getting link path for " + package_file_git + "\n"
+                        + "stdout contains " + get_link_path.stdout.decode() + "\n"
+                        + "stderr contains " + get_link_path.stderr.decode() + "\n")
+                create_link = subprocess.run(
+                    "cd " + releases_dir + " && ln -fs " + " " + get_link_path.stdout.decode()
+                    + " " + os.path.relpath(package_file, releases_dir),
+                    shell=True, capture_output=True)
+                if create_link.returncode != 0:
+                    raise RuntimeError(
+                        "Failed creating link for " + package_file_git + "\n"
+                        + "stdout contains " + create_link.stdout.decode() + "\n"
+                        + "stderr contains " + create_link.stderr.decode() + "\n")
 
 
 create_sitemap_bak = sphinx_material.create_sitemap
