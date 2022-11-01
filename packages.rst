@@ -10,7 +10,7 @@ Packages
 Automated weekly build of end user packages
 -------------------------------------------
 
-Since January 2022 end user packages [#f1]_ are automatically built on a weekly basis, in order to follow upstream development.
+End user packages [#f1]_ are automatically built on a weekly basis, in order to follow upstream development.
 
 Users that do not wish to be up to date with the upstream development cycle are invited to hardcode in their Google Colab notebooks a fixed release by replacing
 

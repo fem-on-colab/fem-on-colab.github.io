@@ -18,7 +18,6 @@ except ImportError:
             "dolfin (catching C++ errors)": "fenics/test-dolfin-cpp-error.ipynb",
         },
     },
-
     "fenicsx": {
         "title": "FEniCSx",
         "installation": """
@@ -35,7 +34,6 @@ except ImportError:
             "multiphenicsx (with pyvista)": "https://colab.research.google.com/github/multiphenics/multiphenics.github.io/blob/open-in-colab-multiphenicsx/tutorials/03_lagrange_multipliers/tutorial_lagrange_multipliers_interface.ipynb"
         },
     },
-
     "firedrake": {
         "title": "firedrake",
         "installation": """
@@ -52,7 +50,6 @@ except ImportError:
             "ROL": "firedrake/test-rol.ipynb",
         },
     },
-
     "gmsh": {
         "title": "gmsh",
         "installation": """
@@ -67,7 +64,6 @@ except ImportError:
             "gmsh": "gmsh/test.ipynb",
         },
     },
-
     "ngsolve": {
         "title": "ngsolve & ngsxfem",
         "installation": """
@@ -87,24 +83,45 @@ except ImportError:
 }
 extra_packages = {
     "boost": {
+        "title": "Boost",
+        "installation": """
+!wget "https://fem-on-colab.github.io/releases/boost-install.sh" -O "/tmp/boost-install.sh" && bash "/tmp/boost-install.sh"
+""",
         "installation_suffixes": [""],
         "tests": {
             "boost": "boost/test.ipynb",
         },
     },
     "gcc": {
+        "title": "GCC",
+        "installation": """
+!wget "https://fem-on-colab.github.io/releases/gcc-install.sh" -O "/tmp/gcc-install.sh" && bash "/tmp/gcc-install.sh"
+""",
         "installation_suffixes": [""],
         "tests": {
             "gcc": "gcc/test.ipynb",
         },
     },
     "h5py": {
+        "title": "HDF5 & h5py",
+        "installation": """
+!wget "https://fem-on-colab.github.io/releases/h5py-install.sh" -O "/tmp/h5py-install.sh" && bash "/tmp/h5py-install.sh"
+import h5py
+""",
         "installation_suffixes": [""],
         "tests": {
             "h5py": "h5py/test.ipynb",
         },
     },
     "itk": {
+        "title": "ITK",
+        "installation": """
+try:
+    import itk
+except ImportError:
+    !wget "https://fem-on-colab.github.io/releases/itk-install.sh" -O "/tmp/itk-install.sh" && bash "/tmp/itk-install.sh"
+    import itk
+""",
         "installation_suffixes": [""],
         "tests": {
             "itk": "itk/test-itk.ipynb",
@@ -112,30 +129,66 @@ extra_packages = {
         },
     },
     "mock": {
+        "title": "Mock package",
+        "installation": """
+try:
+    import mock
+except ImportError:
+    !wget "https://fem-on-colab.github.io/releases/mock-install.sh" -O "/tmp/mock-install.sh" && bash "/tmp/mock-install.sh"
+    import mock
+""",
         "installation_suffixes": [""],
         "tests": {
             "mock": "mock/test.ipynb",
         },
     },
     "mpi4py": {
+        "title": "openmpi & mpi4py",
+        "installation": """
+try:
+    import mpi4py
+except ImportError:
+    !wget "https://fem-on-colab.github.io/releases/mpi4py-install.sh" -O "/tmp/mpi4py-install.sh" && bash "/tmp/mpi4py-install.sh"
+    import mpi4py
+""",
         "installation_suffixes": [""],
         "tests": {
             "mpi4py": "mpi4py/test.ipynb",
         },
     },
     "occ": {
+        "title": "Open CASCADE Technology",
+        "installation": """
+!wget "https://fem-on-colab.github.io/releases/occ-install.sh" -O "/tmp/occ-install.sh" && bash "/tmp/occ-install.sh"
+""",
         "installation_suffixes": [""],
         "tests": {
             "occ": "occ/test.ipynb",
         },
     },
     "petsc4py": {
+        "title": "PETSc & petsc4py",
+        "installation": """
+try:
+    import petsc4py
+except ImportError:
+    !wget "https://fem-on-colab.github.io/releases/petsc4py-install-SUFFIX.sh" -O "/tmp/petsc4py-install.sh" && bash "/tmp/petsc4py-install.sh"
+    import petsc4py
+""",
         "installation_suffixes": ["real", "complex"],
         "tests": {
             "petsc4py": "petsc4py/test.ipynb",
         },
     },
     "pybind11": {
+        "title": "pybind11",
+        "installation": """
+try:
+    import pybind11
+except ImportError:
+    !wget "https://fem-on-colab.github.io/releases/pybind11-install.sh" -O "/tmp/pybind11-install.sh" && bash "/tmp/pybind11-install.sh"
+    import pybind11
+""",
         "installation_suffixes": [""],
         "tests": {
             "pybind11 (with default compiler)": "pybind11/test-none.ipynb",
@@ -144,12 +197,28 @@ extra_packages = {
         },
     },
     "slepc4py": {
+        "title": "SLEPc & slepc4py",
+        "installation": """
+try:
+    import slepc4py
+except ImportError:
+    !wget "https://fem-on-colab.github.io/releases/slepc4py-install-SUFFIX.sh" -O "/tmp/slepc4py-install.sh" && bash "/tmp/slepc4py-install.sh"
+    import slepc4py
+""",
         "installation_suffixes": ["real", "complex"],
         "tests": {
             "slepc4py": "slepc4py/test.ipynb",
         },
     },
     "vtk": {
+        "title": "VTK & pyvista",
+        "installation": """
+try:
+    import vtk
+except ImportError:
+    !wget "https://fem-on-colab.github.io/releases/vtk-install.sh" -O "/tmp/vtk-install.sh" && bash "/tmp/vtk-install.sh"
+    import vtk
+""",
         "installation_suffixes": [""],
         "tests": {
             "vtk": "vtk/test-vtk.ipynb",

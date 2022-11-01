@@ -14,7 +14,7 @@ class Packages(Directive):
 
     def run(self):
         output = list()
-        # General text
+        # Introduction to packages
         intro = f"""
 <p>
 You can install one of the packages provided by <b>FEM on Colab</b> by adding the following cell at the top of your notebook.
@@ -34,6 +34,31 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
             )
             if "hide" not in data or not data["hide"]:
                 output.append(nodes.raw(text=card_num, format="html"))
+        # Introduction to extra packages
+        extra_intro = f"""
+<input type="checkbox" name="extra-packages-toggle" id="extra-packages-toggle" class="extra-packages-toggle">
+<label for="extra-packages-toggle" class="extra-packages-toggle-title">Package dependencies</label>
+<div class="extra-packages-content">
+<p>
+A complete list of all dependencies is reported below. Users should typically not install any such dependency, since <b>FEM on Colab</b> automatically downloads and installs any required dependency of the aforementioned packages.
+</p>
+"""
+        output.append(nodes.raw(text=extra_intro, format="html"))
+        # Extra packages
+        for package in extra_packages.keys():
+            data = extra_packages[package]
+            buttons = self._dropdown("Our tests", data["tests"])
+            card_num = self._card(
+                package=package,
+                title=data["title"],
+                installation=data["installation"],
+                installation_suffixes=data["installation_suffixes"],
+                buttons=buttons
+            )
+            if "hide" not in data or not data["hide"]:
+                output.append(nodes.raw(text=card_num, format="html"))
+        # Conclusion to extra packages
+        output.append(nodes.raw(text="</div>", format="html"))
         return output
 
     @classmethod
@@ -96,20 +121,42 @@ You can install one of the packages provided by <b>FEM on Colab</b> by adding th
 
     @staticmethod
     def _library_image(library):
-        if library in ("dolfin", "dolfinx", "fenics", "fenicsx", "mshr") or library.startswith("dolfin ("):
+        if library == "boost":
+            logo = "_static/images/boost-logo.png"
+        elif library in ("dolfin", "dolfinx", "fenics", "fenicsx", "mshr") or library.startswith("dolfin ("):
             logo = "_static/images/fenics-logo.png"
         elif library in ("firedrake", "fireshape", "ROL"):
             logo = "_static/images/firedrake-logo.png"
+        elif library == "gcc":
+            logo = "_static/images/gcc-logo.png"
         elif library == "gmsh":
             logo = "_static/images/gmsh-logo.png"
+        elif library == "h5py":
+            logo = "_static/images/h5py-logo.png"
+        elif library in ("itk", "itkwidgets"):
+            logo = "_static/images/itk-logo.png"
+        elif library == "mock":
+            logo = "_static/images/mock-logo.png"
+        elif library == "mpi4py":
+            logo = "_static/images/mpi4py-logo.png"
         elif library == "multiphenics":
             logo = "_static/images/multiphenics-logo.png"
         elif library == "multiphenicsx" or library.startswith("multiphenicsx ("):
             logo = "_static/images/multiphenicsx-logo.png"
         elif library in ("ngsolve", "ngsxfem") or library.startswith("ngsolve ("):
             logo = "_static/images/ngsolve-logo.png"
+        elif library == "occ":
+            logo = "_static/images/occ-logo.png"
+        elif library == "petsc4py":
+            logo = "_static/images/petsc4py-logo.png"
+        elif library == "pybind11" or library.startswith("pybind11 ("):
+            logo = "_static/images/pybind11-logo.png"
         elif library == "RBniCS":
             logo = "_static/images/rbnics-logo.png"
+        elif library == "slepc4py":
+            logo = "_static/images/slepc4py-logo.png"
+        elif library in ("vtk", "pyvista", "pythreejs"):
+            logo = "_static/images/vtk-logo.png"
         else:
             raise RuntimeError("Invalid type " + library)
         return f'<img src="{logo}" style="vertical-align: middle; width: 25px">'
