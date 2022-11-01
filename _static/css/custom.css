@@ -239,7 +239,7 @@ button[data-md-color-accent=unicatt] {
 /* Toggleable divs
    https://stackoverflow.com/questions/37080838/is-there-a-css-code-for-double-click-element-or-another-way-to-solve-this */
 
-.installation-toggle {
+.installation-toggle, .extra-packages-toggle {
     display: none;
 }
 
@@ -251,23 +251,35 @@ button[data-md-color-accent=unicatt] {
     letter-spacing: -.01em;
 }
 
-.installation-toggle-title:after {
+.extra-packages-toggle-title {
+    /* copied from h2 */
+    margin: 2rem 0 0.8rem;
+    font-size: 1.25rem;
+    font-weight: 300;
+    letter-spacing: -.01em;
+    line-height: 1.4;
+}
+
+.installation-toggle-title:after, .extra-packages-toggle-title:after {
     font-family: Material Icons;
     content: 'expand_more';
     margin-left: 6px;
 }
 
 .installation-toggle:checked + .installation-toggle-title + div.package-installation-real,
-.installation-toggle:checked + .installation-toggle-title + div.package-installation-complex {
+.installation-toggle:checked + .installation-toggle-title + div.package-installation-complex,
+.extra-packages-toggle:checked + .extra-packages-toggle-title + div.extra-packages-content {
     display: block;
 }
 
 .installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-real,
-.installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-complex {
+.installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-complex,
+.extra-packages-toggle:not(:checked) + .extra-packages-toggle-title + div.extra-packages-content {
     display: none;
 }
 
-.installation-toggle:checked + .installation-toggle-title:after {
+.installation-toggle:checked + .installation-toggle-title:after,
+.extra-packages-toggle:checked + .extra-packages-toggle-title:after {
     font-family: Material Icons;
     content: 'expand_less';
     margin-left: 6px;
