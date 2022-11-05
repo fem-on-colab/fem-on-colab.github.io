@@ -183,11 +183,8 @@ except ImportError:
     "pybind11": {
         "title": "pybind11",
         "installation": """
-try:
-    import pybind11
-except ImportError:
-    !wget "https://fem-on-colab.github.io/releases/pybind11-install.sh" -O "/tmp/pybind11-install.sh" && bash "/tmp/pybind11-install.sh"
-    import pybind11
+!wget "https://fem-on-colab.github.io/releases/pybind11-install.sh" -O "/tmp/pybind11-install.sh" && bash "/tmp/pybind11-install.sh"
+import pybind11
 """,
         "installation_suffixes": [""],
         "tests": {
