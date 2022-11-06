@@ -131,11 +131,8 @@ except ImportError:
     "mock": {
         "title": "Mock package",
         "installation": """
-try:
-    import mock
-except ImportError:
-    !wget "https://fem-on-colab.github.io/releases/mock-install.sh" -O "/tmp/mock-install.sh" && bash "/tmp/mock-install.sh"
-    import mock
+!wget "https://fem-on-colab.github.io/releases/mock-install.sh" -O "/tmp/mock-install.sh" && bash "/tmp/mock-install.sh"
+import mock
 """,
         "installation_suffixes": [""],
         "tests": {
