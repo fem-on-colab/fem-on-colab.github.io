@@ -31,7 +31,7 @@ if [[ ! -f $FENICSX_INSTALLED ]]; then
     source $SLEPC4PY_INSTALL_SCRIPT_PATH
 
     # Install itk (and its dependencies)
-    ITK_INSTALL_SCRIPT_PATH=${ITK_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/6b43fd7/releases/itk-install.sh"}
+    ITK_INSTALL_SCRIPT_PATH=${ITK_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/1975cab/releases/itk-install.sh"}
     [[ $ITK_INSTALL_SCRIPT_PATH == http* ]] && ITK_INSTALL_SCRIPT_DOWNLOAD=${ITK_INSTALL_SCRIPT_PATH} && ITK_INSTALL_SCRIPT_PATH=/tmp/itk-install.sh && [[ ! -f ${ITK_INSTALL_SCRIPT_PATH} ]] && wget ${ITK_INSTALL_SCRIPT_DOWNLOAD} -O ${ITK_INSTALL_SCRIPT_PATH}
     source $ITK_INSTALL_SCRIPT_PATH
 
