@@ -28,6 +28,7 @@ if [[ ! -f $VTK_INSTALLED ]]; then
     fi
 
     # Install X11
+    apt update
     apt install -y -qq libgl1-mesa-dev libxrender1 xvfb
 
     # Mark package as installed
