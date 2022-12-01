@@ -16,7 +16,7 @@ GCC_INSTALLED="$SHARE_PREFIX/gcc.installed"
 
 if [[ ! -f $GCC_INSTALLED ]]; then
     # Download and uncompress library archive
-    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20221104-093549-daccde0/gcc-install.tar-1af130de0d46f757df3ff67f25bfe54d.gz"}
+    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20221201-110835-8268ac8/gcc-install.tar-215dea0b6144af4ba1d41a34b44e37fe.gz"}
     [[ $GCC_ARCHIVE_PATH == http* ]] && GCC_ARCHIVE_DOWNLOAD=${GCC_ARCHIVE_PATH} && GCC_ARCHIVE_PATH=/tmp/gcc-install.tar.gz && wget ${GCC_ARCHIVE_DOWNLOAD} -O ${GCC_ARCHIVE_PATH}
     if [[ $GCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $GCC_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
