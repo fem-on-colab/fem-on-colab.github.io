@@ -21,14 +21,13 @@ if [[ ! -f $VTK_INSTALLED ]]; then
     source $GCC_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    VTK_ARCHIVE_PATH=${VTK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/vtk-20221201-114407-8268ac8/vtk-install.tar.gz"}
+    VTK_ARCHIVE_PATH=${VTK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/vtk-20221202-194836-1f8b405/vtk-install.tar.gz"}
     [[ $VTK_ARCHIVE_PATH == http* ]] && VTK_ARCHIVE_DOWNLOAD=${VTK_ARCHIVE_PATH} && VTK_ARCHIVE_PATH=/tmp/vtk-install.tar.gz && wget ${VTK_ARCHIVE_DOWNLOAD} -O ${VTK_ARCHIVE_PATH}
     if [[ $VTK_ARCHIVE_PATH != skip ]]; then
         tar -xzf $VTK_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
     fi
 
     # Install X11
-    apt update
     apt install -y -qq libgl1-mesa-dev libxrender1 xvfb
 
     # Mark package as installed
