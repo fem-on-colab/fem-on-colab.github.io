@@ -46,6 +46,8 @@ Timeline and funding
      - End user packages are automatically built on a weekly basis, in order to follow upstream development. With similar motivations, their dependencies are built on a monthly basis.
    * - October 2022
      - Latest `backend information <https://github.com/googlecolab/backend-info>`__ reported by Google Colab developers is now used in the scheduled builds.
+   * - November 2022
+     - **FEM on Colab** has a new spin-off: learn more about `FEM on Kaggle <https://fem-on-kaggle.github.io>`__!
 
 Learn more about FEM on Colab
 -----------------------------
