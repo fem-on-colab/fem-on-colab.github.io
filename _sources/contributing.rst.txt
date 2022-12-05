@@ -27,9 +27,6 @@ The project started in 2021 with two main technical motivations:
 Contributing: reporting broken packages
 ---------------------------------------
 
-Our release pipeline tries to mimick the Colab environment in order to package the libraries appropriately. However,
-`since we currently have no way of access the true Colab environment <https://github.com/googlecolab/colabtools/issues/1002>`__, our released packages may break at any Colab environment update.
-
 Please report broken packages by `opening a new GitHub issue <https://github.com/fem-on-colab/fem-on-colab/issues>`__.
 
 Contributing: maintaining a package
