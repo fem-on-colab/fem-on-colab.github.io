@@ -16,7 +16,7 @@ NGSOLVE_INSTALLED="$SHARE_PREFIX/ngsolve.installed"
 
 if [[ ! -f $NGSOLVE_INSTALLED ]]; then
     # Install OCC
-    OCC_INSTALL_SCRIPT_PATH=${OCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/4d7c38f/releases/occ-install.sh"}
+    OCC_INSTALL_SCRIPT_PATH=${OCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/cc848fb/releases/occ-install.sh"}
     [[ $OCC_INSTALL_SCRIPT_PATH == http* ]] && OCC_INSTALL_SCRIPT_DOWNLOAD=${OCC_INSTALL_SCRIPT_PATH} && OCC_INSTALL_SCRIPT_PATH=/tmp/occ-install.sh && [[ ! -f ${OCC_INSTALL_SCRIPT_PATH} ]] && wget ${OCC_INSTALL_SCRIPT_DOWNLOAD} -O ${OCC_INSTALL_SCRIPT_PATH}
     source $OCC_INSTALL_SCRIPT_PATH
 
@@ -31,10 +31,19 @@ if [[ ! -f $NGSOLVE_INSTALLED ]]; then
     source $PETSC4PY_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    NGSOLVE_ARCHIVE_PATH=${NGSOLVE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/ngsolve-20221205-105744-22d3a72/ngsolve-install.tar.gz"}
+    NGSOLVE_ARCHIVE_PATH=${NGSOLVE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/ngsolve-20221205-173552-cec7f10/ngsolve-install.tar.gz"}
     [[ $NGSOLVE_ARCHIVE_PATH == http* ]] && NGSOLVE_ARCHIVE_DOWNLOAD=${NGSOLVE_ARCHIVE_PATH} && NGSOLVE_ARCHIVE_PATH=/tmp/ngsolve-install.tar.gz && wget ${NGSOLVE_ARCHIVE_DOWNLOAD} -O ${NGSOLVE_ARCHIVE_PATH}
     if [[ $NGSOLVE_ARCHIVE_PATH != skip ]]; then
         tar -xzf $NGSOLVE_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
+    fi
+
+    # Add symbolic links to python libraries in /usr/lib, because PYTHONHOME/lib may not be in LD_LIBRARY_PATH
+    # on the actual cloud instance
+    if [[ $NGSOLVE_ARCHIVE_PATH != skip ]]; then
+        PYTHONHOME=$(python3 -c "import sys; print(sys.exec_prefix)")
+        if [[ $PYTHONHOME != "/usr" ]]; then
+            ln -fs $PYTHONHOME/lib/libpython*.so* /usr/lib
+        fi
     fi
 
     # Mark package as installed
