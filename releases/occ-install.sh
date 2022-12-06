@@ -21,7 +21,7 @@ if [[ ! -f $OCC_INSTALLED ]]; then
     source $GCC_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    OCC_ARCHIVE_PATH=${OCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/occ-20221205-131152-78bda37/occ-install.tar.gz"}
+    OCC_ARCHIVE_PATH=${OCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/occ-20221206-152128-a3c8e29/occ-install.tar.gz"}
     [[ $OCC_ARCHIVE_PATH == http* ]] && OCC_ARCHIVE_DOWNLOAD=${OCC_ARCHIVE_PATH} && OCC_ARCHIVE_PATH=/tmp/occ-install.tar.gz && wget ${OCC_ARCHIVE_DOWNLOAD} -O ${OCC_ARCHIVE_PATH}
     if [[ $OCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $OCC_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
@@ -31,12 +31,6 @@ if [[ ! -f $OCC_INSTALLED ]]; then
     # on the actual cloud instance
     if [[ $OCC_ARCHIVE_PATH != skip ]]; then
         ln -fs $INSTALL_PREFIX/lib/libTK*.so* /usr/lib
-    fi
-
-    # Add symbolic links to opencascade in /usr/include, because INSTALL_PREFIX/include may not be in CPLUS_INCLUDE_PATH
-    # on the actual cloud instance
-    if [[ $OCC_ARCHIVE_PATH != skip ]]; then
-        ln -fs $INSTALL_PREFIX/include/opencascade /usr/include
     fi
 
     # Install X11 for OCC
