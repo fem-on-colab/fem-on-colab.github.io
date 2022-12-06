@@ -41,7 +41,7 @@ jobs:
       run: |
         pushd _stats
         ln -s ../_build/stats/stats.csv stats.csv
-        python3 stats.py
+        TOKEN="${{ steps.token_gh_pages.outputs.token }}" python3 stats.py
         popd
     - name: Deploy to GitHub branch
       if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref == 'refs/heads/main'

@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 from datetime import date
 
@@ -5,7 +6,7 @@ from release_download_count import release_download_count
 
 df = pd.read_csv("stats.csv")
 
-counts_dict = release_download_count("fem-on-colab/fem-on-colab", "", 50)
+counts_dict = release_download_count("fem-on-colab/fem-on-colab", os.environ.get("TOKEN", ""), 50)
 
 date_header = date.today().strftime("count_%Y_%m_%d")
 if date_header not in df.columns:
