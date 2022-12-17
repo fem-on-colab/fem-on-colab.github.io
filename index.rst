@@ -48,6 +48,8 @@ Timeline and funding
      - Latest `backend information <https://github.com/googlecolab/backend-info>`__ reported by Google Colab developers is now used in the scheduled builds.
    * - November 2022
      - **FEM on Colab** has a new spin-off: learn more about `FEM on Kaggle <https://fem-on-kaggle.github.io>`__!
+   * - December 2022
+     - Small donations can now be sent through the `GitHub Sponsors <https://github.com/sponsors/francesco-ballarin>`__ program.
 
 Learn more about FEM on Colab
 -----------------------------
