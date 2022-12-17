@@ -24,6 +24,11 @@ The project started in 2021 with two main technical motivations:
 * the Google Colab team realesed in February 2021 an upgrade to their system to use python 3.7. This effectively detaches their python version from Ubuntu upstream packages, bacause python 3.7 is not supported by upstream Ubuntu 18.04 LTS (the newest supported version is 3.6). This means that a custom packaging pipeline needs to be implemented to support Colab.
 * the gcc suite available on Colab (although slightly newer than the one in Ubuntu 18.04 LTS), is still part of the 7.x series. This is too old for some of the target libraries in this project.
 
+Contributing: small donations through GitHub Sponsors
+-----------------------------------------------------
+
+Small donations can be sent through the `GitHub Sponsors <https://github.com/sponsors/francesco-ballarin>`__ program.
+
 Contributing: reporting broken packages
 ---------------------------------------
 
