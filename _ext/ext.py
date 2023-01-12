@@ -175,14 +175,14 @@ class Stats(Directive):
                     first_day = day
                 else:
                     first_day = min(first_day, day)
-                week = day.strftime("%Y-%U")
+                week = day.strftime("%Y-%W")
                 if week not in week_to_headers:
                     week_to_headers[week] = list()
                 week_to_headers[week].append(header)
         weeks = pd.date_range(
-            start=first_day - timedelta(days=first_day.weekday()), end=datetime.now(), freq="W-MON")
-        weeks = [week.strftime("%Y-%U") for week in weeks.tolist()[:-1]]
-        weekly_stats = pd.DataFrame(0, columns=list(packages.keys()), index=weeks)
+            start=first_day - timedelta(days=first_day.weekday()), end=datetime.now(), freq="W-MON").tolist()[:-1]
+        weeks_str = [week.strftime("%Y-%W") for week in weeks]
+        weekly_stats = pd.DataFrame(0, columns=list(packages.keys()), index=weeks_str)
         for package in weekly_stats.columns:
             condition = stats.package.str.fullmatch(package)
             if sum(condition) > 0:
@@ -196,8 +196,13 @@ class Stats(Directive):
                 fig.add_scatter(
                     x=weeks[1:], y=np.diff(weekly_stats_package), mode="lines+markers",
                     name=packages[package]["title"])
+            milliseconds_in_one_week = 604800000
+            fig.update_xaxes(tickformat="%Y-%W", dtick=milliseconds_in_one_week)
             if len(weeks) > 13:
-                fig.update_xaxes(range=[len(weeks) - 13.5, len(weeks) - 1])
+                fig.update_xaxes(
+                    tick0=weeks[-14], range=[weeks[-14] - timedelta(days=3), weeks[-1] + timedelta(days=3)])
+            else:
+                fig.update_xaxes(tick0=weeks[0])
             html_buffer = io.StringIO()
             fig.write_html(html_buffer, full_html=False)
             return [nodes.raw(text=html_buffer.getvalue(), format="html")]
