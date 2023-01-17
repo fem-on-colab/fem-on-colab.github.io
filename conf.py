@@ -109,6 +109,7 @@ html_css_files = [
 
 # Custom javascript files
 html_js_files = [
+    "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js",
     "https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js",
     "js/external_links.js"
 ]
