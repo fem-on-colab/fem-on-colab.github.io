@@ -16,12 +16,12 @@ BOOST_INSTALLED="$SHARE_PREFIX/boost.installed"
 
 if [[ ! -f $BOOST_INSTALLED ]]; then
     # Install gcc
-    GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/ad8f1f5/releases/gcc-install.sh"}
+    GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/b69d673/releases/gcc-install.sh"}
     [[ $GCC_INSTALL_SCRIPT_PATH == http* ]] && GCC_INSTALL_SCRIPT_DOWNLOAD=${GCC_INSTALL_SCRIPT_PATH} && GCC_INSTALL_SCRIPT_PATH=/tmp/gcc-install.sh && [[ ! -f ${GCC_INSTALL_SCRIPT_PATH} ]] && wget ${GCC_INSTALL_SCRIPT_DOWNLOAD} -O ${GCC_INSTALL_SCRIPT_PATH}
     source $GCC_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    BOOST_ARCHIVE_PATH=${BOOST_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/boost-20230208-185555-9415202/boost-install.tar.gz"}
+    BOOST_ARCHIVE_PATH=${BOOST_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/boost-20230209-015248-565bd6d/boost-install.tar.gz"}
     [[ $BOOST_ARCHIVE_PATH == http* ]] && BOOST_ARCHIVE_DOWNLOAD=${BOOST_ARCHIVE_PATH} && BOOST_ARCHIVE_PATH=/tmp/boost-install.tar.gz && wget ${BOOST_ARCHIVE_DOWNLOAD} -O ${BOOST_ARCHIVE_PATH}
     if [[ $BOOST_ARCHIVE_PATH != skip ]]; then
         tar -xzf $BOOST_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
