@@ -21,7 +21,7 @@ if [[ ! -f $MPI4PY_INSTALLED ]]; then
     source $GCC_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    MPI4PY_ARCHIVE_PATH=${MPI4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mpi4py-20230214-093909-7cc2b6c/mpi4py-install.tar.gz"}
+    MPI4PY_ARCHIVE_PATH=${MPI4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mpi4py-20230214-153337-69ed58b/mpi4py-install.tar.gz"}
     [[ $MPI4PY_ARCHIVE_PATH == http* ]] && MPI4PY_ARCHIVE_DOWNLOAD=${MPI4PY_ARCHIVE_PATH} && MPI4PY_ARCHIVE_PATH=/tmp/mpi4py-install.tar.gz && wget ${MPI4PY_ARCHIVE_DOWNLOAD} -O ${MPI4PY_ARCHIVE_PATH}
     if [[ $MPI4PY_ARCHIVE_PATH != skip ]]; then
         tar -xzf $MPI4PY_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
@@ -31,7 +31,11 @@ if [[ ! -f $MPI4PY_INSTALLED ]]; then
     # on the actual cloud instance
     if [[ $MPI4PY_ARCHIVE_PATH != skip ]]; then
         if ! command -v mpicc; then
-            ln -fs $INSTALL_PREFIX/bin/mpi* /usr/bin
+            MPI_EXECS=('mpi*' 'ompi*')
+            for MPI_EXEC in "${MPI_EXECS[@]}"; do
+                rm -f /usr/bin/${MPI_EXEC}
+                ln -fs $INSTALL_PREFIX/bin/${MPI_EXEC} /usr/bin
+            done
         fi
     fi
 
