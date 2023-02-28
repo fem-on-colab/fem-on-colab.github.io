@@ -93,7 +93,7 @@ if [[ ! -f $GCC_INSTALLED ]]; then
     touch $GCC_INSTALLED
 
     # Force a kernel restart if libstdc++ was replaced
-    if [[ ${LIBSTDCXX_REPLACED} != "no" ]]; then
+    if [[ ${LIBSTDCXX_REPLACED} != "no" && ${LIBSTDCXX_IGNORE_REPLACED} != "yes" ]]; then
         cat << EOF
 ################################################################################
 #        Due to a recent Google Colab breaking change, FEM on Colab now        #
