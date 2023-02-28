@@ -155,7 +155,7 @@ A complete list of all dependencies is reported below. Users should typically no
             logo = "_static/images/rbnics-logo.png"
         elif library == "slepc4py":
             logo = "_static/images/slepc4py-logo.png"
-        elif library in ("vtk", "pyvista", "pythreejs"):
+        elif library in ("vtk", "pyvista", "adios2"):
             logo = "_static/images/vtk-logo.png"
         else:
             raise RuntimeError("Invalid type " + library)
