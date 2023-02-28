@@ -16,7 +16,7 @@ GCC_INSTALLED="$SHARE_PREFIX/gcc.installed"
 
 if [[ ! -f $GCC_INSTALLED ]]; then
     # Download and uncompress library archive
-    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230215-153747-5a9cf50/gcc-install.tar.gz"}
+    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230228-140925-1877624/gcc-install.tar.gz"}
     [[ $GCC_ARCHIVE_PATH == http* ]] && GCC_ARCHIVE_DOWNLOAD=${GCC_ARCHIVE_PATH} && GCC_ARCHIVE_PATH=/tmp/gcc-install.tar.gz && wget ${GCC_ARCHIVE_DOWNLOAD} -O ${GCC_ARCHIVE_PATH}
     if [[ $GCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $GCC_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
@@ -67,6 +67,23 @@ if [[ ! -f $GCC_INSTALLED ]]; then
         update-alternatives --set x86_64-linux-gnu-gcc-ar ${INSTALL_PREFIX}/bin/x86_64-linux-gnu-gcc-ar-${GCC_VERSION}
         update-alternatives --set x86_64-linux-gnu-gcc-nm ${INSTALL_PREFIX}/bin/x86_64-linux-gnu-gcc-nm-${GCC_VERSION}
         update-alternatives --set x86_64-linux-gnu-gcc-ranlib ${INSTALL_PREFIX}/bin/x86_64-linux-gnu-gcc-ranlib-${GCC_VERSION}
+    fi
+
+    # Replace system libstdc++ library
+    if [[ $GCC_ARCHIVE_PATH != skip ]]; then
+        PYTHON_EXEC=$(which python3)
+        PYTHON_EXEC_DIR=$(dirname $PYTHON_EXEC)
+        PYTHON_RPATH=$(objdump -x $PYTHON_EXEC | grep 'R.*PATH' | sed 's|R.*PATH||g' | sed 's| ||g' | sed "s|\$ORIGIN|${PYTHON_EXEC_DIR}|g")
+        if [[ -z "${PYTHON_RPATH}" ]]; then
+            PYTHON_RPATH="/usr/lib/x86_64-linux-gnu"
+        fi
+        INSTALL_PREFIX_RPATH="${INSTALL_PREFIX}/lib"
+        LIBSTDCXX_SYSTEM_VERSION=$(basename ${PYTHON_RPATH}/libstdc++.so.6.*)
+        LIBSTDCXX_INSTALL_PREFIX_VERSION=$(basename ${INSTALL_PREFIX_RPATH}/libstdc++.so.6.*)
+        if [[ "${LIBSTDCXX_SYSTEM_VERSION}" != "${LIBSTDCXX_INSTALL_PREFIX_VERSION}" ]]; then
+            rm -f ${PYTHON_RPATH}/libstdc++.so*
+            ln -fs ${INSTALL_PREFIX_RPATH}/libstdc++.so* ${PYTHON_RPATH}
+        fi
     fi
 
     # Mark package as installed
