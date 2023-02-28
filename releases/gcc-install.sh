@@ -16,7 +16,7 @@ GCC_INSTALLED="$SHARE_PREFIX/gcc.installed"
 
 if [[ ! -f $GCC_INSTALLED ]]; then
     # Download and uncompress library archive
-    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230228-140925-1877624/gcc-install.tar.gz"}
+    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230228-164801-2fa0f52/gcc-install.tar.gz"}
     [[ $GCC_ARCHIVE_PATH == http* ]] && GCC_ARCHIVE_DOWNLOAD=${GCC_ARCHIVE_PATH} && GCC_ARCHIVE_PATH=/tmp/gcc-install.tar.gz && wget ${GCC_ARCHIVE_DOWNLOAD} -O ${GCC_ARCHIVE_PATH}
     if [[ $GCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $GCC_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
@@ -70,6 +70,7 @@ if [[ ! -f $GCC_INSTALLED ]]; then
     fi
 
     # Replace system libstdc++ library
+    LIBSTDCXX_REPLACED="no"
     if [[ $GCC_ARCHIVE_PATH != skip ]]; then
         PYTHON_EXEC=$(which python3)
         PYTHON_EXEC_DIR=$(dirname $PYTHON_EXEC)
@@ -83,10 +84,26 @@ if [[ ! -f $GCC_INSTALLED ]]; then
         if [[ "${LIBSTDCXX_SYSTEM_VERSION}" != "${LIBSTDCXX_INSTALL_PREFIX_VERSION}" ]]; then
             rm -f ${PYTHON_RPATH}/libstdc++.so*
             ln -fs ${INSTALL_PREFIX_RPATH}/libstdc++.so* ${PYTHON_RPATH}
+            LIBSTDCXX_REPLACED="yes"
         fi
     fi
 
     # Mark package as installed
     mkdir -p $SHARE_PREFIX
     touch $GCC_INSTALLED
+
+    # Force a kernel restart if libstdc++ was replaced
+    if [[ ${LIBSTDCXX_REPLACED} != "no" ]]; then
+        cat << EOF
+################################################################################
+#        Due to a recent Google Colab breaking change, FEM on Colab now        #
+#      requires a kernel restart for all of its packages to work properly.     #
+#      The kernel will be now killed on your behalf, but you will have to      #
+#     restart it manually. If this breaking change is affecting your work      #
+#   please report so in the following issue in the Google Colab repository     #
+#            https://github.com/googlecolab/colabtools/issues/3397             #
+################################################################################
+EOF
+        kill -9 `ps --pid $$ -oppid=`; exit
+    fi
 fi
