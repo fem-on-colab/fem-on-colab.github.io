@@ -217,7 +217,7 @@ except ImportError:
         "tests": {
             "vtk": "vtk/test-vtk.ipynb",
             "pyvista": "vtk/test-pyvista.ipynb",
-            "pythreejs": "vtk/test-pythreejs.ipynb",
+            "adios2": "vtk/test-adios2.ipynb",
         },
     },
 }
