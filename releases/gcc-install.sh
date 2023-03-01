@@ -16,7 +16,7 @@ GCC_INSTALLED="$SHARE_PREFIX/gcc.installed"
 
 if [[ ! -f $GCC_INSTALLED ]]; then
     # Download and uncompress library archive
-    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230228-164801-2fa0f52/gcc-install.tar.gz"}
+    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230301-190405-3d72dd5/gcc-install.tar.gz"}
     [[ $GCC_ARCHIVE_PATH == http* ]] && GCC_ARCHIVE_DOWNLOAD=${GCC_ARCHIVE_PATH} && GCC_ARCHIVE_PATH=/tmp/gcc-install.tar.gz && wget ${GCC_ARCHIVE_DOWNLOAD} -O ${GCC_ARCHIVE_PATH}
     if [[ $GCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $GCC_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
@@ -71,7 +71,7 @@ if [[ ! -f $GCC_INSTALLED ]]; then
 
     # Replace system libstdc++ library
     LIBSTDCXX_REPLACED="no"
-    if [[ $GCC_ARCHIVE_PATH != skip ]]; then
+    if [[ $GCC_ARCHIVE_PATH != skip || ${LIBSTDCXX_FORCE_REPLACE_CHECK} == "yes" ]]; then
         PYTHON_EXEC=$(which python3)
         PYTHON_EXEC_DIR=$(dirname $PYTHON_EXEC)
         PYTHON_RPATH=$(objdump -x $PYTHON_EXEC | grep 'R.*PATH' | sed 's|R.*PATH||g' | sed 's| ||g' | sed "s|\$ORIGIN|${PYTHON_EXEC_DIR}|g")
@@ -104,6 +104,6 @@ if [[ ! -f $GCC_INSTALLED ]]; then
 #            https://github.com/googlecolab/colabtools/issues/3397             #
 ################################################################################
 EOF
-        kill -9 `ps --pid $$ -oppid=`; exit
+        sleep 2; kill -9 `ps --pid $$ -oppid=`; exit
     fi
 fi
