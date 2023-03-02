@@ -239,7 +239,7 @@ button[data-md-color-accent=unicatt] {
 /* Toggleable divs
    https://stackoverflow.com/questions/37080838/is-there-a-css-code-for-double-click-element-or-another-way-to-solve-this */
 
-.installation-toggle, .extra-packages-toggle {
+.installation-toggle, .extra-packages-toggle, .test-downloads-toggle {
     display: none;
 }
 
@@ -251,7 +251,7 @@ button[data-md-color-accent=unicatt] {
     letter-spacing: -.01em;
 }
 
-.extra-packages-toggle-title {
+.extra-packages-toggle-title, .test-downloads-toggle-title {
     /* copied from h2 */
     margin: 2rem 0 0.8rem;
     font-size: 1.25rem;
@@ -260,7 +260,7 @@ button[data-md-color-accent=unicatt] {
     line-height: 1.4;
 }
 
-.installation-toggle-title:after, .extra-packages-toggle-title:after {
+.installation-toggle-title:after, .extra-packages-toggle-title:after, .test-downloads-toggle-title:after {
     font-family: Material Icons;
     content: 'expand_more';
     margin-left: 6px;
@@ -268,18 +268,21 @@ button[data-md-color-accent=unicatt] {
 
 .installation-toggle:checked + .installation-toggle-title + div.package-installation-real,
 .installation-toggle:checked + .installation-toggle-title + div.package-installation-complex,
-.extra-packages-toggle:checked + .extra-packages-toggle-title + div.extra-packages-content {
+.extra-packages-toggle:checked + .extra-packages-toggle-title + div.extra-packages-content,
+.test-downloads-toggle:checked + .test-downloads-toggle-title + div.test-downloads-content {
     display: block;
 }
 
 .installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-real,
 .installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-complex,
-.extra-packages-toggle:not(:checked) + .extra-packages-toggle-title + div.extra-packages-content {
+.extra-packages-toggle:not(:checked) + .extra-packages-toggle-title + div.extra-packages-content,
+.test-downloads-toggle:not(:checked) + .test-downloads-toggle-title + div.test-downloads-content {
     display: none;
 }
 
 .installation-toggle:checked + .installation-toggle-title:after,
-.extra-packages-toggle:checked + .extra-packages-toggle-title:after {
+.extra-packages-toggle:checked + .extra-packages-toggle-title:after,
+.test-downloads-toggle:checked + .test-downloads-toggle-title:after {
     font-family: Material Icons;
     content: 'expand_less';
     margin-left: 6px;

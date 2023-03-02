@@ -59,6 +59,21 @@ A complete list of all dependencies is reported below. Users should typically no
                 output.append(nodes.raw(text=card_num, format="html"))
         # Conclusion to extra packages
         output.append(nodes.raw(text="</div>", format="html"))
+        # Test downloads
+        test_downloads = f"""
+<input type="checkbox" name="test-downloads-toggle" id="test-downloads-toggle" class="test-downloads-toggle">
+<label for="test-downloads-toggle" class="test-downloads-toggle-title">All tests</label>
+<div class="test-downloads-content">
+<p>
+For convenience, text files containing links to all <b>FEM on Colab</b> tests can be downloaded below:
+<ul>
+    <li><a href="tests_packages.txt">Tests for end user packages</a></li>
+    <li><a href="tests_extra_packages.txt">Tests for extra packages</a></li>
+</ul>
+</p>
+</div>
+"""
+        output.append(nodes.raw(text=test_downloads, format="html"))
         return output
 
     @classmethod
@@ -102,12 +117,8 @@ A complete list of all dependencies is reported below. Users should typically no
     <ul class="jq-dropdown-menu">
 """
         for (library, url) in libraries_urls.items():
-            if not url.startswith("https://colab.research.google.com"):
-                colab_url = f"https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/{url}"
-            else:
-                colab_url = url
             dropdown += f"""
-        <li><a href="{colab_url}" target="_blank">{cls._library_image(library)} {library}</a></li>
+        <li><a href="{cls._colab_url(url)}" target="_blank">{cls._library_image(library)} {library}</a></li>
 """
         dropdown += f"""
     </ul>
@@ -118,6 +129,13 @@ A complete list of all dependencies is reported below. Users should typically no
         return dropdown
 
     _dropdown_id = 1
+    
+    @staticmethod
+    def _colab_url(url):
+        if not url.startswith("https://colab.research.google.com"):
+            return f"https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/{url}"
+        else:
+            return url
 
     @staticmethod
     def _library_image(library):
@@ -335,6 +353,17 @@ def on_build_finished(app, exc):
                         "Failed creating link for " + package_file_git + "\n"
                         + "stdout contains " + create_link.stdout.decode() + "\n"
                         + "stderr contains " + create_link.stderr.decode() + "\n")
+        # Write out helper text files containing links to all test notebooks
+        for (packages_dict, packages_filename) in zip((packages, extra_packages), ("packages", "extra_packages")):
+            with open(os.path.join(app.outdir, "tests_" + packages_filename + ".txt"), "w") as f:
+                for package in packages_dict.keys():
+                    f.write("=" * (len(package) + 12) + "\n")
+                    f.write("----- " + package + " -----\n")
+                    data = packages_dict[package]
+                    for (_, url) in data["tests"].items():
+                        f.write(Packages._colab_url(url) + "?authuser=0\n")
+                    f.write("=" * (len(package) + 12) + "\n")
+                    f.write("\n")
 
 
 create_sitemap_bak = sphinx_material.create_sitemap
