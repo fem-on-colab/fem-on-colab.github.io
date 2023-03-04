@@ -16,7 +16,7 @@ GCC_INSTALLED="$SHARE_PREFIX/gcc.installed"
 
 if [[ ! -f $GCC_INSTALLED ]]; then
     # Download and uncompress library archive
-    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230304-131432-1caf37c/gcc-install.tar.gz"}
+    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230304-135437-089d188/gcc-install.tar.gz"}
     [[ $GCC_ARCHIVE_PATH == http* ]] && GCC_ARCHIVE_DOWNLOAD=${GCC_ARCHIVE_PATH} && GCC_ARCHIVE_PATH=/tmp/gcc-install.tar.gz && wget ${GCC_ARCHIVE_DOWNLOAD} -O ${GCC_ARCHIVE_PATH}
     if [[ $GCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $GCC_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
@@ -94,7 +94,71 @@ if [[ ! -f $GCC_INSTALLED ]]; then
 
     # Force a kernel restart if libstdc++ was replaced
     if [[ ${LIBSTDCXX_REPLACED} != "no" && ${LIBSTDCXX_IGNORE_REPLACED} != "yes" ]]; then
-        echo $GCC_ANNOUNCEMENT_0
+        set +x
+cat << EOF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################################
+#        Due to a recent Google Colab breaking change, FEM on Colab now        #
+#     requires a kernel restart for all of its packages to work properly.      #
+#      The kernel will be now killed on your behalf, but you will have to      #
+#     restart it manually. If this breaking change is affecting your work      #
+#    please report so in the following issue in the Google Colab repository    #
+#            https://github.com/googlecolab/colabtools/issues/3397             #
+################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EOF
+set -x
+
         sleep 2; kill -9 `ps --pid $$ -oppid=`; exit
     fi
 fi
