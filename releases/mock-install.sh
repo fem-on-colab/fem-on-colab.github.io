@@ -16,7 +16,7 @@ MOCK_INSTALLED="$SHARE_PREFIX/mock.installed"
 
 if [[ ! -f $MOCK_INSTALLED ]]; then
     # Download and uncompress library archive
-    MOCK_ARCHIVE_PATH=${MOCK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mock-20230304-014615-70cd5bb/mock-install.tar.gz"}
+    MOCK_ARCHIVE_PATH=${MOCK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mock-20230304-162526-089d188/mock-install.tar.gz"}
     [[ $MOCK_ARCHIVE_PATH == http* ]] && MOCK_ARCHIVE_DOWNLOAD=${MOCK_ARCHIVE_PATH} && MOCK_ARCHIVE_PATH=/tmp/mock-install.tar.gz && wget ${MOCK_ARCHIVE_DOWNLOAD} -O ${MOCK_ARCHIVE_PATH}
     if [[ $MOCK_ARCHIVE_PATH != skip ]]; then
         rm -rf /usr/lib/python*/*-packages/mock*
@@ -28,8 +28,34 @@ if [[ ! -f $MOCK_INSTALLED ]]; then
     mkdir -p $SHARE_PREFIX
     touch $MOCK_INSTALLED
 fi
+
+# Display end user packages announcement
 set +x
 cat << EOF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ################################################################################
 #     This installation is offered by FEM on Colab, an open-source project     #
 #       developed and maintained at Università Cattolica del Sacro Cuore       #
@@ -42,5 +68,29 @@ cat << EOF
 #   a couple of minutes of your time. If you wish, give us your feedback at    #
 #                     https://forms.gle/36sZZWNvPpUv8XWr7                      #
 ################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 EOF
 set -x
