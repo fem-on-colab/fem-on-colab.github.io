@@ -13,12 +13,6 @@ https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blo
 https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/h5py/test.ipynb?authuser=0
 ================
 
-===============
------ itk -----
-https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/itk/test-itk.ipynb?authuser=0
-https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/itk/test-itkwidgets.ipynb?authuser=0
-===============
-
 ================
 ----- mock -----
 https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/mock/test.ipynb?authuser=0
