@@ -113,21 +113,6 @@ import h5py
             "h5py": "h5py/test.ipynb",
         },
     },
-    "itk": {
-        "title": "ITK",
-        "installation": """
-try:
-    import itk
-except ImportError:
-    !wget "https://fem-on-colab.github.io/releases/itk-install.sh" -O "/tmp/itk-install.sh" && bash "/tmp/itk-install.sh"
-    import itk
-""",
-        "installation_suffixes": [""],
-        "tests": {
-            "itk": "itk/test-itk.ipynb",
-            "itkwidgets": "itk/test-itkwidgets.ipynb",
-        },
-    },
     "mock": {
         "title": "Mock package",
         "installation": """

@@ -129,7 +129,7 @@ For convenience, text files containing links to all <b>FEM on Colab</b> tests ca
         return dropdown
 
     _dropdown_id = 1
-    
+
     @staticmethod
     def _colab_url(url):
         if not url.startswith("https://colab.research.google.com"):
@@ -151,8 +151,6 @@ For convenience, text files containing links to all <b>FEM on Colab</b> tests ca
             logo = "_static/images/gmsh-logo.png"
         elif library == "h5py":
             logo = "_static/images/h5py-logo.png"
-        elif library in ("itk", "itkwidgets"):
-            logo = "_static/images/itk-logo.png"
         elif library == "mock":
             logo = "_static/images/mock-logo.png"
         elif library == "mpi4py":
