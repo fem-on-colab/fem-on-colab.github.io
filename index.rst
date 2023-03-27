@@ -57,6 +57,7 @@ Learn more about FEM on Colab
     :maxdepth: 1
 
     packages
+    advanced
     contributing
     citing
 

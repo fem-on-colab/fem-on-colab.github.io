@@ -77,6 +77,11 @@ html_theme_options = {
             "title": "Packages",
         },
         {
+            "href": "advanced",
+            "internal": True,
+            "title": "Advanced usage",
+        },
+        {
             "href": "contributing",
             "internal": True,
             "title": "How to contribute",
