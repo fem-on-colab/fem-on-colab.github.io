@@ -17,7 +17,7 @@ Users that do not wish to be up to date with the upstream development cycle are 
 
     <div class="package-installation" style="margin-top: 0; margin-bottom: 0; margin-left: 1rem;">https://fem-on-colab.github.io/releases/{install-script}</div>
 
-in the instructions above with
+in the instructions reported in the :ref:`packages` page with
 
 .. raw:: html
 
