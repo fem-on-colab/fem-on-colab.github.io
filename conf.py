@@ -43,7 +43,7 @@ html_theme_options = {
     "nav_title": "FEM on Colab",
 
     # Set you GA account ID to enable tracking
-    "google_analytics_account": "UA-198305719-1",
+    "google_analytics_account": "G-SLERY4GEL3",
 
     # Specify a base_url used to generate sitemap.xml. If not
     # specified, then no sitemap will be built.
