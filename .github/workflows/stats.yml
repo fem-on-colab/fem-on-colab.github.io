@@ -13,19 +13,9 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - name: Determine which token to use when cloning website repository on stats branch
-      id: token_gh_pages
-      run: |
-        if [[ "${GITHUB_REPOSITORY}" == "fem-on-colab/fem-on-colab.github.io" ]]; then
-          echo "token=${{ secrets.GITHUB_TOKEN }}" >> ${GITHUB_OUTPUT}
-        else
-          echo "token=${{ github.token }}" >> ${GITHUB_OUTPUT}
-        fi
-      shell: bash
     - name: Clone website repository on stats branch
       uses: actions/checkout@v3
       with:
-        token: ${{ steps.token_gh_pages.outputs.token }}
         ref: stats
         fetch-depth: 0
         path: _build/stats
@@ -41,7 +31,7 @@ jobs:
       run: |
         pushd _stats
         ln -s ../_build/stats/stats.csv stats.csv
-        TOKEN="${{ steps.token_gh_pages.outputs.token }}" python3 stats.py
+        TOKEN="${{ github.token }}" python3 stats.py
         popd
     - name: Deploy to GitHub branch
       if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref == 'refs/heads/main'
