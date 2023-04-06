@@ -14,6 +14,8 @@ PROJECT_NAME=${PROJECT_NAME:-"fem-on-colab"}
 SHARE_PREFIX="$INSTALL_PREFIX/share/$PROJECT_NAME"
 GCC_INSTALLED="$SHARE_PREFIX/gcc.installed"
 
+echo "BEFORE"
+ls -l ${INSTALL_PREFIX}
 if [[ ! -L ${INSTALL_PREFIX}/lib64 ]]; then
     if [[ -e ${INSTALL_PREFIX}/lib64 ]]; then
         rsync -avz --remove-source-files ${INSTALL_PREFIX}/lib64/ ${INSTALL_PREFIX}/lib
@@ -21,9 +23,11 @@ if [[ ! -L ${INSTALL_PREFIX}/lib64 ]]; then
     fi
     ln -s ${INSTALL_PREFIX}/lib ${INSTALL_PREFIX}/lib64
 fi
+echo "AFTER"
+ls -l ${INSTALL_PREFIX}
 if [[ ! -L ${INSTALL_PREFIX}/lib64 || ! -d ${INSTALL_PREFIX}/lib64 ]]; then
     echo "Error: ${INSTALL_PREFIX}/lib64 is not a link to a directory."
-    exit
+    exit 1
 fi
 
 if [[ ! -f $GCC_INSTALLED ]]; then
