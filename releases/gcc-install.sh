@@ -14,9 +14,21 @@ PROJECT_NAME=${PROJECT_NAME:-"fem-on-colab"}
 SHARE_PREFIX="$INSTALL_PREFIX/share/$PROJECT_NAME"
 GCC_INSTALLED="$SHARE_PREFIX/gcc.installed"
 
+if [[ ! -L ${INSTALL_PREFIX}/lib64 ]]; then
+    if [[ -e ${INSTALL_PREFIX}/lib64 ]]; then
+        rsync -avz --remove-source-files ${INSTALL_PREFIX}/lib64/ ${INSTALL_PREFIX}/lib
+        rm -rf ${INSTALL_PREFIX}/lib64
+    fi
+    ln -s ${INSTALL_PREFIX}/lib ${INSTALL_PREFIX}/lib64
+fi
+if [[ ! -L ${INSTALL_PREFIX}/lib64 || ! -d ${INSTALL_PREFIX}/lib64 ]]; then
+    echo "Error: ${INSTALL_PREFIX}/lib64 is not a link to a directory."
+    exit
+fi
+
 if [[ ! -f $GCC_INSTALLED ]]; then
     # Download and uncompress library archive
-    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230401-042747-4069e3a/gcc-install.tar.gz"}
+    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230406-083844-458c882/gcc-install.tar.gz"}
     [[ $GCC_ARCHIVE_PATH == http* ]] && GCC_ARCHIVE_DOWNLOAD=${GCC_ARCHIVE_PATH} && GCC_ARCHIVE_PATH=/tmp/gcc-install.tar.gz && wget ${GCC_ARCHIVE_DOWNLOAD} -O ${GCC_ARCHIVE_PATH}
     if [[ $GCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $GCC_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
