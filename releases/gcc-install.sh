@@ -28,7 +28,7 @@ fi
 
 if [[ ! -f $GCC_INSTALLED ]]; then
     # Download and uncompress library archive
-    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230601-014646-522cb4f/gcc-install.tar.gz"}
+    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20230718-144110-3db6ba9/gcc-install.tar.gz"}
     [[ $GCC_ARCHIVE_PATH == http* ]] && GCC_ARCHIVE_DOWNLOAD=${GCC_ARCHIVE_PATH} && GCC_ARCHIVE_PATH=/tmp/gcc-install.tar.gz && wget ${GCC_ARCHIVE_DOWNLOAD} -O ${GCC_ARCHIVE_PATH}
     if [[ $GCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $GCC_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
@@ -134,15 +134,14 @@ cat << EOF
 
 
 
+
+
 ################################################################################
-#        Due to a recent Google Colab breaking change, FEM on Colab now        #
-#     requires a kernel restart for all of its packages to work properly.      #
-#      The kernel will be now killed on your behalf, but you will have to      #
-#         restart it manually, e.g. simply by running again this cell.         #
-#       If this breaking change is affecting your work please report so        #
-#        in the following issue in the official Google Colab repository        #
-#            https://github.com/googlecolab/colabtools/issues/3397             #
+#       The version of libstdc++.so is different from the expected one.        #
+#  Please report this at https://github.com/fem-on-colab/fem-on-colab/issues   #
 ################################################################################
+
+
 
 
 
