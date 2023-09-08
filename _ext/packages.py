@@ -47,6 +47,7 @@ except ImportError:
         "tests": {
             "firedrake": "firedrake/test-firedrake.ipynb",
             "fireshape": "firedrake/test-fireshape.ipynb",
+            "irksome": "firedrake/test-irksome.ipynb",
             "ROL": "firedrake/test-rol.ipynb",
         },
     },
