@@ -19,6 +19,7 @@ https://colab.research.google.com/github/multiphenics/multiphenics.github.io/blo
 ----- firedrake -----
 https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/firedrake/test-firedrake.ipynb?authuser=0
 https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/firedrake/test-fireshape.ipynb?authuser=0
+https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/firedrake/test-irksome.ipynb?authuser=0
 https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/firedrake/test-rol.ipynb?authuser=0
 =====================
 
