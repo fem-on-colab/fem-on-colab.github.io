@@ -33,5 +33,6 @@ https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blo
 https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/ngsolve/test-ngsolve.ipynb?authuser=0
 https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/ngsolve/test-ngsolve-extras.ipynb?authuser=0
 https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/ngsolve/test-ngsxfem.ipynb?authuser=0
+https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/ngsolve/test-ngspetsc.ipynb?authuser=0
 ===================
 
