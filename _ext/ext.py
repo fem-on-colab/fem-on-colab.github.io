@@ -180,7 +180,7 @@ For convenience, text files containing links to all <b>FEM on Colab</b> tests ca
             logo = "_static/images/multiphenics-logo.png"
         elif library == "multiphenicsx" or library.startswith("multiphenicsx ("):
             logo = "_static/images/multiphenicsx-logo.png"
-        elif library in ("ngsolve", "ngsxfem") or library.startswith("ngsolve ("):
+        elif library in ("ngsolve", "ngsxfem", "ngspetsc") or library.startswith("ngsolve ("):
             logo = "_static/images/ngsolve-logo.png"
         elif library == "occ":
             logo = "_static/images/occ-logo.png"

@@ -79,6 +79,7 @@ except ImportError:
             "ngsolve": "ngsolve/test-ngsolve.ipynb",
             "ngsolve (extras)": "ngsolve/test-ngsolve-extras.ipynb",
             "ngsxfem": "ngsolve/test-ngsxfem.ipynb",
+            "ngspetsc": "ngsolve/test-ngspetsc.ipynb",
         },
     },
 }
