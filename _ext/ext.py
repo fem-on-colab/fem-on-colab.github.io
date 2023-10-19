@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from docutils import nodes
 from docutils.parsers.rst import Directive
 from packages import extra_packages, packages
+from outage import issues
 import sphinx_material
 
 class Packages(Directive):
@@ -15,7 +16,23 @@ class Packages(Directive):
     def run(self):
         output = list()
         # Introduction to packages
-        intro = f"""
+        if len(issues) > 0:
+            intro = f"""
+<div class="package-card" style="background-color: #dc143c; box-shadow: 0 4px 8px 0 #f8b5c2;">
+  <div class="package-logo">
+    <img src="_static/images/outage.png" style="vertical-align: middle; width: 100px">
+  </div>
+  <div class="package-content">
+    <h3 class="package-title">
+      A temporary outage may be affecting package availability
+    </h3>
+    See {", ".join([self._issue_link(issue) for issue in issues])} for more details.
+  </div>
+</div>
+"""
+        else:
+            intro = ""
+        intro += f"""
 <p>
 You can install one of the packages provided by <b>FEM on Colab</b> by adding the following cell at the top of your notebook.
 </p>
@@ -136,6 +153,10 @@ For convenience, text files containing links to all <b>FEM on Colab</b> tests ca
             return f"https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/{url}"
         else:
             return url
+
+    @staticmethod
+    def _issue_link(issue):
+        return f'<a href="https://github.com/fem-on-colab/fem-on-colab/issues/{issue}" target="_blank" style="color: white">issue #{issue}</a>'
 
     @staticmethod
     def _library_image(library):
