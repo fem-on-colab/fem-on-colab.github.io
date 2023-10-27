@@ -28,7 +28,7 @@ fi
 
 if [[ ! -f $GCC_INSTALLED ]]; then
     # Download and uncompress library archive
-    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20231014-183523-ea2b1d8/gcc-install.tar.gz"}
+    GCC_ARCHIVE_PATH=${GCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gcc-20231027-122632-7a1c07c/gcc-install.tar.gz"}
     [[ $GCC_ARCHIVE_PATH == http* ]] && GCC_ARCHIVE_DOWNLOAD=${GCC_ARCHIVE_PATH} && GCC_ARCHIVE_PATH=/tmp/gcc-install.tar.gz && wget ${GCC_ARCHIVE_DOWNLOAD} -O ${GCC_ARCHIVE_PATH}
     if [[ $GCC_ARCHIVE_PATH != skip ]]; then
         tar -xzf $GCC_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
@@ -81,9 +81,8 @@ if [[ ! -f $GCC_INSTALLED ]]; then
         update-alternatives --set x86_64-linux-gnu-gcc-ranlib ${INSTALL_PREFIX}/bin/x86_64-linux-gnu-gcc-ranlib-${GCC_VERSION}
     fi
 
-    # Replace system libstdc++ library
-    LIBSTDCXX_REPLACED="no"
-    if [[ $GCC_ARCHIVE_PATH != skip || ${LIBSTDCXX_FORCE_REPLACE_CHECK} == "yes" ]]; then
+    # Check consistency with the system-wide libstdc++ library
+    if [[ $GCC_ARCHIVE_PATH != skip || ${LIBSTDCXX_FORCE_CONSISTENCY_CHECK} == "yes" ]]; then
         PYTHON_EXEC=$(which python3)
         PYTHON_EXEC_DIR=$(dirname $PYTHON_EXEC)
         PYTHON_RPATH=$(objdump -x $PYTHON_EXEC | grep 'R.*PATH' | sed 's|R.*PATH||g' | sed 's| ||g' | sed "s|\$ORIGIN|${PYTHON_EXEC_DIR}|g")
@@ -94,19 +93,8 @@ if [[ ! -f $GCC_INSTALLED ]]; then
         LIBSTDCXX_SYSTEM_VERSION=$(basename ${PYTHON_RPATH}/libstdc++.so.6.*)
         LIBSTDCXX_INSTALL_PREFIX_VERSION=$(basename ${INSTALL_PREFIX_RPATH}/libstdc++.so.6.*)
         if [[ "${LIBSTDCXX_SYSTEM_VERSION}" != "${LIBSTDCXX_INSTALL_PREFIX_VERSION}" ]]; then
-            rm -f ${PYTHON_RPATH}/libstdc++.so*
-            ln -fs ${INSTALL_PREFIX_RPATH}/libstdc++.so* ${PYTHON_RPATH}
-            LIBSTDCXX_REPLACED="yes"
-        fi
-    fi
-
-    # Mark package as installed
-    mkdir -p $SHARE_PREFIX
-    touch $GCC_INSTALLED
-
-    # Force a kernel restart if libstdc++ was replaced
-    if [[ ${LIBSTDCXX_REPLACED} != "no" && ${LIBSTDCXX_IGNORE_REPLACED} != "yes" ]]; then
-        set +x
+            # Kill kernel on inconsistent libstdc++ version
+            set +x
 cat << EOF
 
 
@@ -171,6 +159,11 @@ cat << EOF
 EOF
 set -x
 
-        sleep 2; kill -9 `ps --pid $$ -oppid=`; exit
+            sleep 2; kill -9 `ps --pid $$ -oppid=`; exit
+        fi
     fi
+
+    # Mark package as installed
+    mkdir -p $SHARE_PREFIX
+    touch $GCC_INSTALLED
 fi
