@@ -16,12 +16,12 @@ H5PY_INSTALLED="$SHARE_PREFIX/h5py.installed"
 
 if [[ ! -f $H5PY_INSTALLED ]]; then
     # Install mpi4py
-    MPI4PY_INSTALL_SCRIPT_PATH=${MPI4PY_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/8493848/releases/mpi4py-install.sh"}
+    MPI4PY_INSTALL_SCRIPT_PATH=${MPI4PY_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/9d6342c/releases/mpi4py-install.sh"}
     [[ $MPI4PY_INSTALL_SCRIPT_PATH == http* ]] && MPI4PY_INSTALL_SCRIPT_DOWNLOAD=${MPI4PY_INSTALL_SCRIPT_PATH} && MPI4PY_INSTALL_SCRIPT_PATH=/tmp/mpi4py-install.sh && [[ ! -f ${MPI4PY_INSTALL_SCRIPT_PATH} ]] && wget ${MPI4PY_INSTALL_SCRIPT_DOWNLOAD} -O ${MPI4PY_INSTALL_SCRIPT_PATH}
     source $MPI4PY_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    H5PY_ARCHIVE_PATH=${H5PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/h5py-20231030-121355-12244d0/h5py-install.tar.gz"}
+    H5PY_ARCHIVE_PATH=${H5PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/h5py-20231101-030031-4d10d21/h5py-install.tar.gz"}
     [[ $H5PY_ARCHIVE_PATH == http* ]] && H5PY_ARCHIVE_DOWNLOAD=${H5PY_ARCHIVE_PATH} && H5PY_ARCHIVE_PATH=/tmp/h5py-install.tar.gz && wget ${H5PY_ARCHIVE_DOWNLOAD} -O ${H5PY_ARCHIVE_PATH}
     if [[ $H5PY_ARCHIVE_PATH != skip ]]; then
         rm -rf /usr/lib/python*/*-packages/h5py*
