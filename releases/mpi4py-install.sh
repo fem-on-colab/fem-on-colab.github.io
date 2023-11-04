@@ -21,7 +21,7 @@ if [[ ! -f $MPI4PY_INSTALLED ]]; then
     source $GCC_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    MPI4PY_ARCHIVE_PATH=${MPI4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mpi4py-20231101-023118-4d10d21/mpi4py-install.tar.gz"}
+    MPI4PY_ARCHIVE_PATH=${MPI4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mpi4py-20231104-160257-72e8dac/mpi4py-install.tar.gz"}
     [[ $MPI4PY_ARCHIVE_PATH == http* ]] && MPI4PY_ARCHIVE_DOWNLOAD=${MPI4PY_ARCHIVE_PATH} && MPI4PY_ARCHIVE_PATH=/tmp/mpi4py-install.tar.gz && wget ${MPI4PY_ARCHIVE_DOWNLOAD} -O ${MPI4PY_ARCHIVE_PATH}
     if [[ $MPI4PY_ARCHIVE_PATH != skip ]]; then
         tar -xzf $MPI4PY_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
@@ -42,7 +42,7 @@ if [[ ! -f $MPI4PY_INSTALLED ]]; then
     # Add symbolic links to the MPI libraries in /usr/lib, because INSTALL_PREFIX/lib may not be in LD_LIBRARY_PATH
     # on the actual cloud instance
     if [[ $MPI4PY_ARCHIVE_PATH != skip ]]; then
-        MPI_LIBS=('libmca*.so*' 'libmpi*.so*' 'libompi*.so*' 'libopen-pal*.so*' 'libopen-rte*.so*' 'ompi*.so*')
+        MPI_LIBS=('libhwloc*.so*' 'libmpi*.so*' 'libopen-pal*.so*' 'libpmix*.so*' 'libprrte*.so*')
         for MPI_LIB in "${MPI_LIBS[@]}"; do
             rm -f /usr/lib/${MPI_LIB}
             rm -f /usr/lib/x86_64-linux-gnu/${MPI_LIB}
