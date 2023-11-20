@@ -18,6 +18,7 @@ author = "Francesco Ballarin (and contributors)"
 
 # Add any Sphinx extension module names here.
 extensions = [
+    "sphinxcontrib.bibtex",
     "ext"
 ]
 
@@ -28,6 +29,9 @@ templates_path = ["_templates"]
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+
+# List of bib files
+bibtex_bibfiles = ["_static/bib/publications.bib"]
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -90,6 +94,11 @@ html_theme_options = {
             "href": "citing",
             "internal": True,
             "title": "How to cite",
+        },
+        {
+            "href": "publications",
+            "internal": True,
+            "title": "Publications",
         }
     ],
 
