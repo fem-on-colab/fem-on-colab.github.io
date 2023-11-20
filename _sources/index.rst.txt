@@ -60,6 +60,7 @@ Learn more about FEM on Colab
     advanced
     contributing
     citing
+    publications
 
 License
 -------
