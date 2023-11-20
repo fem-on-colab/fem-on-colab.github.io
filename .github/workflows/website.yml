@@ -17,17 +17,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Clone website repository on current branch
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - name: Clone website repository on stats branch
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: stats
         fetch-depth: 0
         path: _build/stats
     - name: Clone website repository on gh-pages branch
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: gh-pages
         fetch-depth: 0
