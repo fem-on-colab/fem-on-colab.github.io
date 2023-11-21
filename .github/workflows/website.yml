@@ -79,8 +79,12 @@ jobs:
         name: website
         path: _build/html
         retention-days: 1
+
+  warn:
+    runs-on: ubuntu-latest
+    if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref == 'refs/heads/main' && github.event_name == 'schedule'
+    steps:
     - name: Warn if scheduled workflow is about to be disabled
-      if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref == 'refs/heads/main' && github.event_name == 'schedule'
       uses: fem-on-colab/warn-workflow-about-to-be-disabled-action@main
       with:
         workflow-filename: website.yml
