@@ -9,57 +9,57 @@ jobs:
   stats:
     runs-on: ubuntu-latest
     steps:
-    - name: Clone website repository on current branch
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: Clone website repository on stats branch
-      uses: actions/checkout@v4
-      with:
-        ref: stats
-        fetch-depth: 0
-        path: _build/stats
-    - name: Install dependencies
-      run: |
-        wget https://github.com/fem-on-colab/release-download-count-script/raw/main/scripts/requirements.txt
-        python3 -m pip -q install -r requirements.txt
-        rm requirements.txt
-        python3 -m pip -q install pandas
-        SITE_PACKAGES=$(python3 -c 'import site; print(site.getsitepackages()[0])')
-        sudo wget https://github.com/fem-on-colab/release-download-count-script/raw/main/scripts/release_download_count.py -P $SITE_PACKAGES
-    - name: Update release download stats
-      run: |
-        pushd _stats
-        ln -s ../_build/stats/stats.csv stats.csv
-        TOKEN="${{ github.token }}" python3 stats.py
-        popd
-    - name: Deploy to GitHub branch
-      if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref == 'refs/heads/main'
-      run: |
-        SHA_SHORT=$(git rev-parse --short HEAD)
-        pushd _build/stats
-        git config user.name "GitHub Actions"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add .
-        git pull origin stats
-        [ -n "$(git status --porcelain=v1 2>/dev/null)" ] && git commit -m "deploy: ${SHA_SHORT}"
-        git push origin stats
-        popd
-      shell: bash
-    - name: Deploy to GitHub artifacts
-      if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref != 'refs/heads/main'
-      uses: actions/upload-artifact@v3
-      with:
-        name: stats
-        path: _build/stats
-        retention-days: 1
+      - name: Clone website repository on current branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Clone website repository on stats branch
+        uses: actions/checkout@v4
+        with:
+          ref: stats
+          fetch-depth: 0
+          path: _build/stats
+      - name: Install dependencies
+        run: |
+          wget https://github.com/fem-on-colab/release-download-count-script/raw/main/scripts/requirements.txt
+          python3 -m pip -q install -r requirements.txt
+          rm requirements.txt
+          python3 -m pip -q install pandas
+          SITE_PACKAGES=$(python3 -c 'import site; print(site.getsitepackages()[0])')
+          sudo wget https://github.com/fem-on-colab/release-download-count-script/raw/main/scripts/release_download_count.py -P $SITE_PACKAGES
+      - name: Update release download stats
+        run: |
+          pushd _stats
+          ln -s ../_build/stats/stats.csv stats.csv
+          TOKEN="${{ github.token }}" python3 stats.py
+          popd
+      - name: Deploy to GitHub branch
+        if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref == 'refs/heads/main'
+        run: |
+          SHA_SHORT=$(git rev-parse --short HEAD)
+          pushd _build/stats
+          git config user.name "GitHub Actions"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git pull origin stats
+          [ -n "$(git status --porcelain=v1 2>/dev/null)" ] && git commit -m "deploy: ${SHA_SHORT}"
+          git push origin stats
+          popd
+        shell: bash
+      - name: Deploy to GitHub artifacts
+        if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref != 'refs/heads/main'
+        uses: actions/upload-artifact@v3
+        with:
+          name: stats
+          path: _build/stats
+          retention-days: 1
 
   warn:
     runs-on: ubuntu-latest
     if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref == 'refs/heads/main' && github.event_name == 'schedule'
     steps:
-    - name: Warn if scheduled workflow is about to be disabled
-      uses: fem-on-colab/warn-workflow-about-to-be-disabled-action@main
-      with:
-        workflow-filename: stats.yml
-        days-elapsed: 50
+      - name: Warn if scheduled workflow is about to be disabled
+        uses: fem-on-colab/warn-workflow-about-to-be-disabled-action@main
+        with:
+          workflow-filename: stats.yml
+          days-elapsed: 50

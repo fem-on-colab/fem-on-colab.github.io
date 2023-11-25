@@ -1,0 +1,35 @@
+name: "CI"
+
+on:
+  push:
+    branches:
+      - "**"
+      - "!gh-pages"
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "0 1 * * MON"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          python3 -m pip -q install yamllint
+      - name: Run yamllint
+        run: |
+          python3 -m yamllint -d "{extends: default, rules: {document-start: {present: false}, line-length: disable, truthy: {check-keys: false}}}" .
+
+  warn:
+    runs-on: ubuntu-latest
+    if: github.repository == 'fem-on-colab/fem-on-colab.github.io' && github.ref == 'refs/heads/main' && github.event_name == 'schedule'
+    steps:
+      - name: Warn if scheduled workflow is about to be disabled
+        uses: fem-on-colab/warn-workflow-about-to-be-disabled-action@main
+        with:
+          workflow-filename: ci.yml
+          days-elapsed: 50
