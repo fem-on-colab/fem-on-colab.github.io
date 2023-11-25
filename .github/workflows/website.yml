@@ -40,7 +40,7 @@ jobs:
         pushd _stats
         ln -s ../_build/stats/stats.csv stats.csv
         popd
-        rm -rf _build/html/* && make html
+        rm -rf _build/html/* && python3 -m sphinx -W -b html . _build/html
     - name: Fix permissions
       run: |
         sudo chown $USER _build -R
