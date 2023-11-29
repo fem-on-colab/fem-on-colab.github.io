@@ -44,6 +44,9 @@ jobs:
       - name: Fix permissions
         run: |
           sudo chown $USER _build -R
+      - name: Remove unnecessary .doctrees folder
+        run: |
+          rm -rf _build/html/.doctrees
       - name: Check that no releases or notebooks have been deleted
         run: |
           pushd _build/html
