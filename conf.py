@@ -10,8 +10,8 @@ sys.path.insert(0, os.path.abspath("./_ext"))
 # -- Project information -----------------------------------------------------
 
 project = "FEM on Colab"
-copyright = "2021-, Francesco Ballarin (and contributors)"
-author = "Francesco Ballarin (and contributors)"
+copyright = "2021-2023, the FEM on Colab authors"
+author = "Francesco Ballarin"
 
 
 # -- General configuration ---------------------------------------------------
