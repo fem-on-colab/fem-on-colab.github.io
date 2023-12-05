@@ -29,11 +29,10 @@ Description
 **FEM on Colab** is a collection of packages that allows to easily install several finite element libraries on Google Colab.
 Currently supported libraries are `FEniCS <https://bitbucket.org/fenics-project/dolfin>`__, `FEniCSx <https://github.com/FEniCS/dolfinx>`__, `firedrake <https://github.com/firedrakeproject/firedrake>`__ and `ngsolve <https://github.com/NGSolve/ngsolve>`__. Mesh generation via `gmsh <https://gitlab.onelab.info/gmsh/gmsh>`__ is also supported.
 
-Authors and contributors
+Authors
 ------------------------
 
 **FEM on Colab** is currently developed and maintained at `Università Cattolica del Sacro Cuore <https://www.unicatt.it/>`__ by `Dr. Francesco Ballarin <https://www.francescoballarin.it>`__.
-We acknowledge all contributors listed in the `AUTHORS file <https://github.com/fem-on-colab/fem-on-colab/blob/master/AUTHORS>`__.
 
 Timeline and funding
 ------------------------
