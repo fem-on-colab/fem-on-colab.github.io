@@ -51,7 +51,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: stats
-          path: _build/stats
+          path: |
+            _build/stats
+            !_build/stats/.git
           retention-days: 1
 
   warn:

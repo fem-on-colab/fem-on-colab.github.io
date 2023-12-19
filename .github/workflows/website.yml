@@ -80,7 +80,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: website
-          path: _build/html
+          path: |
+            _build/html
+            !_build/html/.git
           retention-days: 1
 
   warn:
