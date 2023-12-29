@@ -4,7 +4,8 @@ button[data-md-color-primary=unicatt] {
 }
 
 [data-md-color-primary=unicatt] .md-typeset a {
-    color: #00325c
+    color: #00325c;
+    text-decoration: underline;
 }
 
 [data-md-color-primary=unicatt] .md-header,
@@ -234,6 +235,10 @@ button[data-md-color-accent=unicatt] {
 .package-buttons {
     display: flex;
     flex-wrap: wrap;
+}
+
+.tutorial-buttons a {
+    text-decoration: none  !important;
 }
 
 /* Toggleable divs
