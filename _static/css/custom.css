@@ -1,38 +1,39 @@
 /* Customize palette */
 button[data-md-color-primary=unicatt] {
-    background-color: #00325c
+    background-color: #00325c;
 }
 
 [data-md-color-primary=unicatt] .md-typeset a {
-    color: #00325c
+    color: #00325c;
+    text-decoration: underline;
 }
 
 [data-md-color-primary=unicatt] .md-header,
 [data-md-color-primary=unicatt] .md-hero {
-    background-color: #00325c
+    background-color: #00325c;
 }
 
 [data-md-color-primary=unicatt] .md-nav__link--active,
 [data-md-color-primary=unicatt] .md-nav__link:active {
-    color: #00325c
+    color: #00325c;
 }
 
 [data-md-color-primary=unicatt] .md-nav__item--nested>.md-nav__link {
-    color: inherit
+    color: inherit;
 }
 
 button[data-md-color-accent=unicatt] {
-    background-color: #c23e46
+    background-color: #c23e46;
 }
 
 [data-md-color-accent=unicatt] .md-typeset a:active,
 [data-md-color-accent=unicatt] .md-typeset a:hover {
-    color: #c23e46
+    color: #c23e46;
 }
 
 [data-md-color-accent=unicatt] .md-typeset .codehilite pre::-webkit-scrollbar-thumb:hover,
 [data-md-color-accent=unicatt] .md-typeset pre code::-webkit-scrollbar-thumb:hover {
-    background-color: #c23e46
+    background-color: #c23e46;
 }
 
 [data-md-color-accent=unicatt] .md-nav__link:focus,
@@ -44,47 +45,47 @@ button[data-md-color-accent=unicatt] {
 [data-md-color-accent=unicatt] .md-typeset [id] .headerlink:focus,
 [data-md-color-accent=unicatt] .md-typeset [id]:hover .headerlink:hover,
 [data-md-color-accent=unicatt] .md-typeset [id]:target .headerlink {
-    color: #c23e46
+    color: #c23e46;
 }
 
 [data-md-color-accent=unicatt] .md-search__scrollwrap::-webkit-scrollbar-thumb:hover {
-    background-color: #c23e46
+    background-color: #c23e46;
 }
 
 [data-md-color-accent=unicatt] .md-search-result__link:hover,
 [data-md-color-accent=unicatt] .md-search-result__link[data-md-state=active] {
-    background-color: rgba(255, 23, 68, .1)
+    background-color: rgba(255, 23, 68, .1);
 }
 
 [data-md-color-accent=unicatt] .md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover {
-    background-color: #c23e46
+    background-color: #c23e46;
 }
 
 [data-md-color-accent=unicatt] .md-source-file:hover:before {
-    background-color: #c23e46
+    background-color: #c23e46;
 }
 
 @media only screen and (max-width:59.9375em) {
     [data-md-color-primary=unicatt] .md-nav__source {
-        background-color: #c23e46
+        background-color: #c23e46;
     }
 }
 
 @media only screen and (max-width:76.1875em) {
     html [data-md-color-primary=unicatt] .md-nav--primary .md-nav__title--site {
-        background-color: #00325c
+        background-color: #00325c;
     }
 }
 
 @media only screen and (min-width:76.25em) {
     [data-md-color-primary=unicatt] .md-tabs {
-        background-color: #00325c
+        background-color: #00325c;
     }
 }
 
 /* Hide undesired items */
 .md-sidebar--secondary, .md-footer {
-    display: None
+    display: None;
 }
 
 @media only screen and (min-width: 76.25em) {
@@ -100,7 +101,7 @@ button[data-md-color-accent=unicatt] {
 
 @media only screen and (min-width: 76.25em) {
     .md-sidebar--primary {
-        display: None
+        display: None;
     }
 }
 
@@ -234,6 +235,10 @@ button[data-md-color-accent=unicatt] {
 .package-buttons {
     display: flex;
     flex-wrap: wrap;
+}
+
+.tutorial-buttons a {
+    text-decoration: none  !important;
 }
 
 /* Toggleable divs
