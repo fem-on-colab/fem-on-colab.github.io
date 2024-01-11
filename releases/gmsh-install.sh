@@ -21,12 +21,12 @@ if [[ ! -f $GMSH_INSTALLED ]]; then
     source $H5PY_INSTALL_SCRIPT_PATH
 
     # Install OCC (and its dependencies, most notably gcc)
-    OCC_INSTALL_SCRIPT_PATH=${OCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/79eefac/releases/occ-install.sh"}
+    OCC_INSTALL_SCRIPT_PATH=${OCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/9a7cb0d/releases/occ-install.sh"}
     [[ $OCC_INSTALL_SCRIPT_PATH == http* ]] && OCC_INSTALL_SCRIPT_DOWNLOAD=${OCC_INSTALL_SCRIPT_PATH} && OCC_INSTALL_SCRIPT_PATH=/tmp/occ-install.sh && [[ ! -f ${OCC_INSTALL_SCRIPT_PATH} ]] && wget ${OCC_INSTALL_SCRIPT_DOWNLOAD} -O ${OCC_INSTALL_SCRIPT_PATH}
     source $OCC_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    GMSH_ARCHIVE_PATH=${GMSH_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gmsh-20240107-185743-b860330/gmsh-install.tar.gz"}
+    GMSH_ARCHIVE_PATH=${GMSH_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/gmsh-20240111-070835-d77eca7/gmsh-install.tar.gz"}
     [[ $GMSH_ARCHIVE_PATH == http* ]] && GMSH_ARCHIVE_DOWNLOAD=${GMSH_ARCHIVE_PATH} && GMSH_ARCHIVE_PATH=/tmp/gmsh-install.tar.gz && wget ${GMSH_ARCHIVE_DOWNLOAD} -O ${GMSH_ARCHIVE_PATH}
     if [[ $GMSH_ARCHIVE_PATH != skip ]]; then
         tar -xzf $GMSH_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
