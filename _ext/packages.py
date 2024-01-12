@@ -66,15 +66,15 @@ except ImportError:
         },
     },
     "ngsolve": {
-        "title": "ngsolve & ngsxfem",
+        "title": "ngsolve, ngsxfem & ngsPETSc",
         "installation": """
 try:
     import ngsolve
 except ImportError:
-    !wget "https://fem-on-colab.github.io/releases/ngsolve-install.sh" -O "/tmp/ngsolve-install.sh" && bash "/tmp/ngsolve-install.sh"
+    !wget "https://fem-on-colab.github.io/releases/ngsolve-install-SUFFIX.sh" -O "/tmp/ngsolve-install.sh" && bash "/tmp/ngsolve-install.sh"
     import ngsolve
 """,
-        "installation_suffixes": [""],
+        "installation_suffixes": ["real", "complex"],
         "tests": {
             "ngsolve": "ngsolve/test-ngsolve.ipynb",
             "ngsolve (extras)": "ngsolve/test-ngsolve-extras.ipynb",
