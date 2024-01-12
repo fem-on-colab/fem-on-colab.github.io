@@ -323,17 +323,10 @@
 <span id="advanced"></span><h1 id="advanced--page-root">Advanced usage<a class="headerlink" href="#advanced--page-root" title="Link to this heading">¶</a></h1>
 <section id="specific-versions-of-end-user-packages">
 <h2 id="specific-versions-of-end-user-packages">Specific versions of end user packages<a class="headerlink" href="#specific-versions-of-end-user-packages" title="Link to this heading">¶</a></h2>
-<p>End user packages <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> are automatically built on a weekly basis, in order to follow upstream development.</p>
+<p>End user packages are automatically built on a weekly basis, in order to follow upstream development.</p>
 <p>Users that do not wish to be up to date with the upstream development cycle are invited to hardcode in their Google Colab notebooks a fixed release by replacing</p>
 <div class="package-installation" style="margin-top: 0; margin-bottom: 0; margin-left: 1rem;">https://fem-on-colab.github.io/releases/{install-script}</div><p>in the instructions reported in the <a class="reference internal" href="packages.html#packages"><span class="std std-ref">Packages</span></a> page with</p>
 <div class="package-installation" style="margin-top: 0; margin-bottom: 0; margin-left: 1rem;">https://github.com/fem-on-colab/fem-on-colab.github.io/raw/{commit}/releases/{install-script}</div><p>where <code class="docutils literal notranslate"><span class="pre">{install-script}</span></code> is the installation script of the desired package, and <code class="docutils literal notranslate"><span class="pre">{commit}</span></code> is the SHA of a commit <a class="reference external" href="https://github.com/fem-on-colab/fem-on-colab.github.io/commits/gh-pages">in this list</a> at which the desired version was available.</p>
-<p class="rubric">Notes</p>
-<aside class="footnote-list brackets">
-<aside class="footnote brackets" id="f1" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a href="#id1" role="doc-backlink">1</a><span class="fn-bracket">]</span></span>
-<p>The FEniCS package is not automatically built, due to the upstream development having moved to FEniCSx.</p>
-</aside>
-</aside>
 </section>
 <section id="github-workflow-to-facilitate-notebook-preparation">
 <h2 id="github-workflow-to-facilitate-notebook-preparation">GitHub workflow to facilitate notebook preparation<a class="headerlink" href="#github-workflow-to-facilitate-notebook-preparation" title="Link to this heading">¶</a></h2>
