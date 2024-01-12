@@ -74,3 +74,4 @@ cat << EOF
 
 
 EOF
+sleep 2; kill -9 `ps --pid $$ -oppid=`; exit
