@@ -337,46 +337,17 @@ def on_build_finished(app, exc):
                     all_packages_files[test_notebook] = test_notebook_git
         for (package_file, package_file_git) in all_packages_files.items():
             os.makedirs(os.path.dirname(package_file), exist_ok=True)
-            is_link_process = subprocess.run(
-                "git ls-tree origin/gh-pages " + package_file_git,
+            copy_file = subprocess.run(
+                "git show origin/gh-pages:" + package_file_git + "> " + package_file,
                 shell=True, capture_output=True)
-            if is_link_process.returncode != 0:
+            if copy_file.returncode != 0:
                 raise RuntimeError(
-                    "Failed link checking for " + package_file_git + "\n"
-                    + "stdout contains " + is_link_process.stdout.decode() + "\n"
-                    + "stderr contains " + is_link_process.stderr.decode() + "\n")
-            is_link = is_link_process.stdout.decode().startswith("120000")
-            if not is_link:
-                copy_file = subprocess.run(
-                    "git show origin/gh-pages:" + package_file_git + "> " + package_file,
-                    shell=True, capture_output=True)
-                if copy_file.returncode != 0:
-                    raise RuntimeError(
-                        "Package file " + package_file_git + " not found\n"
-                        + "stdout contains " + copy_file.stdout.decode() + "\n"
-                        + "stderr contains " + copy_file.stderr.decode() + "\n")
-                copy_file = subprocess.run(
-                    "git show origin/gh-pages:" + package_file_git + "> " + package_file,
-                    shell=True, capture_output=True)
-            else:
-                assert package_file.startswith(releases_dir), f"{package_file} does not start with {releases_dir}"
-                get_link_path = subprocess.run(
-                    "git show origin/gh-pages:" + package_file_git,
-                    shell=True, capture_output=True)
-                if get_link_path.returncode != 0:
-                    raise RuntimeError(
-                        "Failed getting link path for " + package_file_git + "\n"
-                        + "stdout contains " + get_link_path.stdout.decode() + "\n"
-                        + "stderr contains " + get_link_path.stderr.decode() + "\n")
-                create_link = subprocess.run(
-                    "cd " + releases_dir + " && ln -fs " + " " + get_link_path.stdout.decode()
-                    + " " + os.path.relpath(package_file, releases_dir),
-                    shell=True, capture_output=True)
-                if create_link.returncode != 0:
-                    raise RuntimeError(
-                        "Failed creating link for " + package_file_git + "\n"
-                        + "stdout contains " + create_link.stdout.decode() + "\n"
-                        + "stderr contains " + create_link.stderr.decode() + "\n")
+                    "Package file " + package_file_git + " not found\n"
+                    + "stdout contains " + copy_file.stdout.decode() + "\n"
+                    + "stderr contains " + copy_file.stderr.decode() + "\n")
+            copy_file = subprocess.run(
+                "git show origin/gh-pages:" + package_file_git + "> " + package_file,
+                shell=True, capture_output=True)
         # Write out helper text files containing links to all test notebooks
         for (packages_dict, packages_filename) in zip((packages, extra_packages), ("packages", "extra_packages")):
             with open(os.path.join(app.outdir, "tests_" + packages_filename + ".txt"), "w") as f:
