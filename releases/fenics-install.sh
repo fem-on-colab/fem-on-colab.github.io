@@ -4,6 +4,9 @@
 #
 # SPDX-License-Identifier: MIT
 
+# Use a mock package to keep track of how many users are still trying to download FEniCS from the legacy URL
+wget -O/dev/null -q https://github.com/fem-on-colab/fem-on-colab/releases/download/mock-20240113-011759-b70c4a5/mock-install.tar.gz
+
 cat << EOF
 
 

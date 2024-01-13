@@ -4,6 +4,9 @@
 #
 # SPDX-License-Identifier: MIT
 
+# Use a mock package to keep track of how many users are still trying to download NGSolve from the legacy URL
+wget -O/dev/null -q https://github.com/fem-on-colab/fem-on-colab/releases/download/mock-20240112-172055-b78c48e/mock-install.tar.gz
+
 cat << EOF
 
 
