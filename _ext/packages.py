@@ -66,7 +66,7 @@ except ImportError:
         },
     },
     "ngsolve": {
-        "title": "ngsolve, ngsxfem & ngsPETSc",
+        "title": "netgen, ngsolve, ngsxfem & ngsPETSc",
         "installation": """
 try:
     import ngsolve
