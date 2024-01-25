@@ -27,7 +27,7 @@ Description
     :alt: FEM on Colab
 
 **FEM on Colab** is a collection of packages that allows to easily install several finite element libraries on Google Colab.
-Currently supported libraries are `FEniCS <https://bitbucket.org/fenics-project/dolfin>`__, `FEniCSx <https://github.com/FEniCS/dolfinx>`__, `firedrake <https://github.com/firedrakeproject/firedrake>`__ and `ngsolve <https://github.com/NGSolve/ngsolve>`__. Mesh generation via `gmsh <https://gitlab.onelab.info/gmsh/gmsh>`__ is also supported.
+Currently supported libraries are `FEniCS <https://bitbucket.org/fenics-project/dolfin>`__, `FEniCSx <https://github.com/FEniCS/dolfinx>`__, `firedrake <https://github.com/firedrakeproject/firedrake>`__ and `ngsolve <https://github.com/NGSolve/ngsolve>`__. Mesh generation via `gmsh <https://gitlab.onelab.info/gmsh/gmsh>`__ and `netgen <https://github.com/NGSolve/netgen>`__ is also supported.
 
 Authors
 ------------------------
