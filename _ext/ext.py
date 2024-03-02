@@ -285,7 +285,7 @@ def on_build_finished(app, exc):
   "@context": "http://schema.org",
   "@type": "SoftwareApplication",
   "name": "FEM on Colab",
-  "description": "FEM on Colab is a collection of packages that allows to easily install several finite element libraries on Google Colab. FEM on Colab is currently developed at Università Cattolica del Sacro Cuore by Dr. Francesco Ballarin.",
+  "description": "FEM on Colab is a collection of packages that allows to easily install several finite element libraries on Google Colab. FEM on Colab is currently developed at Università Cattolica del Sacro Cuore by Prof. Francesco Ballarin.",
   "keywords": "fem-on-colab, Colab, finite element, jupyter",
   "softwareHelp": "https://fem-on-colab.github.io/",
   "operatingSystem": "Linux",
@@ -297,7 +297,7 @@ def on_build_finished(app, exc):
 </script>
 
 <meta property="og:title" content="FEM on Colab" />
-<meta property="og:description" content="FEM on Colab is a collection of packages that allows to easily install several finite element libraries on Google Colab. FEM on Colab is currently developed at Università Cattolica del Sacro Cuore by Dr. Francesco Ballarin." />
+<meta property="og:description" content="FEM on Colab is a collection of packages that allows to easily install several finite element libraries on Google Colab. FEM on Colab is currently developed at Università Cattolica del Sacro Cuore by Prof. Francesco Ballarin." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="FEM on Colab" />
 <meta property="og:url" content="https://fem-on-colab.github.io/" />
