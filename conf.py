@@ -33,6 +33,10 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # List of bib files
 bibtex_bibfiles = ["_static/bib/publications.bib"]
 
+# Suppress config.cache warnings
+# https://github.com/sphinx-doc/sphinx/issues/12300#issuecomment-2062238457
+suppress_warnings = ["config.cache"]
+
 
 # -- Options for HTML output -------------------------------------------------
 html_title = "FEM on Colab"
