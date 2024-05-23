@@ -95,15 +95,9 @@ For convenience, text files containing links to all <b>FEM on Colab</b> tests ca
 
     @classmethod
     def _card(cls, package, title, installation, installation_suffixes, buttons):
-        if len(installation_suffixes) > 1 and "" in installation_suffixes:
-            # The "" suffix was added for backward compatibility, but should not be displayed
-            installation_suffixes = installation_suffixes.copy()
-            installation_suffixes.remove("")
-            if len(installation_suffixes) == 1:
-                assert installation_suffixes[0] == "real", f"Invalid suffix {installation_suffixes[0]}, expected real"
-                installation_suffixes[0] = ""
         if len(installation_suffixes) == 1:
-            assert installation_suffixes[0] == "", f"Invalid suffix {installation_suffixes[0]}, expected blank"
+            assert installation_suffixes[0] in ("", "real"), (
+                f"Invalid suffix {installation_suffixes[0]}, expected blank or real")
             package_installation = "<div class=\"package-installation\">" + installation.lstrip().rstrip() + "</div>"
         else:
             package_installation_template = installation.lstrip().rstrip()
@@ -318,7 +312,8 @@ def on_build_finished(app, exc):
         for package in list(all_packages.keys()):
             installation_suffixes = all_packages[package]["installation_suffixes"]
             if len(installation_suffixes) == 1:
-                assert installation_suffixes[0] == "", f"Invalid suffix {installation_suffixes[0]}, expected blank"
+                assert installation_suffixes[0] in ("", "real"), (
+                    f"Invalid suffix {installation_suffixes[0]}, expected blank or real")
             for suffix in installation_suffixes:
                 for extension in (".sh", ".docker"):
                     if suffix == "":

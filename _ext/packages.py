@@ -8,7 +8,7 @@ except ImportError:
     !wget "https://fem-on-colab.github.io/releases/fenics-install-real.sh" -O "/tmp/fenics-install.sh" && bash "/tmp/fenics-install.sh"
     import dolfin
 """,
-        "installation_suffixes": ["", "real"],
+        "installation_suffixes": ["real"],
         "tests": {
             "dolfin": "fenics/test-dolfin.ipynb",
             "mshr": "fenics/test-mshr.ipynb",
@@ -74,7 +74,7 @@ except ImportError:
     !wget "https://fem-on-colab.github.io/releases/ngsolve-install-SUFFIX.sh" -O "/tmp/ngsolve-install.sh" && bash "/tmp/ngsolve-install.sh"
     import ngsolve
 """,
-        "installation_suffixes": ["", "real", "complex"],
+        "installation_suffixes": ["real", "complex"],
         "tests": {
             "ngsolve": "ngsolve/test-ngsolve.ipynb",
             "ngsolve (extras)": "ngsolve/test-ngsolve-extras.ipynb",
