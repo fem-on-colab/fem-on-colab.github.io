@@ -16,12 +16,12 @@ PYBIND11_INSTALLED="$SHARE_PREFIX/pybind11.installed"
 
 if [[ ! -f $PYBIND11_INSTALLED ]]; then
     # Install mpi4py
-    MPI4PY_INSTALL_SCRIPT_PATH=${MPI4PY_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/403b578/releases/mpi4py-install.sh"}
+    MPI4PY_INSTALL_SCRIPT_PATH=${MPI4PY_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/ff49a46/releases/mpi4py-install.sh"}
     [[ $MPI4PY_INSTALL_SCRIPT_PATH == http* ]] && MPI4PY_INSTALL_SCRIPT_DOWNLOAD=${MPI4PY_INSTALL_SCRIPT_PATH} && MPI4PY_INSTALL_SCRIPT_PATH=/tmp/mpi4py-install.sh && [[ ! -f ${MPI4PY_INSTALL_SCRIPT_PATH} ]] && wget ${MPI4PY_INSTALL_SCRIPT_DOWNLOAD} -O ${MPI4PY_INSTALL_SCRIPT_PATH}
     source $MPI4PY_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    PYBIND11_ARCHIVE_PATH=${PYBIND11_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/pybind11-20240601-021606-0261766/pybind11-install.tar.gz"}
+    PYBIND11_ARCHIVE_PATH=${PYBIND11_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/pybind11-20240604-092946-b87080c/pybind11-install.tar.gz"}
     [[ $PYBIND11_ARCHIVE_PATH == http* ]] && PYBIND11_ARCHIVE_DOWNLOAD=${PYBIND11_ARCHIVE_PATH} && PYBIND11_ARCHIVE_PATH=/tmp/pybind11-install.tar.gz && wget ${PYBIND11_ARCHIVE_DOWNLOAD} -O ${PYBIND11_ARCHIVE_PATH}
     if [[ $PYBIND11_ARCHIVE_PATH != skip ]]; then
         rm -rf /usr/lib/python*/*-packages/pybind11*
