@@ -21,7 +21,7 @@ if [[ ! -f $FIREDRAKE_INSTALLED ]]; then
     source $PYBIND11_INSTALL_SCRIPT_PATH
 
     # Install boost (and its dependencies)
-    BOOST_INSTALL_SCRIPT_PATH=${BOOST_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/8466fe9/releases/boost-install.sh"}
+    BOOST_INSTALL_SCRIPT_PATH=${BOOST_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/59c6bcd/releases/boost-install.sh"}
     [[ $BOOST_INSTALL_SCRIPT_PATH == http* ]] && BOOST_INSTALL_SCRIPT_DOWNLOAD=${BOOST_INSTALL_SCRIPT_PATH} && BOOST_INSTALL_SCRIPT_PATH=/tmp/boost-install.sh && [[ ! -f ${BOOST_INSTALL_SCRIPT_PATH} ]] && wget ${BOOST_INSTALL_SCRIPT_DOWNLOAD} -O ${BOOST_INSTALL_SCRIPT_PATH}
     source $BOOST_INSTALL_SCRIPT_PATH
 
@@ -36,7 +36,7 @@ if [[ ! -f $FIREDRAKE_INSTALLED ]]; then
     source $VTK_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    FIREDRAKE_ARCHIVE_PATH=${FIREDRAKE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/firedrake-20240812-071527-f2dac71-complex/firedrake-install.tar.gz"}
+    FIREDRAKE_ARCHIVE_PATH=${FIREDRAKE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/firedrake-20240815-083846-5bf472a-complex/firedrake-install.tar.gz"}
     [[ $FIREDRAKE_ARCHIVE_PATH == http* ]] && FIREDRAKE_ARCHIVE_DOWNLOAD=${FIREDRAKE_ARCHIVE_PATH} && FIREDRAKE_ARCHIVE_PATH=/tmp/firedrake-install.tar.gz && wget ${FIREDRAKE_ARCHIVE_DOWNLOAD} -O ${FIREDRAKE_ARCHIVE_PATH}
     if [[ $FIREDRAKE_ARCHIVE_PATH != skip ]]; then
         rm -rf /usr/lib/python*/*-packages/Cython*
