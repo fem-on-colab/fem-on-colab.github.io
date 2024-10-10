@@ -16,7 +16,7 @@ FIREDRAKE_INSTALLED="$SHARE_PREFIX/firedrake.installed"
 
 if [[ ! -f $FIREDRAKE_INSTALLED ]]; then
     # Install pybind11
-    PYBIND11_INSTALL_SCRIPT_PATH=${PYBIND11_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/69d91d8/releases/pybind11-install.sh"}
+    PYBIND11_INSTALL_SCRIPT_PATH=${PYBIND11_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/c5d49e5/releases/pybind11-install.sh"}
     [[ $PYBIND11_INSTALL_SCRIPT_PATH == http* ]] && PYBIND11_INSTALL_SCRIPT_DOWNLOAD=${PYBIND11_INSTALL_SCRIPT_PATH} && PYBIND11_INSTALL_SCRIPT_PATH=/tmp/pybind11-install.sh && [[ ! -f ${PYBIND11_INSTALL_SCRIPT_PATH} ]] && wget ${PYBIND11_INSTALL_SCRIPT_DOWNLOAD} -O ${PYBIND11_INSTALL_SCRIPT_PATH}
     source $PYBIND11_INSTALL_SCRIPT_PATH
 
@@ -36,7 +36,7 @@ if [[ ! -f $FIREDRAKE_INSTALLED ]]; then
     source $VTK_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    FIREDRAKE_ARCHIVE_PATH=${FIREDRAKE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/firedrake-20241005-012614-ab7e93a-complex/firedrake-install.tar.gz"}
+    FIREDRAKE_ARCHIVE_PATH=${FIREDRAKE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/firedrake-20241010-175453-b7b7e24-complex/firedrake-install.tar.gz"}
     [[ $FIREDRAKE_ARCHIVE_PATH == http* ]] && FIREDRAKE_ARCHIVE_DOWNLOAD=${FIREDRAKE_ARCHIVE_PATH} && FIREDRAKE_ARCHIVE_PATH=/tmp/firedrake-install.tar.gz && wget ${FIREDRAKE_ARCHIVE_DOWNLOAD} -O ${FIREDRAKE_ARCHIVE_PATH}
     if [[ $FIREDRAKE_ARCHIVE_PATH != skip ]]; then
         rm -rf /usr/lib/python*/*-packages/Cython*
