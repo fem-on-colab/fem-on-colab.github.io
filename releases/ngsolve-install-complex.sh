@@ -31,7 +31,7 @@ if [[ ! -f $NGSOLVE_INSTALLED ]]; then
     source $SLEPC4PY_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    NGSOLVE_ARCHIVE_PATH=${NGSOLVE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/ngsolve-20241010-175512-b7b7e24-complex/ngsolve-install.tar.gz"}
+    NGSOLVE_ARCHIVE_PATH=${NGSOLVE_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/ngsolve-20241012-012512-264d316-complex/ngsolve-install.tar.gz"}
     [[ $NGSOLVE_ARCHIVE_PATH == http* ]] && NGSOLVE_ARCHIVE_DOWNLOAD=${NGSOLVE_ARCHIVE_PATH} && NGSOLVE_ARCHIVE_PATH=/tmp/ngsolve-install.tar.gz && wget ${NGSOLVE_ARCHIVE_DOWNLOAD} -O ${NGSOLVE_ARCHIVE_PATH}
     if [[ $NGSOLVE_ARCHIVE_PATH != skip ]]; then
         tar -xzf $NGSOLVE_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
