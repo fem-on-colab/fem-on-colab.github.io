@@ -34,7 +34,7 @@ jobs:
           path: _build/html
       - name: Install dependencies
         run: |
-          python3 -m pip -q install pandas plotly sphinx-material sphinxcontrib-bibtex
+          python3 -m pip install --break-system-packages -q pandas plotly sphinx-material sphinxcontrib-bibtex
       - name: Generate sphinx website
         run: |
           pushd _stats

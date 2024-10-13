@@ -22,9 +22,9 @@ jobs:
       - name: Install dependencies
         run: |
           wget https://github.com/fem-on-colab/release-download-count-script/raw/main/scripts/requirements.txt
-          python3 -m pip -q install -r requirements.txt
+          python3 -m pip install --break-system-packages -q -r requirements.txt
           rm requirements.txt
-          python3 -m pip -q install pandas
+          python3 -m pip install --break-system-packages -q pandas
           SITE_PACKAGES=$(python3 -c 'import site; print(site.getsitepackages()[0])')
           sudo wget https://github.com/fem-on-colab/release-download-count-script/raw/main/scripts/release_download_count.py -P $SITE_PACKAGES
       - name: Update release download stats
