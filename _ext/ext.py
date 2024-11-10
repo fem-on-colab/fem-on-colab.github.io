@@ -187,7 +187,7 @@ For convenience, text files containing links to all <b>FEM on Colab</b> tests ca
             logo = "_static/images/occ-logo.png"
         elif library == "petsc4py":
             logo = "_static/images/petsc4py-logo.png"
-        elif library == "pybind11" or library.startswith("pybind11 ("):
+        elif library == "pybind11" or library.startswith("pybind11 & nanobind ("):
             logo = "_static/images/pybind11-logo.png"
         elif library == "RBniCS":
             logo = "_static/images/rbnics-logo.png"

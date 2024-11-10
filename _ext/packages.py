@@ -165,16 +165,16 @@ except ImportError:
         },
     },
     "pybind11": {
-        "title": "pybind11",
+        "title": "pybind11 & nanobind",
         "installation": """
 !wget "https://fem-on-colab.github.io/releases/pybind11-install.sh" -O "/tmp/pybind11-install.sh" && bash "/tmp/pybind11-install.sh"
 import pybind11
 """,
         "installation_suffixes": [""],
         "tests": {
-            "pybind11 (with default compiler)": "pybind11/test-none.ipynb",
-            "pybind11 (exporting g++ compiler)": "pybind11/test-gpp.ipynb",
-            "pybind11 (exporting mpicxx compiler)": "pybind11/test-mpicxx.ipynb",
+            "pybind11 & nanobind (with default compiler)": "pybind11/test-none.ipynb",
+            "pybind11 & nanobind (exporting g++ compiler)": "pybind11/test-gpp.ipynb",
+            "pybind11 & nanobind (exporting mpicxx compiler)": "pybind11/test-mpicxx.ipynb",
         },
     },
     "slepc4py": {
