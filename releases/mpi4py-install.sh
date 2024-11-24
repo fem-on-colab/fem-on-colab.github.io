@@ -16,12 +16,12 @@ MPI4PY_INSTALLED="$SHARE_PREFIX/mpi4py.installed"
 
 if [[ ! -f $MPI4PY_INSTALLED ]]; then
     # Install gcc
-    GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/e738c9d5/releases/gcc-install.sh"}
+    GCC_INSTALL_SCRIPT_PATH=${GCC_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/b54928ae/releases/gcc-install.sh"}
     [[ $GCC_INSTALL_SCRIPT_PATH == http* ]] && GCC_INSTALL_SCRIPT_DOWNLOAD=${GCC_INSTALL_SCRIPT_PATH} && GCC_INSTALL_SCRIPT_PATH=/tmp/gcc-install.sh && [[ ! -f ${GCC_INSTALL_SCRIPT_PATH} ]] && wget ${GCC_INSTALL_SCRIPT_DOWNLOAD} -O ${GCC_INSTALL_SCRIPT_PATH}
     source $GCC_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    MPI4PY_ARCHIVE_PATH=${MPI4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mpi4py-20241102-093211-bc97696/mpi4py-install.tar.gz"}
+    MPI4PY_ARCHIVE_PATH=${MPI4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mpi4py-20241124-084406-863ffe4/mpi4py-install.tar.gz"}
     [[ $MPI4PY_ARCHIVE_PATH == http* ]] && MPI4PY_ARCHIVE_DOWNLOAD=${MPI4PY_ARCHIVE_PATH} && MPI4PY_ARCHIVE_PATH=/tmp/mpi4py-install.tar.gz && wget ${MPI4PY_ARCHIVE_DOWNLOAD} -O ${MPI4PY_ARCHIVE_PATH}
     if [[ $MPI4PY_ARCHIVE_PATH != skip ]]; then
         tar -xzf $MPI4PY_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
