@@ -1,4 +1,4 @@
-# Copyright (C) 2021-2024 by the FEM on Colab authors
+# Copyright (C) 2021-2025 by the FEM on Colab authors
 #
 # This file is part of FEM on Colab.
 #
@@ -16,7 +16,7 @@ FENICS_INSTALLED="$SHARE_PREFIX/fenics.installed"
 
 if [[ ! -f $FENICS_INSTALLED ]]; then
     # Install pybind11
-    PYBIND11_INSTALL_SCRIPT_PATH=${PYBIND11_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/f716a435/releases/pybind11-install.sh"}
+    PYBIND11_INSTALL_SCRIPT_PATH=${PYBIND11_INSTALL_SCRIPT_PATH:-"https://github.com/fem-on-colab/fem-on-colab.github.io/raw/92216b89/releases/pybind11-install.sh"}
     [[ $PYBIND11_INSTALL_SCRIPT_PATH == http* ]] && PYBIND11_INSTALL_SCRIPT_DOWNLOAD=${PYBIND11_INSTALL_SCRIPT_PATH} && PYBIND11_INSTALL_SCRIPT_PATH=/tmp/pybind11-install.sh && [[ ! -f ${PYBIND11_INSTALL_SCRIPT_PATH} ]] && wget ${PYBIND11_INSTALL_SCRIPT_DOWNLOAD} -O ${PYBIND11_INSTALL_SCRIPT_PATH}
     source $PYBIND11_INSTALL_SCRIPT_PATH
 
@@ -31,7 +31,7 @@ if [[ ! -f $FENICS_INSTALLED ]]; then
     source $SLEPC4PY_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    FENICS_ARCHIVE_PATH=${FENICS_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/fenics-20250108-090007-92022e3-real/fenics-install.tar.gz"}
+    FENICS_ARCHIVE_PATH=${FENICS_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/fenics-20250110-165107-46680e3-real/fenics-install.tar.gz"}
     [[ $FENICS_ARCHIVE_PATH == http* ]] && FENICS_ARCHIVE_DOWNLOAD=${FENICS_ARCHIVE_PATH} && FENICS_ARCHIVE_PATH=/tmp/fenics-install.tar.gz && wget ${FENICS_ARCHIVE_DOWNLOAD} -O ${FENICS_ARCHIVE_PATH}
     if [[ $FENICS_ARCHIVE_PATH != skip ]]; then
         tar -xzf $FENICS_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
