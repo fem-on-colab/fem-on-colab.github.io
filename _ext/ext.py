@@ -202,6 +202,17 @@ For convenience, text files containing links to all <b>FEM on Colab</b> tests ca
 class Stats(Directive):
 
     def run(self):
+        def get_week_representation(day: datetime.date) -> str:
+            """
+            Get the week representation year-week number.
+
+            Uses day.isocalendar() rather than day.strftime("%Y-%W") to prevent
+            wrong identification of the (week number, year) pair on the first week
+            of the year, see the documentation of datetime.date.isocalendar().
+            """
+            isocalendar_tuple = day.isocalendar()
+            return f"{isocalendar_tuple.year}-{isocalendar_tuple.week}"
+
         # Get release download stats from file, and convert it to a plot
         stats = pd.read_csv("_stats/stats.csv")
         first_day = None
@@ -213,13 +224,13 @@ class Stats(Directive):
                     first_day = day
                 else:
                     first_day = min(first_day, day)
-                week = day.strftime("%Y-%W")
+                week = get_week_representation(day)
                 if week not in week_to_headers:
                     week_to_headers[week] = list()
                 week_to_headers[week].append(header)
         weeks = pd.date_range(
             start=first_day - timedelta(days=first_day.weekday()), end=datetime.now(), freq="W-MON").tolist()[:-1]
-        weeks_str = [week.strftime("%Y-%W") for week in weeks]
+        weeks_str = [get_week_representation(week) for week in weeks]
         weekly_stats = pd.DataFrame(0, columns=list(packages.keys()), index=weeks_str)
         for package in weekly_stats.columns:
             condition = stats.package.str.fullmatch(package)
@@ -229,11 +240,17 @@ class Stats(Directive):
                     weekly_stats.loc[week, package] = max(stats_package[header] for header in headers)
         if len(weeks) > 1:
             fig = go.Figure()
+            max_downloads = 0
             for package in weekly_stats.columns:
                 weekly_stats_package = weekly_stats[package]
+                weekly_stats_package_diff = weekly_stats_package.diff().to_numpy()
                 fig.add_scatter(
-                    x=weeks[1:], y=np.diff(weekly_stats_package), mode="lines+markers",
+                    x=weeks[1:], y=weekly_stats_package_diff, mode="lines+markers",
                     name=packages[package]["title"])
+                if len(weeks) > 13:
+                    max_downloads = max(max_downloads, np.max(weekly_stats_package_diff[-14:]))
+                else:
+                    max_downloads = max(max_downloads, np.max(weekly_stats_package_diff))
             milliseconds_in_one_week = 604800000
             fig.update_xaxes(tickformat="%Y-%W", dtick=milliseconds_in_one_week)
             if len(weeks) > 13:
@@ -241,6 +258,7 @@ class Stats(Directive):
                     tick0=weeks[-14], range=[weeks[-14] - timedelta(days=3), weeks[-1] + timedelta(days=3)])
             else:
                 fig.update_xaxes(tick0=weeks[0])
+            fig.update_yaxes(tick0=- 0.1 * max_downloads, range=[- 0.1 * max_downloads, 1.1 * max_downloads])
             html_buffer = io.StringIO()
             fig.write_html(html_buffer, full_html=False)
             return [nodes.raw(text=html_buffer.getvalue(), format="html")]
