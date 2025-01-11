@@ -1,4 +1,4 @@
-# Copyright (C) 2021-2024 by the FEM on Colab authors
+# Copyright (C) 2021-2025 by the FEM on Colab authors
 #
 # This file is part of FEM on Colab.
 #
@@ -21,7 +21,7 @@ if [[ ! -f $VTK_INSTALLED ]]; then
     source $H5PY_INSTALL_SCRIPT_PATH
 
     # Download and uncompress library archive
-    VTK_ARCHIVE_PATH=${VTK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/vtk-20250108-080328-b4246d7/vtk-install.tar.gz"}
+    VTK_ARCHIVE_PATH=${VTK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/vtk-20250111-095419-4eb0f92/vtk-install.tar.gz"}
     [[ $VTK_ARCHIVE_PATH == http* ]] && VTK_ARCHIVE_DOWNLOAD=${VTK_ARCHIVE_PATH} && VTK_ARCHIVE_PATH=/tmp/vtk-install.tar.gz && wget ${VTK_ARCHIVE_DOWNLOAD} -O ${VTK_ARCHIVE_PATH}
     if [[ $VTK_ARCHIVE_PATH != skip ]]; then
         tar -xzf $VTK_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
