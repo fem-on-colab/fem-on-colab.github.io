@@ -11,7 +11,6 @@ https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blo
 ===================
 ----- fenicsx -----
 https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/fenicsx/test-dolfinx.ipynb?authuser=0
-https://colab.research.google.com/github/multiphenics/multiphenics.github.io/blob/open-in-colab-multiphenicsx/tutorials/01_block_poisson/tutorial_block_poisson.ipynb?authuser=0
 https://colab.research.google.com/github/multiphenics/multiphenics.github.io/blob/open-in-colab-multiphenicsx/tutorials/03_lagrange_multipliers/tutorial_lagrange_multipliers_interface.ipynb?authuser=0
 ===================
 
