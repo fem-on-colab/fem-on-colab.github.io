@@ -269,10 +269,7 @@ def on_build_finished(app, exc):
     if exc is None and app.builder.format == "html":
         # Unescape at symbol
         subprocess.run(
-            "find " + str(app.outdir) + r" -type f -not -path '*/\.git/*' -exec sed -i 's/%40/@/g' {} +",
-            shell=True)
-        subprocess.run(  # undo incorrect escape in plotly js
-            "sed -i 's/t@0=/t%400=/g' " + str(app.outdir) + "/packages.html",
+            "find " + str(app.outdir) + r" -type f -not -path '*/\.git/*' -exec sed -i 's/%40unicatt/@unicatt/g' {} +",
             shell=True)
         # Mark current page as active
         subprocess.run(
