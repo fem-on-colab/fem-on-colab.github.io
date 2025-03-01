@@ -50,6 +50,7 @@ jobs:
       - name: Check that no releases or notebooks have been deleted
         run: |
           pushd _build/html
+          git checkout -- releases/fenics-install-real.sh releases/fenicsx-install-complex.sh releases/fenicsx-install-real.sh releases/firedrake-install-complex.sh releases/firedrake-install-real.sh releases/ngsolve-install-complex.sh releases/ngsolve-install-real.sh
           if [[ $(git ls-files --deleted releases | wc -l) -gt 0 ]]; then
             echo "The following releases have been deleted:"
             git ls-files --deleted releases
