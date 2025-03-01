@@ -220,7 +220,9 @@ button[data-md-color-accent=unicatt] {
     margin-bottom: 0 !important;
 }
 
-.package-installation, .package-installation-real, .package-installation-complex {
+.package-installation,
+.package-installation-release-real, .package-installation-release-complex,
+.package-installation-development-real, .package-installation-development-complex {
     white-space: pre-wrap;
     font-family: monospace;
     margin-top: 1rem;
@@ -271,15 +273,19 @@ button[data-md-color-accent=unicatt] {
     margin-left: 6px;
 }
 
-.installation-toggle:checked + .installation-toggle-title + div.package-installation-real,
-.installation-toggle:checked + .installation-toggle-title + div.package-installation-complex,
+.installation-toggle:checked + .installation-toggle-title + div.package-installation-release-real,
+.installation-toggle:checked + .installation-toggle-title + div.package-installation-release-complex,
+.installation-toggle:checked + .installation-toggle-title + div.package-installation-development-real,
+.installation-toggle:checked + .installation-toggle-title + div.package-installation-development-complex,
 .extra-packages-toggle:checked + .extra-packages-toggle-title + div.extra-packages-content,
 .test-downloads-toggle:checked + .test-downloads-toggle-title + div.test-downloads-content {
     display: block;
 }
 
-.installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-real,
-.installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-complex,
+.installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-release-real,
+.installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-release-complex,
+.installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-development-real,
+.installation-toggle:not(:checked) + .installation-toggle-title + div.package-installation-development-complex,
 .extra-packages-toggle:not(:checked) + .extra-packages-toggle-title + div.extra-packages-content,
 .test-downloads-toggle:not(:checked) + .test-downloads-toggle-title + div.test-downloads-content {
     display: none;
