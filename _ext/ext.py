@@ -96,16 +96,28 @@ For convenience, text files containing links to all <b>FEM on Colab</b> tests ca
     @classmethod
     def _card(cls, package, title, installation, installation_suffixes, buttons):
         if len(installation_suffixes) == 1:
-            assert installation_suffixes[0] in ("", "real"), (
-                f"Invalid suffix {installation_suffixes[0]}, expected blank or real")
+            assert installation_suffixes[0] == "", (
+                f"Invalid suffix {installation_suffixes[0]}, expected blank")
             package_installation = "<div class=\"package-installation\">" + installation.lstrip().rstrip() + "</div>"
         else:
             package_installation_template = installation.lstrip().rstrip()
             package_installation = ""
             for suffix in installation_suffixes:
-                suffix_title = suffix.capitalize() + " mode"
-                toggle_open = " checked" if suffix == "real" else ""
-                div_class = "package-installation-real" if suffix == "real" else "package-installation-complex"
+                assert suffix in ("release-real", "release-complex", "development-real", "development-complex")
+                suffix_title = ""
+                if suffix.startswith("release"):
+                    suffix_title += "Latest release"
+                else:
+                    assert suffix.startswith("development")
+                    suffix_title += "Development version"
+                suffix_title += ", "
+                if suffix.endswith("real"):
+                    suffix_title += "real mode"
+                else:
+                    assert suffix.endswith("complex")
+                    suffix_title += "complex mode"
+                toggle_open = " checked" if suffix == "release-real" else ""
+                div_class = f"package-installation-{suffix}"
                 package_installation += (
                     f"<input type=\"checkbox\" name=\"installation-toggle-{package}-{suffix}\" id=\"installation-toggle-{package}-{suffix}\" class=\"installation-toggle\"{toggle_open}>"
                     + f"<label for=\"installation-toggle-{package}-{suffix}\" class=\"installation-toggle-title\">{suffix_title}</label>"
@@ -327,8 +339,8 @@ def on_build_finished(app, exc):
         for package in list(all_packages.keys()):
             installation_suffixes = all_packages[package]["installation_suffixes"]
             if len(installation_suffixes) == 1:
-                assert installation_suffixes[0] in ("", "real"), (
-                    f"Invalid suffix {installation_suffixes[0]}, expected blank or real")
+                assert installation_suffixes[0] == "", (
+                    f"Invalid suffix {installation_suffixes[0]}, expected blank")
             for suffix in installation_suffixes:
                 for extension in (".sh", ".docker"):
                     if suffix == "":

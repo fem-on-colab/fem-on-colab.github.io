@@ -5,10 +5,10 @@ packages = {
 try:
     import dolfin
 except ImportError:
-    !wget "https://fem-on-colab.github.io/releases/fenics-install-real.sh" -O "/tmp/fenics-install.sh" && bash "/tmp/fenics-install.sh"
+    !wget "https://fem-on-colab.github.io/releases/fenics-install-SUFFIX.sh" -O "/tmp/fenics-install.sh" && bash "/tmp/fenics-install.sh"
     import dolfin
 """,
-        "installation_suffixes": ["real"],
+        "installation_suffixes": ["release-real", "development-real"],
         "tests": {
             "dolfin": "fenics/test-dolfin.ipynb",
             "mshr": "fenics/test-mshr.ipynb",
@@ -27,7 +27,7 @@ except ImportError:
     !wget "https://fem-on-colab.github.io/releases/fenicsx-install-SUFFIX.sh" -O "/tmp/fenicsx-install.sh" && bash "/tmp/fenicsx-install.sh"
     import dolfinx
 """,
-        "installation_suffixes": ["real", "complex"],
+        "installation_suffixes": ["release-real", "release-complex", "development-real", "development-complex"],
         "tests": {
             "dolfinx": "fenicsx/test-dolfinx.ipynb",
             "multiphenicsx (with pyvista)": "https://colab.research.google.com/github/multiphenics/multiphenics.github.io/blob/open-in-colab-multiphenicsx/tutorials/03_lagrange_multipliers/tutorial_lagrange_multipliers_interface.ipynb"
@@ -42,7 +42,7 @@ except ImportError:
     !wget "https://fem-on-colab.github.io/releases/firedrake-install-SUFFIX.sh" -O "/tmp/firedrake-install.sh" && bash "/tmp/firedrake-install.sh"
     import firedrake
 """,
-        "installation_suffixes": ["real", "complex"],
+        "installation_suffixes": ["release-real", "release-complex", "development-real", "development-complex"],
         "tests": {
             "firedrake": "firedrake/test-firedrake.ipynb",
             "fireshape": "firedrake/test-fireshape.ipynb",
@@ -73,7 +73,7 @@ except ImportError:
     !wget "https://fem-on-colab.github.io/releases/ngsolve-install-SUFFIX.sh" -O "/tmp/ngsolve-install.sh" && bash "/tmp/ngsolve-install.sh"
     import ngsolve
 """,
-        "installation_suffixes": ["real", "complex"],
+        "installation_suffixes": ["release-real", "release-complex", "development-real", "development-complex"],
         "tests": {
             "ngsolve": "ngsolve/test-ngsolve.ipynb",
             "ngsolve (extras)": "ngsolve/test-ngsolve-extras.ipynb",
@@ -158,7 +158,7 @@ except ImportError:
     !wget "https://fem-on-colab.github.io/releases/petsc4py-install-SUFFIX.sh" -O "/tmp/petsc4py-install.sh" && bash "/tmp/petsc4py-install.sh"
     import petsc4py
 """,
-        "installation_suffixes": ["real", "complex"],
+        "installation_suffixes": ["release-real", "release-complex", "development-real", "development-complex"],
         "tests": {
             "petsc4py": "petsc4py/test.ipynb",
         },
@@ -185,7 +185,7 @@ except ImportError:
     !wget "https://fem-on-colab.github.io/releases/slepc4py-install-SUFFIX.sh" -O "/tmp/slepc4py-install.sh" && bash "/tmp/slepc4py-install.sh"
     import slepc4py
 """,
-        "installation_suffixes": ["real", "complex"],
+        "installation_suffixes": ["release-real", "release-complex", "development-real", "development-complex"],
         "tests": {
             "slepc4py": "slepc4py/test.ipynb",
         },

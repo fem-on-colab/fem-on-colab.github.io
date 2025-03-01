@@ -42,7 +42,7 @@ Timeline and funding
    * - May 2021
      - Early development of **FEM on Colab** begins at `Università Cattolica del Sacro Cuore <https://www.unicatt.it/>`__.
    * - January 2022
-     - End user packages are automatically built on a weekly basis, in order to follow upstream development. With similar motivations, their dependencies are built on a monthly basis.
+     - End user packages are automatically built on a weekly basis, while their dependencies are built on a monthly basis.
    * - October 2022
      - Latest `backend information <https://github.com/googlecolab/backend-info>`__ reported by Google Colab developers is now used in the scheduled builds.
    * - November 2022
