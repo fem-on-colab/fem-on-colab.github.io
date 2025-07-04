@@ -16,7 +16,7 @@ MOCK_INSTALLED="$SHARE_PREFIX/mock.installed"
 
 if [[ ! -f $MOCK_INSTALLED ]]; then
     # Download and uncompress library archive
-    MOCK_ARCHIVE_PATH=${MOCK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mock-20250701-080931-9ceb697/mock-install.tar.gz"}
+    MOCK_ARCHIVE_PATH=${MOCK_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/mock-20250704-053448-734923c/mock-install.tar.gz"}
     [[ $MOCK_ARCHIVE_PATH == http* ]] && MOCK_ARCHIVE_DOWNLOAD=${MOCK_ARCHIVE_PATH} && MOCK_ARCHIVE_PATH=/tmp/mock-install.tar.gz && wget ${MOCK_ARCHIVE_DOWNLOAD} -O ${MOCK_ARCHIVE_PATH}
     if [[ $MOCK_ARCHIVE_PATH != skip ]]; then
         rm -rf /usr/lib/python*/*-packages/mock*
