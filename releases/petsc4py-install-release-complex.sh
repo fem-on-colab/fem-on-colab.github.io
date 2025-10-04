@@ -24,7 +24,7 @@ if [[ ! -f $PETSC4PY_INSTALLED ]]; then
     apt install -y -qq libblas-dev liblapack-dev
 
     # Download and uncompress library archive
-    PETSC4PY_ARCHIVE_PATH=${PETSC4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/petsc4py-20251001-025924-eef96b3-release-complex/petsc4py-install.tar.gz"}
+    PETSC4PY_ARCHIVE_PATH=${PETSC4PY_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/petsc4py-20251004-053744-863b2dd-release-complex/petsc4py-install.tar.gz"}
     [[ $PETSC4PY_ARCHIVE_PATH == http* ]] && PETSC4PY_ARCHIVE_DOWNLOAD=${PETSC4PY_ARCHIVE_PATH} && PETSC4PY_ARCHIVE_PATH=/tmp/petsc4py-install.tar.gz && wget ${PETSC4PY_ARCHIVE_DOWNLOAD} -O ${PETSC4PY_ARCHIVE_PATH}
     if [[ $PETSC4PY_ARCHIVE_PATH != skip ]]; then
         tar -xzf $PETSC4PY_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
