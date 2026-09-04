@@ -1,0 +1,83 @@
+name: "Promote staging to production"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone website repository on gh-pages branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+
+      - name: Promote staging to production
+        run: |
+          for STAGING_DIR in releases-staging tests-staging; do
+            if [[ ! -d "${STAGING_DIR}" ]]; then
+              echo "Missing ${STAGING_DIR}; refusing to promote."
+              exit 1
+            fi
+          done
+
+          git ls-files releases tests > /tmp/production-files
+
+          MISSING=0
+          while IFS= read -r PRODUCTION_FILE; do
+            case "${PRODUCTION_FILE}" in
+              releases/*)
+                STAGING_FILE="releases-staging/${PRODUCTION_FILE#releases/}"
+                ;;
+              tests/*)
+                STAGING_FILE="tests-staging/${PRODUCTION_FILE#tests/}"
+                ;;
+              *)
+                echo "Unexpected production path: ${PRODUCTION_FILE}"
+                exit 1
+                ;;
+            esac
+
+            if [[ ! -e "${STAGING_FILE}" ]]; then
+              echo "Missing staging counterpart for ${PRODUCTION_FILE}: ${STAGING_FILE}"
+              MISSING=1
+            fi
+          done < /tmp/production-files
+
+          if [[ "${MISSING}" -ne 0 ]]; then
+            echo "Staging is incomplete; refusing to replace production."
+            exit 1
+          fi
+
+          rm -rf releases tests
+          mv releases-staging releases
+          mv tests-staging tests
+
+          find releases tests -type f -exec sed -i \
+            -e 's|github.io/releases-staging/|github.io/releases/|g' \
+            -e 's|github.io/tests-staging/|github.io/tests/|g' {} +
+
+          MISSING=0
+          while IFS= read -r PRODUCTION_FILE; do
+            if [[ ! -e "${PRODUCTION_FILE}" ]]; then
+              echo "Production file disappeared during promotion: ${PRODUCTION_FILE}"
+              MISSING=1
+            fi
+          done < /tmp/production-files
+
+          if [[ "${MISSING}" -ne 0 ]]; then
+            echo "Promotion lost files; refusing to commit."
+            exit 1
+          fi
+
+          git config user.name "GitHub Actions"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --check
+          git commit -m "Promote staging to production"
+          git push origin gh-pages
+        shell: bash
