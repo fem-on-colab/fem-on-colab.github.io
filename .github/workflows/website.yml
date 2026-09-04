@@ -60,6 +60,16 @@ jobs:
             git ls-files --deleted tests
             exit 1
           fi
+          if [[ $(git ls-files --deleted releases-staging | wc -l) -gt 0 ]]; then
+            echo "The following staging releases have been deleted:"
+            git ls-files --deleted releases-staging
+            exit 1
+          fi
+          if [[ $(git ls-files --deleted tests-staging | wc -l) -gt 0 ]]; then
+            echo "The following staging notebooks have been deleted:"
+            git ls-files --deleted tests-staging
+            exit 1
+          fi
           popd
         shell: bash
       - name: Deploy to GitHub pages
