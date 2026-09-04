@@ -1,0 +1,34 @@
+# Copyright (C) 2021-2026 by the FEM on Colab authors
+#
+# This file is part of FEM on Colab.
+#
+# SPDX-License-Identifier: MIT
+
+set -e
+set -x
+
+# Check for existing installation
+INSTALL_PREFIX=${INSTALL_PREFIX:-"/usr/local"}
+INSTALL_PREFIX_DEPTH=$(echo $INSTALL_PREFIX | awk -F"/" '{print NF-1}')
+PROJECT_NAME=${PROJECT_NAME:-"fem-on-colab"}
+SHARE_PREFIX="$INSTALL_PREFIX/share/$PROJECT_NAME"
+OCC_INSTALLED="$SHARE_PREFIX/occ.installed"
+
+if [[ ! -f $OCC_INSTALLED ]]; then
+    # Download and uncompress library archive
+    OCC_ARCHIVE_PATH=${OCC_ARCHIVE_PATH:-"https://github.com/fem-on-colab/fem-on-colab/releases/download/staging-occ-20260904-080749-0be0e98/occ-install.tar.gz"}
+    [[ $OCC_ARCHIVE_PATH == http* ]] && OCC_ARCHIVE_DOWNLOAD=${OCC_ARCHIVE_PATH} && OCC_ARCHIVE_PATH=/tmp/occ-install.tar.gz && wget ${OCC_ARCHIVE_DOWNLOAD} -O ${OCC_ARCHIVE_PATH}
+    if [[ $OCC_ARCHIVE_PATH != skip ]]; then
+        tar -xzf $OCC_ARCHIVE_PATH --strip-components=$INSTALL_PREFIX_DEPTH --directory=$INSTALL_PREFIX
+    fi
+
+    # Add symbolic links to TK libraries in /usr/lib, because INSTALL_PREFIX/lib may not be in LD_LIBRARY_PATH
+    # on the actual cloud instance
+    if [[ $OCC_ARCHIVE_PATH != skip ]]; then
+        ln -fs $INSTALL_PREFIX/lib/libTK*.so* /usr/lib
+    fi
+
+    # Mark package as installed
+    mkdir -p $SHARE_PREFIX
+    touch $OCC_INSTALLED
+fi
