@@ -337,9 +337,10 @@
 <h2 id="history-and-the-underlying-motivation">History and the underlying motivation<a class="headerlink" href="#history-and-the-underlying-motivation" title="Link to this heading">¶</a></h2>
 <p>The project started in 2021 with two main technical motivations:</p>
 <ul class="simple">
-<li><p>the Google Colab team released in February 2021 an upgrade to their system to use python 3.7. This effectively detaches their python version from Ubuntu upstream packages, bacause python 3.7 is not supported by upstream Ubuntu 18.04 LTS (the newest supported version is 3.6). This means that a custom packaging pipeline needs to be implemented to support Colab.</p></li>
-<li><p>the gcc suite available on Colab (although slightly newer than the one in Ubuntu 18.04 LTS), is still part of the 7.x series. This is too old for some of the target libraries in this project.</p></li>
+<li><p>the Google Colab team released in February 2021 an upgrade to their system to use a non-default python version. This effectively detached their system from any (non-trivial) Ubuntu upstream package which uses python, which meant that custom packaging was needed to support Google Colab.</p></li>
+<li><p>the gcc suite available on Google Colab was too old for some of the target libraries in this project.</p></li>
 </ul>
+<p>The first motivation is still valid nowadays, while the second one has been superseded by later Google Colab updates.</p>
 </section>
 <section id="contributing-small-donations-through-github-sponsors">
 <h2 id="contributing-small-donations-through-github-sponsors">Contributing: small donations through GitHub Sponsors<a class="headerlink" href="#contributing-small-donations-through-github-sponsors" title="Link to this heading">¶</a></h2>

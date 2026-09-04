@@ -3,11 +3,6 @@
 https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/boost/test.ipynb?authuser=0
 =================
 
-===============
------ gcc -----
-https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/gcc/test.ipynb?authuser=0
-===============
-
 ================
 ----- h5py -----
 https://colab.research.google.com/github/fem-on-colab/fem-on-colab.github.io/blob/gh-pages/tests/h5py/test.ipynb?authuser=0
