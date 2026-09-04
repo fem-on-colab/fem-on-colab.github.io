@@ -179,8 +179,6 @@ For convenience, text files containing links to all <b>FEM on Colab</b> tests ca
             logo = "_static/images/fenics-logo.png"
         elif library in ("firedrake", "fireshape", "irksome", "ROL"):
             logo = "_static/images/firedrake-logo.png"
-        elif library == "gcc":
-            logo = "_static/images/gcc-logo.png"
         elif library == "gmsh":
             logo = "_static/images/gmsh-logo.png"
         elif library == "h5py":

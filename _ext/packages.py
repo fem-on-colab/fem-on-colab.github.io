@@ -93,16 +93,6 @@ extra_packages = {
             "boost": "boost/test.ipynb",
         },
     },
-    "gcc": {
-        "title": "GCC",
-        "installation": """
-!wget "https://fem-on-colab.github.io/releases/gcc-install.sh" -O "/tmp/gcc-install.sh" && bash "/tmp/gcc-install.sh"
-""",
-        "installation_suffixes": [""],
-        "tests": {
-            "gcc": "gcc/test.ipynb",
-        },
-    },
     "h5py": {
         "title": "HDF5 & h5py",
         "installation": """
